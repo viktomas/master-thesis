@@ -81,7 +81,7 @@ Přidat je možné buď produkt z obchodu Amazon. V tomto případě se načtou 
 Dále plugin podporuje funkci přidání přání v podobě jakékoli stránky. Tedy je možné přidat do Amazon Wish List například zboží z českého internetového obchodu. Jako obrázek k přání si uživatel může zvolit libovolý obrázek ze stránky. Jako název přání se použije titulek stránky\footnote{Obsah HTML tagu <title> ve zdrojovém kódu stránky}, popisek se k přání žádný nepřidává. Uživatel si ještě k přání muže doplnit cenu před tím než ho uloží do seznamu.
 
 \subsection{WishList.com}
-WishList.com je webová aplikace zaměřená primárně na vytváření seznamu přání. U každého seznamu podporuje sdílení a také podporuje nastavení události k seznamu a data této události. Většina seznamů má tyto hodnoty vyplněny a jsou to například seznamy přání k narozeninám, vánocům nebo seznam svatebních darů.
+WishList.com je webová aplikace zaměřená primárně na vytváření seznamu přání. U každého seznamu podporuje sdílení a také podporuje nastavení události k seznamu a data této události. Většina seznamů má tyto hodnoty vyplněny a jsou to například seznamy přání k narozeninám, vánocům nebo seznam svatebních darů. Jako zdroj dat používá internetový srovnávač PriceGrabber.com, který je popsán v rešerši srovnávačů.
 
 WishList.com neumožňuje přihlášení pomocí OpenID. Uživatel se může přihlásit pomocí svého Facebook účtu, nebo zaregistrovat klasickou metodou, kdy zadá svůj email, přihlašovací jméno a heslo.
 
@@ -93,7 +93,19 @@ Vytvořený seznam je možné sdílet pomocí URL. Pokud si seznam prohlíží j
 
 Seznam přání i jednotlivá přání je možné sdílet s ostatními uživateli pomocí tlačitka "Share this WishList" resp "Share this Wish". Sdílení j e možné pomocí služeb Facebook, Myspace, Google, Twitter, Email a dalších 300+. Na sdílení je pravděpodobně použit nějaký plugin.
 
-Přehled přání je vidět na obrázku \ref{fig:wishlist-wishlist}
+Aplikace WishList podporuje vyhledávání zboží pomocí více zmíněného PriceGrabber.com. Pokud má zboží pouze jednoho prodejce, přesměruje uživatele tlačítko "Buy" u přání přímo na stránku prodejce. Jinak je uživatel přesměrován na stránku s výběrem prodejců. Tato stránka se nachází stále na WishList.
+
+Po přidání přání, které bylo nalezeno vyhledáváním je uživateli zobrazena zpráva, která se ptá jestli chce uživatel opravdu čekat a nekoupí si své přání rovnou. Tato výzva je vidět na obrázku \ref{fig:wishlist-buynow}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=100mm]{./pictures/wishlist-buynow.png}
+\caption{Výzva k okamžitému zakoupení přání.}
+\label{fig:wishlist-buynow}
+\end{center}
+\end{figure}
+
+Přehled přání je vidět na obrázku \ref{fig:wishlist-wishlist}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -103,22 +115,47 @@ Přehled přání je vidět na obrázku \ref{fig:wishlist-wishlist}
 \end{center}
 \end{figure}
 
+\subsubsection{Nedostatky WishList.com}
+Cena u přání jde zadat pouze v dolarech. WishList umožňuje vyhledat zboží pro přání u kterých není uvedena URL produktu, ale vyhledávání nefunguje kompletně, nenašlo nic pro výraz "iphone"
+
 \section{Srovnávače cen}
-Tato kapitola poskytuje rešerši produktů známých jako srovnávače cen. Cílem těchto produktů je poskytnout uživateli širší rozhled na trh. Tyto produkty umožňují u jednoho druhu zboží (např. Televizor) srovnat jeho cenu v několika obchodech. V rešerši jsou zpracovány jako potencionální zdroje dat pro nákupní seznam.
+Tato kapitola poskytuje rešerši produktů známých jako srovnávače cen. Cílem těchto produktů je poskytnout uživateli širší pohled na trh. Tyto produkty umožňují u jednoho druhu zboží (např. Televizor) srovnat jeho cenu v několika internetových obchodech. V rešerši jsou zpracovány jako potencionální zdroje dat pro výslednou webovou aplikaci.
 
 \subsection{Standartní funkce všech srovnávačů}
-V této sekci jsou popsány 3 základní funkce, které podporují všechny srovnávače cen.
+V této sekci jsou popsány tři základní funkce, které podporují všechny zmíněné srovnávače cen. Lze říci že se jedná o funkce, které definují srovnávač cen jako takový.
 
 \subsubsection{Vyhledávání}
-Každý ze zmíňených vyhledávačů podporuje fultextové vyhledávání zboží. Dále umožňují srovnávače vyhledávání po kategoriích a/nebo filtrování parametrů zboží.
+Každý ze zmíněných vyhledávačů podporuje fultextové vyhledávání zboží\footnote{(z ang. full – celý, plný a text) speciální způsob vyhledávání informací v databázích nebo v textových souborech, které jsou obvykle předem připraveny, tj. indexovány, aby bylo možno nalézt libovolné slovo (řetězec znaků) v nejkratším možném čase.}. Toto vyhledávání probíhá nad databází veškerých výrobků, které aplikace (srovnávač) získala prohledáváním ostatních stránek. Vyhledávány jsou jednotlivé výrobky, u nichž jsou agregovány ceny z jednotlivých obchodů, tzn. že výrobek se zobrazí pouze jednou, přesto že srovnávač má informace o několika obchodech, které jej poskytují.
+
+Dále umožňují srovnávače vyhledávání po kategoriích. Na domovské stránce srovnávače je uživateli nabídnut seznam kategorií a významných podkategorií. Uživatel po rozkliknutí kategorie vidí vybrané zboží z dané kategorie a případně také podkategorie, pokud nějaké jsou.
+
+Uživateli je také umožněno filtrovat zboží na základě jeho parametrů. Parametry podle kterých se filtruje se dají rozdělit na druhy:
+\begin{itemize}
+\item \textbf{Společné pro veškeré zboží.} Sem spadá například cena výrobku, nebo značka výrobce
+\item \textbf{Rozlišné pro každou kategorii.} Zde se nacházejí parametry které dávají smysl pouze v dané kategorii. Např. velikost ohniska u objektivů nemá smysl nikde jinde. Stejně tak velikost uhlopříčky nemá smysl v kategoriích kde není žádné zobrazovací zařízení.
+\end{itemize}
 
 \subsubsection{Srovnávání cen}
-Každý z vyhledávačů podporuje srovnání cen u zobží. U každého zboží je schopný zobrazit minimální cenu a také seznam všech obchodů s tímto zbožím a k nim přiřazenou částku, za jakou daný obchod zboží nabízí.
+Každá aplikace podporuje srovnání cen u zobží. U většiny zboží v databázi je přiřazen větší počet obchodů. Díky shromáždění cen z jednotlivých obchodů je poté srovnávač schopný zobrazit u zboží nejnižší a nejvyšší cenu. U zboží je zároveň zobrazen přehled všech obhodů ve kterých je zboží nabízeno. Několik obchodů je zpravidla doporučeno srovnávačem. K tomu mohou mít obchody ještě seznam ocenění získaných srovnávačem.
 
-K této funkcionalitě zároveň patří graf historie cen. V grafu historie cen uživatel může sledovat vývoj ceny zboží a třeba odhadnout, jak se bude vyvíjet dál.
+Zpravidla je u obchodu zobrazena táké dostupnost zboží, případně cena dopravy. Díky těmto informacím uživatel okamžitě vidí kdy může zboží mít a kolik zaplatí navíc oproti ceně uvedené v obchodě.
+
+Díky pravidelnému sledování cen zboží v obchodech má srovnávač chronologická data o ceně zboží. Díky této vlastnosti nabízí funcionalitu graf historie cen. V grafu je zanesena cena zboží řádově za několik uplynulých měsícu. Tento graf pomáhá uživateli v rozhodnutí o koupi. Uživatel vidí, zdali se cena právě nachází pod nebo nad dlouhodobým průměrem.
 
 \subsubsection{Uživatelská zpětná vazba}
-Touto funkčností se rozumí uživatelské hodnocení produktů a obchodů. Hodnocení většinou probíhá na principu jedné až pěti hvězdiček, případně shrnutí kladů a záporů.
+Srovnávače umožňují uživatelům hodnotit obchody i zobží. U obchodů se hodnotí parametry jako dodací lhůta, přehledonost obchodu a kvalita komunikace. U zboží je výběr parametrů pro hodnocení jako při filtrování zboží podle atributů. V každé kategorii se hodnotí relevantní parametry zboží. 
+
+Hodnocení většinou probíhá na principu jedné až pěti hvězdiček, případně shrnutí kladů a záporů.
+
+Hodnocení produktu na srovnávači Heureka.cz je vidět na obrázku \ref{fig:heureka-hodnoceni-produktu}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=100mm]{./pictures/heureka-hodnoceni-produktu.png}
+\caption{Hodnocení produktu Nikon 1 J1 na srovávači Heureka.cz}
+\label{fig:heureka-hodnoceni-produktu}
+\end{center}
+\end{figure}
 
 \subsection{Heureka}
 Interaktivní nákupní rádce Heureka.cz byl založen společností Miton v roce 2007, kdy ihned zaujmul zajímavým nápadem zkombinování mnoha užitečných možností do jednoho celku. Následně rozšiřuje svou působnost i na Slovensko a zakládá slovenskou verzi Heureka.sk (založena v r. 2008). \cite{website:wiki:heureka}
