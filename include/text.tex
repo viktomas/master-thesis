@@ -1,4 +1,4 @@
-% !TEX root = ../viktomas-master.tex
+% !TEX root = ../DP_Vik_Tomas_2013.tex
 % pokyny
 % Z uživatelského hlediska je velmi výhodné před nákupem zboží prozkoumat trh pomocí internetových srovnávačů. Zatím ovšem není snadno dostupná služba, která by uživateli umožnila vytvořit si hypotetický seznam zboží, které zvažuje koupit.
 
@@ -9,24 +9,32 @@
 % *Pro prioritizaci navrhněte a implementujte vhodné algoritmy.
 % *API webové aplikace bude navrženo s ohledem na budoucí integraci s dalšími systémy (např. srovnávače cen apod.).
 \chapter{Rešerše}
-Tato kapitola se zabývá popisem problematiky této práce. V zadání práce je řečeno, že má být vytvořena rešerše stávajících systémů zabývajících se organizací nákupního seznamu. Tato rešerše je rozdělena na 3 kapitoly z nichž každá řeší jeden aspekt těchto seznamů.
+Tato kapitola se zabývá popisem problematiky této práce. V této kapitole bude postupně probrána problematika práce ze tří úhlů pohledu.
+
+První část se zabývá přímými konkurenty aplikace, která je předmětem této práce. Bude se tedy zabývat webovými aplikacemi, které umožňují organizaci nákupníhch seznamů.
+
+Druhá část se zabývá aplikacemi, které mají nějakou významnou funkčnost vhodnou pro výslednou webovou aplikaci. Jedná se o aplikace, které se nějakou svojí částí specializují na organizaci informací.
+
+Třetí část se zabýva technologickým aspektem práce. Budou shrnuty technologie, na kterých je v dnešní době možné postavit webové aplikace. Na konci podkapitoly budou shrnuty slabé a silné stránky jednotlivých technologií.
 
 \section{Nákupní seznamy}
+Tato kapitola popisuje funkčnost hotových aplikací zabývajících se organizací nákupního seznamu. Všechny zmíněné aplikace jsou již v produkcí a jsou zaštítěny velkými internetovými společnostmi.
 
 \subsection{Google ShoppingList}
-Webová aplikace založená na službě Google Nákupy. Podporuje jednoduché přidání zboží. U přidaných položek zobrazuje následující informace a umožňuje podle nich i řadit:
+Webová aplikace doplňující službu Google Nákupy. Podporuje jednoduché přidání zboží. U přidaných položek zobrazuje následující informace a umožňuje podle těchto informací i řadit položky na seznamu:
 \begin{itemize}
-\item Datum přidání položky
-\item Nejnižší aktuální cena
-\item Hodnocení ostatních uživatelů
+\item \textbf{Datum přidání položky}
+\item \textbf{Nejnižší aktuální cena} - Služba Google Nákupy má informace o ceně získané z většího množství obchodů. U věci na seznamu zobrazuje nejnižší možnou cenu. Jiná než tato cena nelze zobrazit.
+\item \textbf{Hodnocení produktu}
 \end{itemize}
-Nákupní seznam je v základním nastavení veřejný a je možné zkopírovat na něj odkaz. Tento odkaz následně uživatel odešle komukoli, s kým chce svůj nákupní seznam sdílet. U každé položky na seznamu je možné vypnout sdílení.
+Zboží přidané do seznamu se dělí do dvou kategorií resp. seznamů. První seznam se nazývá Shopping List a jedná se o privátní nákupní seznam. Položky v tomto seznamu se zobrazují puze uživateli, kterému seznam patří. Druhý seznam se nazývá seznam přání a je možné na něj zkopírovat odkaz. Tento odkaz následně uživatel odešle komukoli, s kým chce svůj seznam přání sdílet. Položky lze přesouvat mezi seznamy tlačítkem \emph{Sdílet}/\emph{Zrušit sdílení}.
+Zboží v seznamu přání je primárně určeno pro ostatní uživatele, aby jej mohli koupit uživateli, který seznam přání vytvořil. Například jako vánoční, narozeninový, nebo svatební seznam přání. Seznam přání je vidět na obrázku \ref{fig:google-shoppinglist}
 
 Další funkčnost, kterou nabízí tento seznam je:
 \begin{itemize}
 \item Přidání poznámky k položce - uživateli je umožněno přidat poznámku k položce na seznamu.  Tato poznámka je následně zobrazena u položky v hlavním přehledu.
 \item Odebrání položky ze seznamu
-\item Zrušení sdílení - viz. předchozí odstavec
+\item Sdílení/Zrušení sdílení - viz. předchozí odstavec
 \end{itemize}
 
 \begin{figure}[htb]
@@ -49,13 +57,14 @@ Tato sekce se zabývá druhy přání ve službě Amazon Wish List. Přáním se
 \end{itemize}
 
 \paragraph{Produkt internetového obchodu Amazon.com}
-Toto přání reprezentuje 1:1 produkt v internetovém obchodu Amazon.com. Toto přání vznikne tak, že přihlášený uživatel klikne na stránce produktu na tlačítko "Add To Wish List". U takovéhoto přání se ukazuje minimální možná cena, popis i obrázek.
+\label{par:produkt-amazon}
+Toto přání reprezentuje jedna k jedné produkt v internetovém obchodu Amazon.com. Toto přání vznikne tak, že přihlášený uživatel klikne na stránce produktu v obchodě Amazon.com na tlačítko \emph{Add To Wish List}. U takovéhoto přání se ukazuje minimální možná cena, popis i obrázek. Tedy maximální množství informací.
 
 \paragraph{Internetová stránka mimo Amazon.com}
-Toto přání reprezentuje jakoukoli internetovou stránku. Přání vznikne pomocí pluginu Amazon Wish List Button. O této funkcionalitě bude pojednávat samostatná kapitola.
+Toto přání reprezentuje jakoukoliv internetovou stránku. Takovéto přáni vznikne jedině pomocí pluginu Amazon Wish List Button. O této funkcionalitě pojednává samostatná podkapitola.
 
 \paragraph{Nápad na přání}
-Nápad na přání je funkcionalita, která umožní uživateli zadat nápad na přání pouze jako text (název přání). Tento nápad se uloží mezi ostatní přání. Místo obrázku přání je ovšem zobrazen obrázek nalepovacího štítku a na něm je napsáno "I Want". Nápad na přání je vidět na obrázku \ref{fig:amazon-wishlist-idea}. Každý nápad na přání má u sebe tlačítko "Top search results" které najde pro popis nápadu produkty z obchodu Amazon.com.
+Nápad na přání je funkcionalita, která umožní uživateli zadat nápad na přání pouze jako text (název přání). Tento nápad se uloží mezi ostatní přání. Místo obrázku přání je ovšem zobrazen obrázek nalepovacího štítku a na něm je napsáno "I Want". Nápad na přání je vidět na obrázku \ref{fig:amazon-wishlist-idea}. Každý nápad na přání má u sebe tlačítko \emph{Top search results} které najde pro popis nápadu produkty z obchodu Amazon.com. Takto nalezené produkty je možné okamžitě přidávat do seznamu. Nápad na přání přitom v seznamu zůstává, dokud jej uživatel neodstraní.
 
 \begin{figure}[htb]
 \begin{center}
@@ -66,7 +75,7 @@ Nápad na přání je funkcionalita, která umožní uživateli zadat nápad na 
 \end{figure}
 
 \subsubsection{Amazon Wish List Button}
-Amazon Wish List poskytuje plugin\footnote{Také zásuvný modul - software, který nepracuje samostatně, ale jako doplňkový modul jiné aplikace a rozšiřuje její funkčnost.} do všech majoritních internetových prohlížečů\cite{website:amazon:plugin}. Po nainstalovani pluginu do prohlížeče si může uživatel přidat tlačítko "Amazon Wish List Button". Po stisku tohoto tlačítka se otevře dialog. (Obrázek \ref{fig:amazon-wishlist-plugin})
+Amazon Wish List poskytuje plugin\footnote{Také zásuvný modul - software, který nepracuje samostatně, ale jako doplňkový modul jiné aplikace a rozšiřuje její funkčnost.} do všech majoritních internetových prohlížečů\cite{website:amazon:plugin}. Po nainstalovani pluginu do prohlížeče si může uživatel přidat tlačítko \emph{Amazon Wish List Button} do ovládacího panelu prohlížeče. Po stisku tohoto tlačítka se otevře dialog. (Obrázek \ref{fig:amazon-wishlist-plugin})
 
 \begin{figure}[htb]
 \begin{center}
@@ -76,7 +85,7 @@ Amazon Wish List poskytuje plugin\footnote{Také zásuvný modul - software, kte
 \end{center}
 \end{figure}
 
-Přidat je možné buď produkt z obchodu Amazon. V tomto případě se načtou všechna data, která se u přání ukladájí, a není rozdíl v použití pluginu oproti stisknutí tlačítka "Add to Wish List" na stránce produktu.
+Přidat je možné buď produkt z obchodu Amazon.com. V tomto případě se načtou všechna data, která se u přání ukladájí, a není rozdíl v použití pluginu oproti stisknutí tlačítka "Add to Wish List" na stránce produktu (viz. kapitola \ref{par:produkt-amazon}).
 
 Dále plugin podporuje funkci přidání přání v podobě jakékoli stránky. Tedy je možné přidat do Amazon Wish List například zboží z českého internetového obchodu. Jako obrázek k přání si uživatel může zvolit libovolý obrázek ze stránky. Jako název přání se použije titulek stránky\footnote{Obsah HTML tagu <title> ve zdrojovém kódu stránky}, popisek se k přání žádný nepřidává. Uživatel si ještě k přání muže doplnit cenu před tím než ho uloží do seznamu.
 
@@ -91,9 +100,9 @@ Při přidávání přání je možné zadat prodejce předmětu, název předm�
 
 Vytvořený seznam je možné sdílet pomocí URL. Pokud si seznam prohlíží jiný uživatel než ten, který jej vytvořil, může si tento uživatel zarezervovat přání, což znamená že koupí předmět a dá jej uživateli, který si jej přál.
 
-Seznam přání i jednotlivá přání je možné sdílet s ostatními uživateli pomocí tlačitka "Share this WishList" resp "Share this Wish". Sdílení j e možné pomocí služeb Facebook, Myspace, Google, Twitter, Email a dalších 300+. Na sdílení je pravděpodobně použit nějaký plugin.
+Seznam přání i jednotlivá přání je možné sdílet s ostatními uživateli pomocí tlačitka \emph{Share this WishList} resp \emph{Share this Wish}. Sdílení je možné pomocí služeb Facebook, Myspace, Google, Twitter, Email a dalších více než 300 sociálních služeb. Na sdílení je pravděpodobně použit nějaký plugin.
 
-Aplikace WishList podporuje vyhledávání zboží pomocí více zmíněného PriceGrabber.com. Pokud má zboží pouze jednoho prodejce, přesměruje uživatele tlačítko "Buy" u přání přímo na stránku prodejce. Jinak je uživatel přesměrován na stránku s výběrem prodejců. Tato stránka se nachází stále na WishList.
+Aplikace WishList podporuje vyhledávání zboží pomocí více zmíněného PriceGrabber.com. Pokud má zboží pouze jednoho prodejce, přesměruje uživatele tlačítko \emph{Buy} u přání přímo na stránku prodejce. Jinak je uživatel přesměrován na stránku s výběrem prodejců. Tato stránka se nachází stále na WishList.
 
 Po přidání přání, které bylo nalezeno vyhledáváním je uživateli zobrazena zpráva, která se ptá jestli chce uživatel opravdu čekat a nekoupí si své přání rovnou. Tato výzva je vidět na obrázku \ref{fig:wishlist-buynow}.
 
@@ -116,7 +125,7 @@ Přehled přání je vidět na obrázku \ref{fig:wishlist-wishlist}.
 \end{figure}
 
 \subsubsection{Nedostatky WishList.com}
-Cena u přání jde zadat pouze v dolarech. WishList umožňuje vyhledat zboží pro přání u kterých není uvedena URL produktu, ale vyhledávání nefunguje kompletně, nenašlo nic pro výraz "iphone"
+Cena u přání jde zadat pouze v dolarech. WishList umožňuje vyhledat zboží pro přání u kterých není uvedena URL produktu, ale vyhledávání nefunguje kompletně, nenašlo nic pro výraz "iphone", pro který PriceGrabber (zdroj dat pro WishList) nalezne několik stovek výsledků.
 
 \section{Srovnávače cen}
 Tato kapitola poskytuje rešerši produktů známých jako srovnávače cen. Cílem těchto produktů je poskytnout uživateli širší pohled na trh. Tyto produkty umožňují u jednoho druhu zboží (např. Televizor) srovnat jeho cenu v několika internetových obchodech. V rešerši jsou zpracovány jako potencionální zdroje dat pro výslednou webovou aplikaci.
@@ -164,8 +173,8 @@ Interaktivní nákupní rádce Heureka.cz byl založen společností Miton v roc
 Další důležitou fukčností je hlídač ceny. Přihlášenému uživateli je umožněno na zboží nastavit hlídače ceny a poté co cena v nejlevnějším obchodě klesne pod zadanou částku, uživatel dostane email s upozorněním.
 
 \begin{itemize}
-\item Záruka vrácení peněz u některých obchodů
-\item Varování před obhody, které nedodržují své obchodní podmínky
+\item \textbf{Záruka vrácení peněz u některých obchodů.} U smluvních partnerů 
+\item Varování před obchody, které nedodržují své obchodní podmínky
 \item Sledovaní slev a novinek na trhu
 \end{itemize}
 \subsection{Zboží.cz}
@@ -180,3 +189,25 @@ Zboží.cz je satelitní web společnosti Seznam.cz
 PriceGrabber je služba pro srovnávání cen. Jejími partnery je více než 13000 prodejců. Poskytuje volně informace o milionech produktů ve více než 25 kategoriích. Společnost také slouží jako datový zdroj pro další prodejní služby jako AOL Shopping, Bing Shopping aj. \cite{website:wiki:pricegrabber}
 
 Price grabber byl první srovnávač, který zahrnul informace o daních a poplatcích za přepravu do srovnávání. \cite{website:wiki:pricegrabber}
+
+\subsubsection{Funkčnost nad rámec základní funkčnosti}
+Price graber obsahuje funkčnost v čechách poprvé zavedenou portálem Slevomat.cz\footnote{Slevomat je český server hromadného nakupování založený Tomášem Čuprem, Petrem Bartošem a Romanou Sudovou.}. Tato funkčnost se nazýva "Local Deals" a umožňuje uživateli pořizovat zvýhodněné služby a/nebo zboží.
+
+PriceGrabber obsahuje velké množství tzv. "Buying Guiedes" tedy příručky k nákupu, které poskytují základní rady a doporučení pro koupi daného typu zboží. Obsahuje tedy například příručku pro nákup klimatizace.
+
+\section{Technologie pro vývoj aplikace}
+Tato část rešerše se zabývá technologiemi, ve kterých je možné implementovat webovou aplikaci. 
+\subsection{Java}
+Java je objektově orientovaný programovací jazyk, který vyvinula firma Sun Microsystems a představila 23. května 1995.
+
+Java je jedním z nejpoužívanějších programovacích jazyků na světě. Podle Tiobe indexu je Java nejpopulárnější programovací jazyk.[1] Díky své přenositelnosti je používán pro programy, které mají pracovat na různých systémech počínaje čipovými kartami (platforma JavaCard), přes mobilní telefony a různá zabudovaná zařízení (platforma Java ME), aplikace pro desktopové počítače (platforma Java SE) až po rozsáhlé distribuované systémy pracující na řadě spolupracujících počítačů rozprostřené po celém světě (platforma Java EE). Tyto technologie se jako celek nazývají platforma Java. Dne 8. května 2007 Sun uvolnil zdrojové kódy Javy (cca 2,5 miliónů řádků kódu) a Java bude dále vyvíjena jako open source.
+\subsubsection{Frameworky pro tvorbu webových aplikací}
+\paragraph{Spring MVC}
+\subsection{Ruby}
+Ruby je dynamický, reflexivní, objektově orientovaný programovací jazkyk, který kombinuje syntaxi inspirovanou jazykem Perl s funkcemi podobnými Smalltalku. Ruby je také ovlivněný jazyky Eiffel a Lisp. Ruby byl prvotně navržen a vyvinut v polovině devadesátých let minulého století japoncem Yukihiro "Matz" Matsumoto.
+
+Ruby podporuje několik programovacích paradigmat. Mimo jiné funkcionální, objektově orientované, imperativní a reflektivní. Ruby má dynamické typování a automatickou správu paměti. Je tedy v mnohých aspektech podobný jazykům Smalltalk, Python, Perl, Lisp, Dylan, Pike a CLU.
+
+Současná verze jazyka je 1.9.3.
+\subsubsection{Frameworky pro tvorbu webových aplikací}
+\paragraph{Ruby on Rails}
