@@ -1,0 +1,84 @@
+% !TEX root = ../DP_Vik_Tomas_2013.tex
+\chapter{Návrh}
+V této kapitole bude postupně rozveden návrh výsledné webové aplikace. Kapitola začne návrhem funkčnosti aplikace a na základě této funkčnosti bude poté navrženo grafické uživatelské rozhranní. Na závěr kapitoly bude popsán návrh implementace.
+
+\section{Návrh funkcionality}
+Aplikace musí splňovat požadavky dle zadání. Musí umožňovat přidávat, sledovat, prioritizovat a kategorizovat zboží, zobrazovat jeho cenu a její vývoj. Tato kapitola se bude zabývat kompletním popisem a doplněním této funkcionality.
+
+V každé sekci bude funkčnost nejprve široce popsána a poté bude tučným písmem napsáno přesné znění vysledné funkcionality.
+
+\subsection{Přihlášení/Odhlášení uživatele}
+Přání je z definice vázané na uživatele a je tedy nezbytné uživatele rozlišovat. Standardní způsob jak toto rozlišení provádět ve webových aplikacích je pomocí autentizace a autorizace. Uživatel se nejprve přihlásí pomocí formuláře aplikace. Tím se ověří jeho identita. Poté se mu zobrazují informace určené pouze pro něj. Uživatel se také může při odchodu ze systému odhlásit.
+
+\textbf{Uživateli bude umožněno se přihlásit do aplikace. Buď pomocí uživatelského jména a hesla, nebo pomocí technologie OAuth.}
+
+\textbf{Uživateli bude umožněno se odhlásit z aplikace.}
+
+\subsection{Registrace uživatele}
+Pokud se uživatel nebude chtít od aplikace přihlásit pomocí svého OpenID v nějaké z potporovaných autorizačních autorit, bude se muset nejprve do aplikace zaregistrovat. Uživatel vyplní své klíčové údaje:
+
+\begin{itemize}
+\item \textbf{E-mail} - jednoznačný identifikátor uživatele v rámci systému
+\item \textbf{Uživatelské jméno}
+\item \textbf{Heslo}
+\end{itemize}
+
+Po potvrzení formuláře bude uživateli vytvořen účet v aplikaci.
+
+\textbf{Uživatel se může zaregistrovat do aplikace pomocí poskytnutí základních údajů.} 
+
+\subsection{Vyhledávání zboží}
+\label{sec:vyhledavani}
+Toto je klíčová funkcionalita aplikace. V rešerši v předchozí kapitole bylo zjištěno, že vyhledávání zboží je jedna ze základních funkčností aplikací pro srovnávání zboží. Výsledná aplikace tedy bude umožňovat vyhledávání zboží.
+
+\textbf{Uživateli bude umožněno zadat do aplikace vyhledávaný termín jako řetězec a aplikace najde jako výsledek zboží, které v názvu obsahuje tento řetězec.}
+
+\subsection{Přidání a editace přání}
+\label{sec:pridani-prani}
+Uživateli bude umožňeno přidávat zboží do seznamů v podobě takzvaných \emph{přání}. Samotná databáze zboží zůstane odděleně a běžný uživatel\footnote{Jedná se o uživatele, který je klientem aplikace, další druhy uživatelů mohou být administrátor, nebo internetový obchod} do samotného zboží nebude zasahovat. Přání bude obsahovat následující základní informace:
+
+\begin{itemize}
+\item \textbf{Vazba na zboží} - přání se z definice váže na nějaké zboží. Z tohoto zboží si přání take převezme název.
+\item \textbf{Vazba na uživatele} - přání se z definice váže ke konkrétnímu uživateli.
+\item \textbf{Obrázek} - obrázek přiřazený k přání pro jeho snazší vizualizaci směrem k uživateli
+\item \textbf{Obchod} - konkrétní obchod, ve kterém si uživatel vybral zboží nakoupit. Používá se pro sledování ceny přání.
+\item \textbf{Štítky} - libovolný počet štítků, které uživateli umožňují \textbf{kategorizovat} přání.
+\item \textbf{Priorita} - informace o míře priority, tedy jak je přání důležité pro uživatele.
+\end{itemize}
+
+\textbf{Uživateli bude umožňěno vytvářet a upravovat přání. Vytvoření bude probíhat pomocí zvolení zboží ve výsledku vyhledávání (viz. kapitola \ref{sec:vyhledavani}). Následně uživatel vyplní informace o přání do vhodného formuláře. Podobný formulář bude sloužit také k editaci přání.}
+
+\subsubsection{Výběr obrázku}
+Při vytváření nebo editaci přání je nutné umožnit uživateli vybrat si ze všech obrázků, které jsou v databázi dostupné k danému zboží.
+
+\subsubsection{Výběr obchodu}
+Při vytváření nebo editaci přání je nutné umožnit uživateli vybrat si ze všech obchodů, které jsou v databázi dostupné k danému zboží. Při výběru těchto obchodů musí být uživateli zobrazena aktualní cena zboží v daném obchodu.
+
+\subsection{Mazání přání}
+Pokud se uživatel rozhodne, že přání už déle není aktualní, může ho smazat. Smazáním ho odstraní nenávratně ze seznamu svých přání.
+
+\textbf{Uživateli bude umožněno odstranit přání ze svého seznamu.}
+
+\subsection{Splnění přání}
+Uživatel může označit přání za splněné. Timto se přání odstraní ze standardního seznamu a přesune se do seznamu splněných přání, u kterých už se nesleduje cena. Tato přání zůstávají v sýstému pouze jako informace pro uživatele.
+
+\textbf{Uživateli je umožněno označit přání jako splněné. Tímto označením se přání přesune do seznamu splněných přání.}
+
+\subsection{Změna priority přání}
+Jednotlivým přáním je při vytvoření přiřazena uživatelem nadefinovaná, orientační, priorita. Tuto prioritu může uživatel měnit. Přání jsou v seznamech řazena podle priority a tedy po změně priority se změní řazení přání.
+
+\textbf{Uživatel může měnit prioritu přání.}
+
+\subsection{Zobrazení štítků}
+\label{sec:zobrazeni-stitku}
+Jak bylo napsáno v sekci \ref{sec:pridani-prani}, přání je možné kategorizovat pomocí tzv. štítků. Uživatel musí mít možnost prohlédnout si všechny štítky, které přidal k přáním na jednom místě. Zároveň by u štítků měla být zobrazena informace o tom, kolik přání je daným štítkem označeno. Tato informace může sloužit jako ukazatel důležitosti/četnosti štítku.
+
+\textbf{Uživatel si může zobrazit přehled všech štítků, které přiřadil k jednotlivým přáním.}
+
+\subsection{Zobrazení přehledu přání}
+Všechna přání, která uživatel vytvoří musí být nasledně uživateli nějakým způsobem zobrazována. Přání mohou být zobrazena buď všechna najednou, nebo mohou být zobrazena pouze přání s konkrétním štítkem. Tento omezený seznam přání se zobrazí pomocí zvolení nějakého štítku ze seznamu štítků (viz. kapitola \ref{sec:zobrazeni-stitku}).
+
+\textbf{Uživatel si může zobrazit přehled buď všech přání, nebo přání obsahujíc konkrétní štítek.}
+
+\subsection{Sledování průběhu cen}
+Systém bude schopný u veškerého zboží sledovat cenu v jednotlivých obchodech. Vývoj ceny bude vhodným způsobem zobrazovat uživateli u jeho přání. Zároveň bude systém schopný upozornit uživatele na prudké změny ceny jeho přání (primárně snížení cen).
