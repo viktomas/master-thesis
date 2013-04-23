@@ -1,16 +1,16 @@
 % !TEX root = ../DP_Vik_Tomas_2013.tex
 \chapter{Návrh}
-V této kapitole bude postupně rozveden návrh výsledné webové aplikace. Kapitola začne návrhem funkčnosti aplikace a na základě této funkčnosti bude poté navrženo grafické uživatelské rozhranní. Na závěr kapitoly bude popsán návrh implementace.
+Návrh aplikace bude postupovat od shrnutí požadované funkčností přes detailní návrh grafického uživatelského rozhranní po samotný návrh implementace aplikace. V několika následujících sekcích bude tedy přesně vymezen rozsah aplikace a nastíněn způsob jejího řešení.
 
 \section{Návrh funkcionality}
-Aplikace musí splňovat požadavky dle zadání. Musí umožňovat přidávat, sledovat, prioritizovat a kategorizovat zboží, zobrazovat jeho cenu a její vývoj. Tato kapitola se bude zabývat kompletním popisem a doplněním této funkcionality.
+Aplikace musí splňovat požadavky dle zadání. Musí umožňovat přidávat, sledovat, prioritizovat a kategorizovat zboží, zobrazovat jeho cenu a její vývoj. Dále bude tato základní funkcionalita detailně popsána a rosšířena o další významné prvky.
 
 V každé sekci bude funkčnost nejprve široce popsána a poté bude tučným písmem napsáno přesné znění vysledné funkcionality.
 
 \subsection{Přihlášení/Odhlášení uživatele}
-Přání je z definice vázané na uživatele a je tedy nezbytné uživatele rozlišovat. Standardní způsob jak toto rozlišení provádět ve webových aplikacích je pomocí autentizace a autorizace. Uživatel se nejprve přihlásí pomocí formuláře aplikace. Tím se ověří jeho identita. Poté se mu zobrazují informace určené pouze pro něj. Uživatel se také může při odchodu ze systému odhlásit.
+Přání je z definice vázané na uživatele a je tedy nezbytné uživatele rozlišovat. Standardní způsob jak toto rozlišení provádět ve webových aplikacích je pomocí autentizace a autorizace. Uživatel se nejprve přihlásí pomocí formuláře aplikace. Tím se ověří jeho identita. Poté se mu zobrazují informace určené pouze pro něj. Pokud před přihlášením vytvořil nějaká přání, bude dotázán, jestli chce tato přání uložit do svého seznamu. Uživatel se také může při odchodu ze systému odhlásit.
 
-\textbf{Uživateli bude umožněno se přihlásit do aplikace. Buď pomocí uživatelského jména a hesla, nebo pomocí technologie OAuth.}
+\textbf{Uživateli bude umožněno se přihlásit do aplikace. Buď pomocí uživatelského jména a hesla, nebo pomocí technologie OAuth. Pokud jako anonymní uživatel vytvořil nějaká přání, bude mu umožněno si je přidat na svůj seznam.}
 
 \textbf{Uživateli bude umožněno se odhlásit z aplikace.}
 
@@ -29,13 +29,17 @@ Po potvrzení formuláře bude uživateli vytvořen účet v aplikaci.
 
 \subsection{Vyhledávání zboží}
 \label{sec:vyhledavani}
-Toto je klíčová funkcionalita aplikace. V rešerši v předchozí kapitole bylo zjištěno, že vyhledávání zboží je jedna ze základních funkčností aplikací pro srovnávání zboží. Výsledná aplikace tedy bude umožňovat vyhledávání zboží.
+Toto je klíčová funkcionalita aplikace. V rešerši v předchozí kapitole bylo zjištěno, že vyhledávání zboží je jedna ze základních funkčností aplikací pro srovnávání zboží.Výsledná aplikace tedy bude umožňovat vyhledávání zboží.
 
-\textbf{Uživateli bude umožněno zadat do aplikace vyhledávaný termín jako řetězec a aplikace najde jako výsledek zboží, které v názvu obsahuje tento řetězec.}
+\textbf{Uživateli bude umožněno zadat do aplikace vyhledávaný termín jako řetězec a aplikace najde jako výsledek zboží, které v názvu obsahuje tento řetězec. Pokud žádné takové zboží nebude nalezeno, uživateli bude tato informace sdělana a připadně mu bude nabídnuto nějaké zboží, které má hledaný termín v popisu.}
 
 \subsection{Přidání a editace přání}
 \label{sec:pridani-prani}
-Uživateli bude umožňeno přidávat zboží do seznamů v podobě takzvaných \emph{přání}. Samotná databáze zboží zůstane odděleně a běžný uživatel\footnote{Jedná se o uživatele, který je klientem aplikace, další druhy uživatelů mohou být administrátor, nebo internetový obchod} do samotného zboží nebude zasahovat. Přání bude obsahovat následující základní informace:
+Uživateli bude umožňeno přidávat zboží do seznamů v podobě takzvaných \emph{přání}. Samotná databáze zboží zůstane odděleně a běžný uživatel\footnote{Jedná se o uživatele, který je klientem aplikace, další druhy uživatelů mohou být administrátor, nebo internetový obchod} do samotného zboží nebude zasahovat.
+
+Uživateli bude umožněno do seznamu přidat maximálně 20 přání. Omezený počet přání bude usnadňovat uživateli koncentraci a usnadní mu rozhodování\cite{iyengar2004much}. Počet byl daný odhadem a při využívání aplikace bude upraven podle preferencí uživatelů.
+
+Přání bude obsahovat následující základní informace:
 
 \begin{itemize}
 \item \textbf{Vazba na zboží} - přání se z definice váže na nějaké zboží. Z tohoto zboží si přání take převezme název.
@@ -46,10 +50,10 @@ Uživateli bude umožňeno přidávat zboží do seznamů v podobě takzvaných 
 \item \textbf{Priorita} - informace o míře priority, tedy jak je přání důležité pro uživatele.
 \end{itemize}
 
-\textbf{Uživateli bude umožňěno vytvářet a upravovat přání. Vytvoření bude probíhat pomocí zvolení zboží ve výsledku vyhledávání (viz. kapitola \ref{sec:vyhledavani}). Následně uživatel vyplní informace o přání do vhodného formuláře. Podobný formulář bude sloužit také k editaci přání.}
+\textbf{Uživateli bude umožňěno vytvářet a upravovat přání. Vytvoření bude probíhat pomocí zvolení zboží ve výsledku vyhledávání (viz. kapitola \ref{sec:vyhledavani}). Následně uživatel vyplní informace o přání do vhodného formuláře. Podobný formulář bude sloužit také k editaci přání. Uživateli bude umožněno přidat maximálně 20 přání, po překročení tohoto limitu bude dotázán, jestli chce nově přidaným přáním nahradit nějaké současné přání.}
 
 \subsubsection{Výběr obrázku}
-Při vytváření nebo editaci přání je nutné umožnit uživateli vybrat si ze všech obrázků, které jsou v databázi dostupné k danému zboží.
+Při vytváření nebo editaci přání je nutné umožnit uživateli vybrat si ze všech obrázků, které jsou v databázi dostupné k danému zboží. Jako první bude uživateli nabídnut nejoblíbenější obrázek.
 
 \subsubsection{Výběr obchodu}
 Při vytváření nebo editaci přání je nutné umožnit uživateli vybrat si ze všech obchodů, které jsou v databázi dostupné k danému zboží. Při výběru těchto obchodů musí být uživateli zobrazena aktualní cena zboží v daném obchodu.
@@ -82,3 +86,80 @@ Všechna přání, která uživatel vytvoří musí být nasledně uživateli n�
 
 \subsection{Sledování průběhu cen}
 Systém bude schopný u veškerého zboží sledovat cenu v jednotlivých obchodech. Vývoj ceny bude vhodným způsobem zobrazovat uživateli u jeho přání. Zároveň bude systém schopný upozornit uživatele na prudké změny ceny jeho přání (primárně snížení cen).
+
+\subsection{Nezahrnuté funkce z rešerše}
+Některé funkce, které byly zmíněny v rešerši nebudou v aplikaci z různých důvodů zahrnuty. Tyto funkce zde budou vyčteny a u každé bude uveden důvod jejího vyloučení z funkčních požadavků.
+
+\subsubsection{Mazání bez potvrzování}
+V kapitole \ref{sec:astrid} bylo popsáno mazání úkolů ze seznamu. Toto mazání fungovalo tak, že uživatel kliknul na tlačítko smazat a úkol se okamžitě smazal. Uživateli se pouze v horní části stránky zobrazil panel, kde mohl akci vrátit zpět.
+
+Tento způsob mazání je vhodný pro manipulaci s velkým množstvím entit. Ve výsledné aplikaci maximální počet 20 přání a od uživatele se neočekává, že by je vytvářel a mazal tak často, aby mazání bez potvrzování přineslo výraznou přidanou hodnotu. Naopak chování aplikace by se odlišovalo od standardu a to by ve výsledku mohlo uškodit.
+
+\subsubsection{Řazení podle více kritérií}
+V rešerši bylo zmíněno, že mnoho aplikací umožňuje řadit své entity podle vícero kritérií. Logickými kritériemi u přání by bylo datum přidání, cena a např. míra změny ceny.
+
+Tato funcionalita není ve výsledné aplikaci nezbytná, opět se počítá s tím, že přání bude méně než 20. Přání s aktuální výhodnou cenou uvidí uživatel hned po přihlášení a v přehledech mu budou řazena podle priority.
+
+\section{Návrh grafického uživatelského rozhraní}
+Grafické uživatelské rozhranní (dále GUI) usnadňuje používání aplikace pomocí přezentování informací formou, která je snadná na osvojení a manipulaci s informacemi. Použití vizuálníhch prvků (přepínačů, tlačítek, posuvníků, atp.) usnadňuje uživateli učení tím, že mu poskytuje intuitivní rozhranní pro práci s aplikací. Špatný návrh GUI může aplikaci uškodit, znepřehlední dodávané informace a neodhalí uživateli všechnu funkcionalitu. Tím uživatele zpravidla donutí k memorizování kroků k průchodu běžnými scénáři\cite{toby2001expgui}.
+
+Dobrý design GUI se vyznačuje tím, že po uživateli nevyžaduje žádné memorizování zacházení s aplikací. GUI by přesto mělo umožňovat zrychlený průchod aplikací pomocí zkratek\cite{toby2001expgui}.
+
+\subsection{Proces návrhu}
+Při návrhu uživatelského rozraní se nejprve vytvoří seznam operací, které bude možné s aplikací provádět, tzv. task list. Tyto operace se poté zahrnou do skupin podle typu (například ovládání hlavního okna, přihlašování a registrace atp.) a z takto zpracovaných operací se vytvoří takzvaný task graph, tedy diagram, na kterém bude přesně zobrazeno, kdy k dané operaci může nastat a jaký bude mít následek.
+
+Podle tohoto grafu poté bude vytvořen tzv. wireframe, tedy nakreslené obrazovky aplikace s rozvržením informací a ovládacích prvků.
+
+\subsection{Seznam operací}
+Návrat na domovskou stránku
+
+Zobrazení domovské stránky
+
+Zobrazení vyhledávání produktu
+
+Vyhledání produktu
+
+Přidání přání
+
+Výběr obchodu s produktem přání
+
+Výběr obrázku přání
+
+Uložení přidaného přání
+
+Zobrazení všech přání
+
+Změna priority přání
+
+Zorazení editace/detailu přání
+
+Označení přání jako splněné
+
+Smazání přání
+
+Zobrazení dialogu při mazání přání
+
+Potvrzení dialogu pro mazání přání
+
+Zamítnutí dialogu pro mazání přání
+
+Zobrazení seznamu tagů
+
+Výběr tagu
+
+Přihlášení uživatele pomocí uživ. jména a hesla
+
+Přihlášení uživatele pomocí Google
+
+Odhlášení uživatele
+
+Zobrazení registrace uživatele
+
+Zobrazení dialogu 
+
+
+\subsection{Skupiny operací}
+
+\subsection{Diagram operací}
+
+\subsection{Wireframe}

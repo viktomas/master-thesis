@@ -231,6 +231,7 @@ PriceGrabber obsahuje velké množství tzv. "Buying Guiedes" tedy příručky k
 Tato kapitola popisuje několik aplikací, které svým zaměřením nesplňují přímo podmínky této práce, ale část jejich funkcionality by byla pro výslednou aplikaci přínosem.
 
 \subsection{Astrid}
+\label{sec:astrid}
 Astrid je aplikace pro správu úkolů. Mezi její klíčové funkce patří vytváření, úprava a kategorizace úkolů. Tato aplikace byla původně navržena pro mobilní zařízení a operační systém Android, nyní má aplikace také webové rozhranní, jehož funkcinalita je předmětem této kapitoly.
 
 Základní obrazovku aplikace je možné vidět na obrázku \ref{fig:astrid}
@@ -284,7 +285,7 @@ Spring MVC Web framework funguje na principu návrhového vzoru MVC. Tedy jasné
 \begin{center}
 \includegraphics[width=50mm]{./pictures/spring-mvc-layers.png}
 \caption{Aplikační vrstvy Spring MVC aplikace \cite{liu2006research}}
-\label{fig:astrid-undo}
+\label{fig:spring-mvc-layers}
 \end{center}
 \end{figure}
 
@@ -308,6 +309,34 @@ Mezi základní princip Rails patří Konvence má přednost před konfigurací,
 Rails jsou postaveny na bázi návrhového vzoru Model-view-controller, který odděluje části aplikace zodpovědné za čtení a ukládání dat včetně manipulace s nimi (model), za zobrazení grafického rozhraní aplikace (view) a za část přijímající vstupy od uživatele a řídící zobrazení dat na výstupu (controller).
 
 \subsubsection{Sinatra}
-Sinatra je minimalistický framework založený na ruby. Neobsahuje žádné další knihovny, jako například ORM, nebo komplexní knihovny na práci s View. Je určen pro jednoduché webové aplikace, webové služby.\cite{harris2011sinatra}
+Sinatra je minimalistický framework\footnote{Zde se definice liší, například Alan Harris ve své publikaci Sinatra Up and Running píše, že sinatra není framework, ale podle mě definici tohoto slova naplňuje.} a doménově specifický jazyk\footnote{Doménově specifický jazyk je programovací jazyk, který je prostřednictvím vhodné abstrakce a výrazového slovníku zaměřen na omezenou, konkrétní problémovou doménu. V tomto případě jsou doménou Webové stránky.} založený na ruby. Neobsahuje žádné další knihovny, jako například ORM, nebo komplexní knihovny na práci s View. Je určen pro jednoduché webové aplikace, webové služby. Sinatra nevnucuje programátorovi žádny návrhový vzor, takže narozdíl od velkého množství frameworků není postaven na MVC.\cite{harris2011sinatra}
+
+Jak již bylo naznačeno v předchozím odstavci, Sinatra poskytuje minimální obal okolo HTTP dotazu a odpovědi. Celá knihovna je napsána v méně než 2000 řádcích\cite{harris2011sinatra}. Sinatra je vhodná pro drobnou aplikaci, kde je důležitá primárně jednoduchá syntaxe a přehlednost kódu. Není výjimkou, že celá webová aplikace postavená na Sinatře se nacházi v jednom souboru\cite{harris2011sinatra}.
 
 \section{Možnosti napojení aplikace na systémy srovnávání cen}
+Možnosti napojení aplikace na systémy srovnávání cen jsou v zásadě 2. Využití API samotného systému, nebo využití takzvaného web scrapingu viz. \ref{sec:screenscraping}
+
+\subsection{Napojení na API systému}
+V tomto ohledu jsou možnosti vesměs omezené. Čeští poskytovatelé (Heureka.cz, Zboží.cz) API veřejně neposkytují a na svých stránkách neuvádí podmínky pro získání přístupu k jejich datům. Zahraniční poskytovatel PriceGrabber svoje API poskytoval formou webové služby. Toto API bylo veřejné a mohl jej využívat kdokoli. Nyní je přístup k tomuto api znemožněn\cite{website:pricegrabber-api}. Například v rešerši zmiňovaný WishList je na tomto API postaven. Nyní je možné kontaktovat obchodní oddělení serveru a vyjednat s ním podmínky použití API.
+
+Tato metoda má jasnou výhodu v několika aspektech. Nejdůležitějším aspektem je legalita. Pokud systém vystaví veřejně svoje API a uživatel dodrží podmínky jeho užití, nemůže dojít k porušení žádného zákona. Dalším důležitým aspektem je výkonnost. Komunikace přes webovou službu je jednoduchá, nezatěžuje zbytečně šířku pásma. Poskytovatel API přesně ví, jeké metody jsou volány za jakým účelem a může optimalizvat byznis logiku v implementaci webových služeb (cache, výkonější DB apt.). Poslední důležitou výhodou je verzování API. U webových služeb je běžnou praxí tzv. verzování\cite{josuttis2007soa}. To znamená, že nová funkčnost webové služby nikdy neovlivní současnou verzi, namísto toho je nová funknčost vystavena až v další verzi. Tím nemůže dojít k narušení funkčnosti klientské aplikace.
+
+Nevýhodou API systému je v tomto konkrétním případě velmi omezený přístup a nutnost dohody s poskytovatelem ještě před testováním samotného API. Další nevýhodou je například jasně daný rozsah funkčnosti, který nemusí vždy korelovat s funkčností nabízenou například webovým rozhranním aplikace.
+
+\subsection{Web Scraping}
+\label{sec:screenscraping}
+Toto je metoda, která se používá k extrakci dat z datových stránek. Simuluje dotazy běžného uživatele a z nich získává data. Před nástupem webových služeb byla tato metoda hlavním způsobem, jak automatizovat získávání dat z webových stránek\cite{oreilly2007web}. Základní postup takovéto metody je následující:
+
+\begin{enumerate}
+\item Aplikace provede dotaz na předem danou URL \emph{Např. http://srovnavac.cz/produkt?id=1}
+\item Aplikace dostane odpoveď v podobě zdrojového kódu dotazované stránky.
+\item Aplikace musí tomuto zdrojovému kódu porozumnět, zpracovat ho a převést do interní reprezentace datové struktury.
+\end{enumerate}
+
+Web Scraping je tedy velmi přímočará metoda, jak získat jakákoli data, ke kterým má běžný uživatel přístup pomocí webového prohlížeče. Získávání dat tímto způsobem má opět několik výhod. První výhodou je jednoduchá implementace. Je třeba zjistit URL požadovaných zdrojů, umístění potřebných dat na stránce a ošetření případných chyb, které při získání dat mohou nastat. Další výhodou je transparentní dokumentace. Webové stránky jsou navrženy tak, aby je uživatel snadno pochopil a tedy i porgramátor, který získává ze stránek data snadno pochopí co znamenají a kde se tato data nachází.
+
+Web Scraping má na druhou stranu několik nevýhod. První nevýhodou jsou legální problémy spojené s tímto získáváním dat. V čechách znám jediný případ kdy aplikace využívala tímto způsobem data cizího serveru. Jednalo se o aplikaci Pubtran, která využívala informace o jízdních řádech ze serveru \emph{jizdnirady.idnes.cz}. Autor aplikace František Hejl poté musel umístit do aplikace reklamní banery Idnes.
+
+Další nevýhodou je závislost na konkrétním \emph{vzhledu}\footnote{V tomto kontextu se nejedná o vizuální podobu stránek, ale o podobu zdrojového kódu stránky.} webové aplikace. Pokud se rozhodne poskytovatel přepracovat svůj návrh stránek, poté je nutné této změně přizpůsobit také aplikaci, která ze stránek data získává.
+
+\section{Vyhodnocení rešerše}
