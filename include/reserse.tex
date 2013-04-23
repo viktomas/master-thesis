@@ -8,17 +8,27 @@
 % *Webovou aplikaci implementujte v jazyce Ruby ve vhodném frameworku.
 % *Pro prioritizaci navrhněte a implementujte vhodné algoritmy.
 % *API webové aplikace bude navrženo s ohledem na budoucí integraci s dalšími systémy (např. srovnávače cen apod.).
+%
+% - optimalizace na mobilni prohlizece, autocomplete nefunguje, drag'n drop
+% - pridat detail do pridani prani
+% - nemuzes hledat vec kterou nevis
+% - registrace uzivatele
+% - neprihlaseny zacina vyhledavanim
+% - pri zavreni okna upozornit ze jsou neulozena prani
+% - co se deje, pokud tam bude vice prani? - pokud se pridava prani, co se stane kdyz dojde prostor
+% - jak dokazu reagovat na chybu datovyho zdroje - mit vyreseno
+% - nabizet uzivatelum hlaseni chyb
+% - kompatibilita s prohlizecema
+% - co uzivateli nabidnu kdyz se vec nenajde - prazdna obrazovka bez vysledku vyhledavani
+% - proc ne/ano trendy prani
 \chapter{Rešerše}
-Tato kapitola se zabývá popisem problematiky této práce. V této kapitole bude postupně probrána problematika práce ze tří úhlů pohledu.
-
-První část se zabývá přímými konkurenty aplikace, která je předmětem této práce. Bude se tedy zabývat webovými aplikacemi, které umožňují organizaci nákupníhch seznamů.
-
-Druhá část se zabývá aplikacemi, které mají nějakou významnou funkčnost vhodnou pro výslednou webovou aplikaci. Jedná se o aplikace, které se nějakou svojí částí specializují na organizaci informací.
-
-Třetí část se zabýva technologickým aspektem práce. Budou shrnuty technologie, na kterých je v dnešní době možné postavit webové aplikace. Na konci podkapitoly budou shrnuty slabé a silné stránky jednotlivých technologií.
+První kapitola je věnovaná popisu problematiky této práce a přehledu aplikací, ktere řeší stejné nebo podobné problémy.
+Nejdříve se zabývá přímými konkurenty výsledné aplikace. Zde je shrnuta funkcionalita webových aplikací, které umožňují organizaci nákupních seznamů.
+Dále se zabývá aplikacemi, které mají nějakou významnou funkčnost vhodnou pro výslednou aplikaci. Jedná se o aplikace, které se nějakou svojí částí specializují na organizaci informací. Konec kapitoly je věnován technologickému aspektu práce. Budou shrnuty technologie, na kterých je v dnešní době možné postavit webové aplikace.
+Na konci každé podkapitoly budou shrnuty slabé a silné stránky jednotlivých technologií.
 
 \section{Nákupní seznamy}
-Tato kapitola popisuje funkčnost hotových aplikací zabývajících se organizací nákupního seznamu. Všechny zmíněné aplikace jsou již v produkcí a jsou zaštítěny velkými internetovými společnostmi.
+V následujících sekcích je popsána funkčnost hotových aplikací zabývajících se organizací nákupního seznamu. Všechny zmíněné aplikace jsou již v produkci a jsou zaštítěny velkými internetovými společnostmi.
 
 \subsection{Google ShoppingList}
 Webová aplikace doplňující službu Google Nákupy. Podporuje jednoduché přidání zboží. U přidaných položek zobrazuje následující informace a umožňuje podle těchto informací i řadit položky na seznamu:
@@ -58,10 +68,10 @@ Tato sekce se zabývá druhy přání ve službě Amazon Wish List. Přáním se
 
 \paragraph{Produkt internetového obchodu Amazon.com}
 \label{par:produkt-amazon}
-Toto přání reprezentuje jedna k jedné produkt v internetovém obchodu Amazon.com. Toto přání vznikne tak, že přihlášený uživatel klikne na stránce produktu v obchodě Amazon.com na tlačítko \emph{Add To Wish List}. U takovéhoto přání se ukazuje minimální možná cena, popis i obrázek. Tedy maximální množství informací.
+Toto přání reprezentuje jedna k jedné produkt v internetovém obchodu Amazon.com. Toto přání vznikne tak, že přihlášený uživatel klikne na stránce produktu v obchodě Amazon.com na tlačítko \emph{Add To Wish List}. U takovéhoto přání se ukazuje minimální možná cena, popis i obrázek. Tedy maximální množství informací, které je aplikace schopna k přání uchovat.
 
 \paragraph{Internetová stránka mimo Amazon.com}
-Toto přání reprezentuje jakoukoliv internetovou stránku. Takovéto přáni vznikne jedině pomocí pluginu Amazon Wish List Button. O této funkcionalitě pojednává samostatná podkapitola.
+Toto přání reprezentuje jakoukoliv internetovou stránku. Takovéto přáni vznikne jedině pomocí pluginu Amazon Wish List Button. O této funkcionalitě pojednává samostatná podkapitola \ref{sec:amazon-wishlist-button}.
 
 \paragraph{Nápad na přání}
 Nápad na přání je funkcionalita, která umožní uživateli zadat nápad na přání pouze jako text (název přání). Tento nápad se uloží mezi ostatní přání. Místo obrázku přání je ovšem zobrazen obrázek nalepovacího štítku a na něm je napsáno "I Want". Nápad na přání je vidět na obrázku \ref{fig:amazon-wishlist-idea}. Každý nápad na přání má u sebe tlačítko \emph{Top search results} které najde pro popis nápadu produkty z obchodu Amazon.com. Takto nalezené produkty je možné okamžitě přidávat do seznamu. Nápad na přání přitom v seznamu zůstává, dokud jej uživatel neodstraní.
@@ -75,6 +85,7 @@ Nápad na přání je funkcionalita, která umožní uživateli zadat nápad na 
 \end{figure}
 
 \subsubsection{Amazon Wish List Button}
+\label{sec:amazon-wishlist-button}
 Amazon Wish List poskytuje plugin\footnote{Také zásuvný modul - software, který nepracuje samostatně, ale jako doplňkový modul jiné aplikace a rozšiřuje její funkčnost.} do všech majoritních internetových prohlížečů\cite{website:amazon:plugin}. Po nainstalovani pluginu do prohlížeče si může uživatel přidat tlačítko \emph{Amazon Wish List Button} do ovládacího panelu prohlížeče. Po stisku tohoto tlačítka se otevře dialog. (Obrázek \ref{fig:amazon-wishlist-plugin})
 
 \begin{figure}[htb]
@@ -94,7 +105,7 @@ WishList.com je webová aplikace zaměřená primárně na vytváření seznamu 
 
 WishList.com neumožňuje přihlášení pomocí OpenID. Uživatel se může přihlásit pomocí svého Facebook účtu, nebo zaregistrovat klasickou metodou, kdy zadá svůj email, přihlašovací jméno a heslo.
 
-Uživatel může vytvářet nové seznamy přání a nová přání. Při vytvoření nového seznamu zadává uživatel název seznamu, obrázek seznamu, omezení přístupu (veřejný, pouze přátelé, soukromý), popis seznamu, osobní poznámky, osobu, která si věci přeje, název a datum události. Pouze název seznamu je povinné pole. Seznam je navíc možné zabezpečit heslem.
+Uživatel může vytvářet nové seznamy přání a nová přání. Při vytvoření nového seznamu zadává uživatel jeho název, obrázek, omezení přístupu (veřejný, pouze přátelé, soukromý), popis, osobní poznámky, osobu, která si věci přeje, název a datum události. Pouze název seznamu je povinné pole. Seznam je navíc možné zabezpečit heslem.
 
 Při přidávání přání je možné zadat prodejce předmětu, název předmětu, popis předmětu, cenu, množství, prioritu, poznámky k přání, seznam přání do kterého bude přání přidáno, příjemce přání a poté URL produktu a URL obrázku produktu. Povinným polem je pouze název předmětu.
 
@@ -128,13 +139,13 @@ Přehled přání je vidět na obrázku \ref{fig:wishlist-wishlist}.
 Cena u přání jde zadat pouze v dolarech. WishList umožňuje vyhledat zboží pro přání u kterých není uvedena URL produktu, ale vyhledávání nefunguje kompletně, nenašlo nic pro výraz "iphone", pro který PriceGrabber (zdroj dat pro WishList) nalezne několik stovek výsledků.
 
 \section{Srovnávače cen}
-Tato kapitola poskytuje rešerši produktů známých jako srovnávače cen. Cílem těchto produktů je poskytnout uživateli širší pohled na trh. Tyto produkty umožňují u jednoho druhu zboží (např. Televizor) srovnat jeho cenu v několika internetových obchodech. V rešerši jsou zpracovány jako potencionální zdroje dat pro výslednou webovou aplikaci.
+Tato kapitola poskytuje rešerši aplikací známých jako srovnávače cen, jejichž cílem je poskytnout uživateli širší pohled na trh. Tyto aplikace umožňují u jednoho produktu srovnat cenu v několika internetových obchodech. V rešerši jsou zpracovány jako potencionální zdroje dat pro výslednou webovou aplikaci.
 
 \subsection{Standartní funkce všech srovnávačů}
 V této sekci jsou popsány tři základní funkce, které podporují všechny zmíněné srovnávače cen. Lze říci že se jedná o funkce, které definují srovnávač cen jako takový.
 
 \subsubsection{Vyhledávání}
-Každý ze zmíněných vyhledávačů podporuje fultextové vyhledávání zboží\footnote{(z ang. full – celý, plný a text) speciální způsob vyhledávání informací v databázích nebo v textových souborech, které jsou obvykle předem připraveny, tj. indexovány, aby bylo možno nalézt libovolné slovo (řetězec znaků) v nejkratším možném čase.}. Toto vyhledávání probíhá nad databází veškerých výrobků, které aplikace (srovnávač) získala prohledáváním ostatních stránek. Vyhledávány jsou jednotlivé výrobky, u nichž jsou agregovány ceny z jednotlivých obchodů, tzn. že výrobek se zobrazí pouze jednou, přesto že srovnávač má informace o několika obchodech, které jej poskytují.
+Každý ze zmíněných vyhledávačů podporuje fultextové vyhledávání zboží\footnote{(z ang. full – celý, plný a text) speciální způsob vyhledávání informací v databázích nebo v textových souborech, které jsou obvykle předem připraveny, tj. indexovány, aby bylo možno nalézt libovolné slovo (řetězec znaků) v nejkratším možném čase.}. Toto vyhledávání probíhá nad databází veškerých výrobků, které aplikace (srovnávač) obsahuje. Vyhledávány jsou jednotlivé výrobky, u nichž jsou agregovány ceny z jednotlivých obchodů, tzn. že výrobek se zobrazí v ideálním případě\footnote{Produkt může mít v různých obdhodech různá jména, takové produkty se ne vždy podaří srovnávači agregovat.} pouze jednou, přesto že srovnávač má informace o několika obchodech, které jej poskytují.
 
 Dále umožňují srovnávače vyhledávání po kategoriích. Na domovské stránce srovnávače je uživateli nabídnut seznam kategorií a významných podkategorií. Uživatel po rozkliknutí kategorie vidí vybrané zboží z dané kategorie a případně také podkategorie, pokud nějaké jsou.
 
@@ -144,6 +155,9 @@ Uživateli je také umožněno filtrovat zboží na základě jeho parametrů. P
 \item \textbf{Rozlišné pro každou kategorii.} Zde se nacházejí parametry které dávají smysl pouze v dané kategorii. Např. velikost ohniska u objektivů nemá smysl nikde jinde. Stejně tak velikost uhlopříčky nemá smysl v kategoriích kde není žádné zobrazovací zařízení.
 \end{itemize}
 
+\paragraph{Databáze zboží}
+Srovnávače cen plní svojí databázi zboží z dat od zákazníku. U porovnávaných srovnávačů je princip následující: Obchod, který chce, aby jeho zboží bylo vidět ve srovnávači, vystaví veřejně XML soubor, ve kterém je detailní popis každého produktu včetně informací jako způsob a doba doručení.\cite{website:heureka:registrace-obchodu}
+
 \subsubsection{Srovnávání cen}
 Každá aplikace podporuje srovnání cen u zobží. U většiny zboží v databázi je přiřazen větší počet obchodů. Díky shromáždění cen z jednotlivých obchodů je poté srovnávač schopný zobrazit u zboží nejnižší a nejvyšší cenu. U zboží je zároveň zobrazen přehled všech obhodů ve kterých je zboží nabízeno. Několik obchodů je zpravidla doporučeno srovnávačem. K tomu mohou mít obchody ještě seznam ocenění získaných srovnávačem.
 
@@ -152,7 +166,7 @@ Zpravidla je u obchodu zobrazena táké dostupnost zboží, případně cena dop
 Díky pravidelnému sledování cen zboží v obchodech má srovnávač chronologická data o ceně zboží. Díky této vlastnosti nabízí funcionalitu graf historie cen. V grafu je zanesena cena zboží řádově za několik uplynulých měsícu. Tento graf pomáhá uživateli v rozhodnutí o koupi. Uživatel vidí, zdali se cena právě nachází pod nebo nad dlouhodobým průměrem.
 
 \subsubsection{Uživatelská zpětná vazba}
-Srovnávače umožňují uživatelům hodnotit obchody i zobží. U obchodů se hodnotí parametry jako dodací lhůta, přehledonost obchodu a kvalita komunikace. U zboží je výběr parametrů pro hodnocení jako při filtrování zboží podle atributů. V každé kategorii se hodnotí relevantní parametry zboží. 
+Srovnávače z pravidla umožňují uživatelům hodnotit obchody i zobží. U obchodů se hodnotí parametry jako dodací lhůta, přehledonost obchodu a kvalita komunikace. U zboží je výběr parametrů pro hodnocení jako při filtrování zboží podle atributů. V každé kategorii se hodnotí relevantní parametry zboží. 
 
 Hodnocení většinou probíhá na principu jedné až pěti hvězdiček, případně shrnutí kladů a záporů.
 
@@ -169,7 +183,7 @@ Hodnocení produktu na srovnávači Heureka.cz je vidět na obrázku \ref{fig:he
 \subsection{Heureka}
 Interaktivní nákupní rádce Heureka.cz byl založen společností Miton v roce 2007, kdy ihned zaujmul zajímavým nápadem zkombinování mnoha užitečných možností do jednoho celku. Následně rozšiřuje svou působnost i na Slovensko a zakládá slovenskou verzi Heureka.sk (založena v r. 2008). \cite{website:wiki:heureka}
 
-\subsubsection{Funkčnost nad rámec základní funkčnosti}
+\subsubsection{Přidaná funkcionalita}
 Další důležitou fukčností je hlídač ceny. Přihlášenému uživateli je umožněno na zboží nastavit hlídače ceny a poté co cena v nejlevnějším obchodě klesne pod zadanou částku, uživatel dostane email s upozorněním.
 
 \begin{itemize}
@@ -178,19 +192,37 @@ Další důležitou fukčností je hlídač ceny. Přihlášenému uživateli je
 \item Sledovaní slev a novinek na trhu
 \end{itemize}
 \subsection{Zboží.cz}
+Zboží.cz je srovnávač cen vyvořený společností Seznam.cz. Na Zboží.cz je registrováno více než 16000 obchodů a více nže 62 milionu produktů. Denně navštíví srovnávač 180000 uživatelů a každý uživatel v průměru na stránce stráví 39 min.\cite{website:zbozi-about}
 Zboží.cz je satelitní web společnosti Seznam.cz
 \footnote{Satelitní web je rozšířená a propracovanější forma tzv. microsite (jinak také minisite či weblet), jde o speciální samostatný web plnící funkce, které se na hlavní webovou prezentaci nehodí, nebo s ní dokonce nesouvisejí.}
-. 
+.
+\subsubsection{Přidaná funkcionalita}
+Zajímavou funckionalitou je srovnávání zboží. Uživatel má možnost přidat produkt do srovnání zboží pomocí tlažítka \emph{Přidat do porovnání} viz obrázek \ref{fig:zbozicz-srovnat}. Tím se zboží přidá do seznamu. Tento seznam obsahuje pro každý produkt jedne sloupec a v každém řádku je nějaká vlastnost produktu. Pokud produkt ve srovnání nemá danou vlastnost, je v dané buňce nápis \emph{Neznámý}.
 
-%\section{NextTag}
-% \section{WunderList}
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=40mm]{./pictures/zbozicz-srovnat.png}
+\caption{Tlačítko pro srovnání zboží.}
+\label{fig:zbozicz-srovnat}
+\end{center}
+\end{figure}
+
+Výsledek takového srovnání je poté vidět na obrázku \ref{fig:zbozicz-srovnani}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=130mm]{./pictures/zbozicz-srovnani.png}
+\caption{Výsledek srovnání zboží na serveru Zboží.cz}
+\label{fig:zbozicz-srovnani}
+\end{center}
+\end{figure}
 
 \subsection{PriceGrabber}
 PriceGrabber je služba pro srovnávání cen. Jejími partnery je více než 13000 prodejců. Poskytuje volně informace o milionech produktů ve více než 25 kategoriích. Společnost také slouží jako datový zdroj pro další prodejní služby jako AOL Shopping, Bing Shopping aj. \cite{website:wiki:pricegrabber}
 
 Price grabber byl první srovnávač, který zahrnul informace o daních a poplatcích za přepravu do srovnávání. \cite{website:wiki:pricegrabber}
 
-\subsubsection{Funkčnost nad rámec základní funkčnosti}
+\subsubsection{Přidaná funkcionalita}
 Price graber obsahuje funkčnost v čechách poprvé zavedenou portálem Slevomat.cz\footnote{Slevomat je český server hromadného nakupování založený Tomášem Čuprem, Petrem Bartošem a Romanou Sudovou.}. Tato funkčnost se nazýva "Local Deals" a umožňuje uživateli pořizovat zvýhodněné služby a/nebo zboží.
 
 PriceGrabber obsahuje velké množství tzv. "Buying Guiedes" tedy příručky k nákupu, které poskytují základní rady a doporučení pro koupi daného typu zboží. Obsahuje tedy například příručku pro nákup klimatizace.
@@ -219,7 +251,7 @@ Hlavní seznam úkolů je možné řadit pomocí několika kritérií. Mimo stan
 
 Každý úkol náleží do 0-n seznamů. Tyto seznamy je možné libovolně výtvářet a mazat. Přidáváním přání do seznamů je uživateli umožněna další úroveň kategorizace. U každého seznamu se ukazuje panel s informacemi o aktuálních aktivitách v seznamu (např. vytvoření, dokončení a úprava úkolu).
 
-Mazání přání probíhá pomocí tlačítka \emph{Delete Task} v panelu s informacemi o úkolu. Tímto tlačítkem se úkol okamžitě smaže, ale uživateli se zobrazí upozornění v horní části obrazovky. V tomto upozornění je také tlačítko na vrácení smazání přání viz. obrázek \ref{fig:astrid-undo}
+Mazání přání probíhá pomocí tlačítka \emph{Delete Task} v panelu s informacemi o úkolu. Tímto tlačítkem se úkol okamžitě smaže, ale uživateli se zobrazí upozornění v horní části obrazovky. V tomto upozornění je také tlačítko na vrácení smazání přání viz. obrázek \ref{fig:astrid-undo}. Toto upozornění po několika málo vteřinách zmizí. Poté může uživatel obnovit přání ze seznamu akcí provedených nad seznamem přání.
 
 \begin{figure}[htb]
 \begin{center}
@@ -229,7 +261,8 @@ Mazání přání probíhá pomocí tlačítka \emph{Delete Task} v panelu s inf
 \end{center}
 \end{figure}
 
-Toto je pro uživatele přijemnější způsob než klasické potvrzení smazání pomocí dialogu. Uživatel v naprosté většině případů má v úmyslu úkol smazat, ale pokud to udělá omylem může smazání bezpečně vrátit.
+
+Pokud jsou mazané položky relativně nedůležité pro uživatele a manipuluje s nimi ve velkém (což je případ právě úkolů). Je toto vhodnější způsob než kalsický dialog pro potvrzení smazání. Uživatel v naprosté většině případů má v úmyslu úkol smazat, ale pokud to udělá omylem může smazání bezpečně vrátit. 
 
 Aplikace umožňuje také poslat uživateli email s upozorněním na blížící se termín splnění přání.
 
@@ -239,21 +272,33 @@ Technicky je celá aplikace řešena pomocí AJAX. To znamená, že se stránka 
 %https://twitter.com/astrid/status/222836247498985472
 
 \section{Technologie pro vývoj aplikace}
-Tato část rešerše se zabývá technologiemi, ve kterých je možné implementovat webovou aplikaci. 
+Tato část rešerše se zabývá technologiemi, ve kterých je možné implementovat webovou aplikaci. V každé podkapitole je nejrpve popsán programovací jazyk a k němu následují nejpoužívanější frameworky pro implementaci webových aplikací.
 \subsection{Java}
 Java je objektově orientovaný programovací jazyk, který vyvinula firma Sun Microsystems a představila 23. května 1995.
 
 Java je jedním z nejpoužívanějších programovacích jazyků na světě. Podle Tiobe indexu je Java nejpopulárnější programovací jazyk.[1] Díky své přenositelnosti je používán pro programy, které mají pracovat na různých systémech počínaje čipovými kartami (platforma JavaCard), přes mobilní telefony a různá zabudovaná zařízení (platforma Java ME), aplikace pro desktopové počítače (platforma Java SE) až po rozsáhlé distribuované systémy pracující na řadě spolupracujících počítačů rozprostřené po celém světě (platforma Java EE). Tyto technologie se jako celek nazývají platforma Java. Dne 8. května 2007 Sun uvolnil zdrojové kódy Javy (cca 2,5 miliónů řádků kódu) a Java bude dále vyvíjena jako open source.
-\subsubsection{Frameworky pro tvorbu webových aplikací}
-\paragraph{Spring MVC}
+\subsubsection{Spring MVC}
+Spring MVC Web framework funguje na principu návrhového vzoru MVC. Tedy jasné oddělení perzistence, biznys logiky a prezentační vrstvy. Napříč těmito vrstvami je doménový model, tedy java třídy reprezentující datový model aplikace\cite{liu2006research}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=50mm]{./pictures/spring-mvc-layers.png}
+\caption{Aplikační vrstvy Spring MVC aplikace \cite{liu2006research}}
+\label{fig:astrid-undo}
+\end{center}
+\end{figure}
+
+Jak název napovídá Spring MVC framework je postaven na aplikačním frameworku Spring. Využívá jeho základní mechanismy, jako Inversion Of Control kontejner a Dependency Injeciton.
+
+Výhodou Spring MVC je, že je možné vybrat různé knihovny pro řešení specifických problémů aplikace. Např. knihovnu pro řešení prezistence (MyBatis, Hybernate), nebo knihovnu pro view (JSP, Velocity, FreeMarker, atd.)\cite{liu2006research}.
+
 \subsection{Ruby}
 Ruby je dynamický, reflexivní, objektově orientovaný programovací jazkyk, který kombinuje syntaxi inspirovanou jazykem Perl s funkcemi podobnými Smalltalku. Ruby je také ovlivněný jazyky Eiffel a Lisp. Ruby byl prvotně navržen a vyvinut v polovině devadesátých let minulého století japoncem Yukihiro "Matz" Matsumoto.
 
 Ruby podporuje několik programovacích paradigmat. Mimo jiné funkcionální, objektově orientované, imperativní a reflektivní. Ruby má dynamické typování a automatickou správu paměti. Je tedy v mnohých aspektech podobný jazykům Smalltalk, Python, Perl, Lisp, Dylan, Pike a CLU.
 
 Současná verze jazyka je 1.9.3.
-\subsubsection{Frameworky pro tvorbu webových aplikací}
-\paragraph{Ruby on Rails}
+\subsubsection{Ruby on Rails}
 Ruby on Rails je framework pro vývoj webových aplikací napojených na databázi, používající návrhový vzor Model-view-controller. Vytvořil jej dánský programátor David Heinemeier Hansson při práci na projektu Basecamp.
 
 Vše v Rails je založeno na jazyce Ruby. Na jazyce Ruby je založen Ajax v šablonách (view), odpovědi v controllerech i architektura aplikace v modelech obalujících databázi. Ke spuštění aplikace je třeba jen databáze.
@@ -261,5 +306,8 @@ Vše v Rails je založeno na jazyce Ruby. Na jazyce Ruby je založen Ajax v šab
 Mezi základní princip Rails patří Konvence má přednost před konfigurací, tedy že programátor konfiguruje pouze ty části aplikace, které se liší od běžného nastavení. Vytvoří-li tedy např. model Person, aplikace bude data automaticky hledat v tabulce people. Chce-li, aby aplikace načítala data z tabulky staff, musí tak učinit výslovně.
 
 Rails jsou postaveny na bázi návrhového vzoru Model-view-controller, který odděluje části aplikace zodpovědné za čtení a ukládání dat včetně manipulace s nimi (model), za zobrazení grafického rozhraní aplikace (view) a za část přijímající vstupy od uživatele a řídící zobrazení dat na výstupu (controller).
+
+\subsubsection{Sinatra}
+Sinatra je minimalistický framework založený na ruby. Neobsahuje žádné další knihovny, jako například ORM, nebo komplexní knihovny na práci s View. Je určen pro jednoduché webové aplikace, webové služby.\cite{harris2011sinatra}
 
 \section{Možnosti napojení aplikace na systémy srovnávání cen}
