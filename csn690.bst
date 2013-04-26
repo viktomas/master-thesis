@@ -4,9 +4,9 @@
 %%
 %% The original source files were:
 %%
-%% merlin.mbs  (with options: `head,exlang,lang,vonx,nm-rev,jnrlst,aunm-semi,nmlm,x3,m3,atit-u,vnum-nr,volp-sp,jwdpg,pp-last,jwdvol,num-xser,ser-vol,ser-ed,pg-bk,add-pub,isbn,issn,doi,edpar,edby,blk-tit,au-col,Ëeπtina,pp,and-xcom,xand,eprint,biburl,url-nl,nfss,,{}')
-%% czech.mbs  (with options: `exlang,lang,vonx,nm-rev,jnrlst,aunm-semi,nmlm,x3,m3,atit-u,vnum-nr,volp-sp,jwdpg,pp-last,jwdvol,num-xser,ser-vol,ser-ed,pg-bk,add-pub,isbn,issn,doi,edpar,edby,blk-tit,au-col,Ëeπtina,pp,and-xcom,xand,eprint,biburl,url-nl,nfss,,{}')
-%% merlin.mbs  (with options: `tail,exlang,lang,vonx,nm-rev,jnrlst,aunm-semi,nmlm,x3,m3,atit-u,vnum-nr,volp-sp,jwdpg,pp-last,jwdvol,num-xser,ser-vol,ser-ed,pg-bk,add-pub,isbn,issn,doi,edpar,edby,blk-tit,au-col,Ëeπtina,pp,and-xcom,xand,eprint,biburl,url-nl,nfss,,{}')
+%% merlin.mbs  (with options: `head,exlang,lang,vonx,nm-rev,jnrlst,aunm-semi,nmlm,x3,m3,atit-u,vnum-nr,volp-sp,jwdpg,pp-last,jwdvol,num-xser,ser-vol,ser-ed,pg-bk,add-pub,isbn,issn,doi,edpar,edby,blk-tit,au-col,ƒçe≈°tina,pp,and-xcom,xand,eprint,biburl,url-nl,nfss,,{}')
+%% czech.mbs  (with options: `exlang,lang,vonx,nm-rev,jnrlst,aunm-semi,nmlm,x3,m3,atit-u,vnum-nr,volp-sp,jwdpg,pp-last,jwdvol,num-xser,ser-vol,ser-ed,pg-bk,add-pub,isbn,issn,doi,edpar,edby,blk-tit,au-col,ƒçe≈°tina,pp,and-xcom,xand,eprint,biburl,url-nl,nfss,,{}')
+%% merlin.mbs  (with options: `tail,exlang,lang,vonx,nm-rev,jnrlst,aunm-semi,nmlm,x3,m3,atit-u,vnum-nr,volp-sp,jwdpg,pp-last,jwdvol,num-xser,ser-vol,ser-ed,pg-bk,add-pub,isbn,issn,doi,edpar,edby,blk-tit,au-col,ƒçe≈°tina,pp,and-xcom,xand,eprint,biburl,url-nl,nfss,,{}')
 %% ----------------------------------------
 %% *** Czech style CSN ISO 690 ***
 %% 
@@ -233,7 +233,7 @@ FUNCTION {bbl.etal}
 { "aj." }
 
 FUNCTION {bbl.editors}
-{ "edito¯i" }
+{ "edito≈ôi" }
 
 FUNCTION {bbl.editor}
 { "editor" }
@@ -242,19 +242,19 @@ FUNCTION {bbl.edby}
 { "editace" }
 
 FUNCTION {bbl.edition}
-{ "vyd·nÌ" }
+{ "vyd√°n√≠" }
 
 FUNCTION {bbl.volume}
-{ "roËnÌk" }
+{ "roƒçn√≠k" }
 
 FUNCTION {bbl.of}
 { "" }
 
 FUNCTION {bbl.number}
-{ "ËÌslo" }
+{ "ƒç√≠slo" }
 
 FUNCTION {bbl.nr}
-{ "Ë." }
+{ "ƒç." }
 
 FUNCTION {bbl.in}
 { "in" }
@@ -269,28 +269,28 @@ FUNCTION {bbl.chapter}
 { "kapitola" }
 
 FUNCTION {bbl.techrep}
-{ "Technick· Zpr·va" }
+{ "Technick√° Zpr√°va" }
 
 FUNCTION {bbl.mthesis}
-{ "Diplomov· pr·ce" }
+{ "Diplomov√° pr√°ce" }
 
 FUNCTION {bbl.phdthesis}
-{ "DizertaËnÌ pr·ce" }
+{ "Dizertaƒçn√≠ pr√°ce" }
 
 FUNCTION {bbl.first}
-{ "PrvnÌ" }
+{ "Prvn√≠" }
 
 FUNCTION {bbl.second}
-{ "DruhÈ" }
+{ "Druh√©" }
 
 FUNCTION {bbl.third}
-{ "T¯etÌ" }
+{ "T≈ôet√≠" }
 
 FUNCTION {bbl.fourth}
-{ "»tvrtÈ" }
+{ "ƒåtvrt√©" }
 
 FUNCTION {bbl.fifth}
-{ "P·tÈ" }
+{ "P√°t√©" }
 
 FUNCTION {bbl.st}
 { "" }
@@ -306,23 +306,23 @@ FUNCTION {bbl.th}
 
 MACRO {jan} {"Leden"}
 
-MACRO {feb} {"⁄nor"}
+MACRO {feb} {"√önor"}
 
-MACRO {mar} {"B¯ezen"}
+MACRO {mar} {"B≈ôezen"}
 
 MACRO {apr} {"Duben"}
 
-MACRO {may} {"KvÏten"}
+MACRO {may} {"Kvƒõten"}
 
-MACRO {jun} {"»erven"}
+MACRO {jun} {"ƒåerven"}
 
-MACRO {jul} {"»ervenec"}
+MACRO {jul} {"ƒåervenec"}
 
 MACRO {aug} {"Srpen"}
 
-MACRO {sep} {"Z·¯Ì"}
+MACRO {sep} {"Z√°≈ô√≠"}
 
-MACRO {oct} {"ÿÌjen"}
+MACRO {oct} {"≈ò√≠jen"}
 
 MACRO {nov} {"Listopad"}
 
@@ -1575,7 +1575,7 @@ FUNCTION {begin.bib}
   if$
   "\begin{thebibliography}{"  longest.label  * "}" *
   write$ newline$
-  "\providecommand{\biburl}[1]{\url{#1}}"
+  "\providecommand{\biburl}[1]{\texttt{\textless#1\textgreater}}"
 %   "\providecommand{\biburl}[1]{#1}"
   write$ newline$
   "\providecommand{\urlprefix}{Dostupn{\' e} z WWW: }"
