@@ -1,0 +1,38 @@
+Dokud neprejdu k navrhu, tak musim vychazet z toho ze vybiram moznosti, kterymi se budu ubirat, nemel bych to brat z hlediska ze uz mam napsanou aplikaci postavenou na srovnavacich.
+h
+Pokud vim ze je nejaky problem, musim ho napsat a resit (napr. kdyz se ztrati podklad pro prani ze ktereho cerpam).
+
+Ted se soustredit na uvodni cast prace (na to z ceho vychazim). 
+
+-uvod
+-reserse
+**zamerit
+***srovnavace - zdroj dat
+***podobne aplikace -- kritizovat spatne, vzit si priklad z dobrych 
+****ktere funkce jsou povazovany za minimum, ktere maji vsechny spolecne !!!!!
+****metriky
+-navrh
+**obecne navrhnout a rozebrat celou funkcionalitu na zaklade predchozi verze
+**na zaklade tohohle rozbrou udelam navrh uzivatelskeho rozhranni
+***UI je nejdulezitejsi
+***opru se o literaturu o navrhu UI
+***jednoduchost
+***v navrhu se vybiraji technologie, zduvodnit proc jsem je vybral, srovnani
+****podpora v prohlizecich, verze html, 
+****navrh analyza spojit dohromady
+-implementace
+***jednoducha cast
+***popis implementace
+***vypichnout zajimave kousky kodu
+-testovani
+*testovani uzivatelske, metriky
+**co by se dalo zlepsit
+***pripadne pri dostatku casu provest korekturu a dasli kolo testovani..
+-zaver
+
+Poznamky
+---------
+umoznit uzivateli pouzivat aplikaci, pouze mu neulozit zmenu, pokud by se na konci prace neprihlasil
+selenium ide pro firefox
+
+
