@@ -1,0 +1,36 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="845" measuredH="502" mockupW="450" mockupH="400">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="395" y="102" w="-1" h="-1" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bottomheight>47</bottomheight>
+        <text>Chcete%20ulo%u017Eit%20p%u0159%E1n%ED%20z%20do%u010Dasn%E9ho%20%FA%u010Dtu%3F</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="410" y="155" w="403" h="38" measuredW="491" measuredH="21" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>P%u0159ed%20p%u0159ihl%E1%u0161en%EDm%20byla%20vytvo%u0159ena%20p%u0159%E1n%ED%2C%20kter%E1%20m%E1te%20nyn%ED%20mo%u017Enost%20p%u0159idat%20na%20sv%u016Fj%20%FA%u010Det.</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="410" y="199" w="-1" h="-1" measuredW="134" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Jedn%E1%20se%20o%20tato%20p%u0159%E1n%ED%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::List" x="430" y="229" w="362" h="126" measuredW="100" measuredH="126" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <text>N%E1zev%20prn%EDho%20p%u0159%E1n%ED%2C%20vytvo%u0159en%E9ho%20do%u010Dasn%FDm%20u%u017Eivatelem%0AN%E1zev%20dal%u0161%EDho%20p%u0159%E1n%ED%0ATelevizor%20Philips%20PFL5007K</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="541" y="467" w="-1" h="-1" measuredW="158" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Zadhodit%20do%u010Dasn%E1%20p%u0159%E1n%ED</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="705" y="467" w="-1" h="-1" measuredW="131" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>P%u0159idat%20na%20m%u016Fj%20%FA%u010Det</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

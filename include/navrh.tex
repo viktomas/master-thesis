@@ -120,6 +120,8 @@ Cíle správného návrhu uživatelského rozhranní jsou následující\cite{ga
 \end{itemize}
 Výsledkem takovéhoto návrhu bude vždy lepší produktivita a zvýšená satisfakce uživatele\cite{galitz2007essential}.
 
+Celý návrh je zaměřen na omezení počtu ovládacích prvků a všeobecnou jednoduchost sytému. Ovládací prvky musí mít opodstatněné svoji funkci.
+
 \subsection{Proces návrhu}
 Při návrhu uživatelského rozraní se nejprve vytvoří seznam operací, které může uživatel v aplikaci provéset, tzv. task list. Tyto operace se poté zahrnou do skupin na základě jejich funkce a z takto zpracovaných operací se vytvoří takzvaný task graph, tedy diagram, na kterém bude přesně zobrazeno, kdy k dané operaci může nastat a jaký bude mít následek.
 
@@ -155,17 +157,17 @@ Operace se dělí na akce 2 základní druhy, do prvního spadají akce na obraz
 \item \namedlabel{op-11}{Potvrzení dialogu pro mazání přání}%
 \item \namedlabel{op-12}{Zamítnutí dialogu pro mazání přání}%
 %\item \namedlabel{op-20}{Přechod na seznam tagů}%
-\item \namedlabel{sc-07}{\emph{Komponenta se seznamem tagů}}
-\item \namedlabel{op-13}{Výběr tagu}
-\item \namedlabel{sc-08}{\emph{Zobrazení seznamu přání označených tagem}}
+\item \namedlabel{sc-07}{\emph{Komponenta se seznamem štítků}}
+\item \namedlabel{op-13}{Výběr štítku}
+\item \namedlabel{sc-08}{\emph{Zobrazení seznamu přání označených štítkem}}
 \item \namedlabel{op-14}{Přihlášení uživatele pomocí uživ. jména a hesla}%
 \item \namedlabel{op-15}{Přihlášení uživatele pomocí Google}%
 \item \namedlabel{op-16}{Odhlášení uživatele}%
 \item \namedlabel{op-22}{Přechod na dialog registrace}%
-\item \namedlabel{sc-09}{\emph{Dialog registrace uživatele}}
+\item \namedlabel{sc-09}{\emph{Formulář registrace uživatele}}
 \item \namedlabel{op-23}{Potvrzení dialogu registrace uživatele}%
 \item \namedlabel{op-24}{Zamítnutí dialogu registrace uživatele}%
-\item \namedlabel{sc-10}{\emph{Zobrazení dialogu na přidání přání nepřihlášeného uživatele}}
+\item \namedlabel{sc-10}{\emph{Dialog na přidání přání nepřihlášeného uživatele}}
 \item \namedlabel{op-17}{Potvrzení dialogu na přidání přání nepřihlášeného uživatele}%
 \item \namedlabel{op-18}{Zamítnutí dialogu na přidání přání nepřihlášeného uživatele}%
 %op27--sc12
@@ -178,20 +180,23 @@ Operace je pro pokračování v návrhu GUI potřebné rozdělit do skupin podle
 \subsubsection{Hlavní akce aplikace}
 \label{sec:hlavni-akce}
 Tato skupina obsahuje hlavní akce, které uživatel může provádět kdykoli při práci s aplikací.
+
+Tyto akce jsou dostatečně důležité na to, by byly jejich ovládací prvky umístěné v layoutu stránky\footnote{Lyout neboli rozvržení je v moderních webových aplikacích šablona, do které se vkládá obsah stránek. Tato šablona zpravidla obsahuje hlavičku stránky, hlavní ovládací prvky, patičkku a poté prostor pro samotný obsah, který je posléze doplněn.}
+\begin{itemize}
+\item \textbf{\ref{op-01}} Je naprosto nezbytné, aby se uživatel měl možnost vrátit z jakékoli stránky na výchozí stránku\cite{molich1990improving}. Díky této vlastnosti se uživateli nikdy nestane že by nevěděl kam na stránce pokračovat, při nejhorším se vždy vrátí na začátek.
+\item \textbf{\ref{op-19}} Uživatel musí mít vždy možnost přejít přímo na přidání přání. Největším usnadněním je umístit velké tlačítko na každou stránku.
+\item \textbf{\ref{op-13}} Uživatel si třídí svá přání do kategorií pomocí štítků a je důležité aby je měl stále na očích (to umožňuje \ref{sc-07}) a zároveň se mohl podívat na přání označená daným štítkem.
+\item \textbf{\ref{op-21}} Přehled všech přání je další základní funkcionalita, jejíž zpřístupnění musí být uživateli co nejvíce usnadněno.
+\end{itemize}
+Následující čtyři operace souvisí s přihlášením a jejich umístěním na každou stránku nejen že umožňujeme uživateli aby se kdykoli přihlísil/odhlásil/zaregistroval, ale zároveň ho tím vždy informujeme o tom jestli je přihlášený což odpovídá principu zřetelného stavu systému\cite{molich1990improving}.
 \begin{multicols}{2}
 \begin{itemize}
-\item \ref{op-01}
-\item \ref{op-19}
-\item \ref{op-13}
-\item \ref{op-21}
 \item \ref{op-14}\footnote{Přihlášení a registrace jsou umožněny pouze nepřihlášenému uživateli a odhlášení pouze přihlášenému.\label{footnote-login}}
 \item \ref{op-15}\footref{footnote-login}
 \item \ref{op-16}\footref{footnote-login}
 \item \ref{op-22}\footref{footnote-login}
 \end{itemize}
 \end{multicols}
-
-Tyto operace jsou jasnými kandidáty na ovládací prvky umístěné v layoutu stránky\footnote{Lyout neboli rozvržení je v moderních webových aplikacích šablona, do které se vkládá obsah stránek. Tato šablona zpravidla obsahuje hlavičku stránky, hlavní ovládací prvky, patičkku a poté prostor pro samotný obsah, který je posléze doplněn.}
 
 \subsection{Akce manipulace s přáními}
 Další skupinou jsou akce, které nějakým způsobem pracují s přáními.
@@ -215,7 +220,7 @@ Další skupinou jsou akce, které nějakým způsobem pracují s přáními.
 Těchto akcí je vzhledem k rázu aplikace naprostá většina. Proto je u nich důležitá priorita.
 
 \subsubsection{Obrazovky}
-Zbytek operací je zobrazení obrazovek. Obrazovky se ještě dělí na hlavní obrazovky, které zabírají celou stránku, informativní okna, která zabírají pouze část stránky a dialogy, informativní a chybová hlášení, které uživatel může zavřít a zobrazují se zřetelně v popředí stránky.
+Zbytek operací je zobrazení obrazovek. Obrazovky se ještě dělí na hlavní obrazovky, které zabírají celou stránku, informativní komponenty, které zabírají pouze část stránky a dialogy, informativní a chybová hlášení, které uživatel může zavřít a zobrazují se zřetelně v popředí stránky.
 
 Jedna speciální obrazovka jsou hlavní ovládací prvky. To jsou ovládací prvky, které umožňují uživateli provádět hlavní akce operace (viz. \ref{sec:hlavni-akce}). Tato obrazovka je přítomná na všech hlavních obrazovkách.
 
@@ -242,3 +247,60 @@ Diagram operací ukazuje vztah mezi jednotlivými operacemi, zpravidla je možn�
 
 \subsection{Wireframe - Drátěný model}
 Wireframe je množství ilustrací, které ukazují v malém, nebo velkém detailu obsah každé stránky. Typicky jsou nakresleny pomocí jednoduchých čar, není to vyčerpávající návrh vzhledu. Mimo jiné ukazují jaké informace budou dostupné na jaké stránce. Wireframe je jedním z více kontroverzních dokumentů návrhu uživatelského rozhranní, protože spojují dohromady (tedy nerozlišují mezi) strukturou informací a jejich vizuálním návrhem. Jinými slovy wireframe překračuje hranici mezi strukuturou (jaké mají mezi sebou různé infomrace vztah) a vzheldem (jak budou informace prezentovány na obrazovce)\cite{brown2007communicating}.
+
+Kompletní návrh je včetně obrázků v příloze \ref{chp:wireframe}. Proto v této části práce budou pouze stručně popsány nejdůležitější body.
+
+\subsubsection{Využití Nielsenovy heuristiky při návrhu}
+Při návrhu obrazovek bylo postupováno podle všech pravidel heuristiky pro vyhodnocení uživatelských rozhranní popsané Jakobem Nielsenem\cite{molich1990improving}. Konkrétně:
+\begin{enumerate}
+\item \textbf{viditelnost stavu systému} - název stránky umístěný v horní části stránky
+\item \textbf{shoda systému a reálného světa} - veškeré názvosloví v aplikaci např. štítky a přání, ovládací prvky na obrazovkách jsou sobrazeny v logickém pořadí, tedy důležitější nahoře, nebo vlevo
+\item \textbf{svobodné akce uživatele} - aplikace vždy umožňuje pomocí zpět přejít na předchozí stránku, odkaz na domovskou stránku je vždy dobře dostupný (dvakrát umístěn v layoutu stránky)
+\item \textbf{konzistence a standardy} - hlavní menu je v levém panelu, název stránky odkazuje na hlavní stranu
+\item \textbf{prevence chyb} - použití JavaScript validací, které uživatele informují o chybě ještě než ji odešle na server. Minimalizace textových vstupních polí pro uživatele
+\item \textbf{preference rozpoznání před vzpomínáním} - všechny důležité informace jsou uživateli zobrazeny na obrazovce se kterou právě pracuje. Např. v obrazovce \ref{sc-10} jsou uživateli všechna přání vyčtena, místo toho aby si musel pamatovat, která přání jako nepřihlášený uživatel vytvořil.
+\item \textbf{flexibilita a efektivnost použití} - Nepřihlášenému uživateli se zobrazuje nápověda u hlavních ovládacích prvků, zatímco přihlášenému (tedy zkušenému) nikoli. Systém je celkově velmi jednoduchý, žádné zkratky v něm nebyly navrženy.
+\item \textbf{efektivní informační design} - množství zobrazených informací bylo pro přehlednost minimalizováno. U přání se vývoj ceny zobrazuje pomocí grafu.
+\item \textbf{pomoc při rozpoznávání, stanovení chyb a následné zotavení} - chybové zprávy byly navrženy s ohledem na toto pravidlo
+\item \textbf{nápověda a dokumentace orientovaná na úkoly} - Systém obsahuje pouze minimální nápovědu poskytnutou formou popup oken\footnote{JavaScriptová okénka, která se zobrazí pokud uživatel najede myší nad daný prvek} nad hlavními ovládacími prvky.
+\end{enumerate}
+
+\section{Návrh implementace}
+Přestože je implementace výsledné aplikace daná vybranou technologí, existuje několik částí, které jsou spíše algoritmické a použitá technologie na ně nemá velký vliv. Přesně tyto části aplikace budou rozebrány v této kapitole.
+
+\subsection{Algoritmus pro vytvoření spojového seznamu v databázi}
+Běžný způsob jak uložit data v moderních aplikacích je uchování v relačních databázích. Takovým způsobem budou uložena i jednotlivá přání ve výsledné aplikaci.
+
+Každé přání ma prioritu. Tato priorita je v podstatě odkazem na umístění přání v seznamu všech přání. Mějme tři přání, jedno má vysokou, druhé střední a třet nízkou prioritu. Vysoká priorita prvního přání je informace o tom, že přání má být umístěno na prvním místě v seznamu. Střední priorita je informace o tom že se přání nachází v seznamu uprostřed atd.
+
+Reprezentace této informace v databázi může být realizována dvojím způsobem, který zároveň určuje algoritmus pro ukládání/získávání přání.
+
+\subsubsection{Priorita jako celé číslo}
+Do tabulky přání je možné vložit jeden sloupec s celočíselným datovým typem nazvaný např. \verb|priorita|. Poté se určí jestli vyšší hodnota tohoto sloupce znamená nižší, nebo vyšší prioritu.
+\begin{table}
+	\begin{center}
+	  \begin{tabular}{ | l | c | }
+	    \hline
+	    NÁZEV & PRIORITA  \\ \hline \hline
+	    přání1 & 1  \\ \hline
+	    přání2 & 2 \\ \hline
+	     &  \\ \hline
+	  \end{tabular}
+	  \caption{Tabulka v databázi s celočíselnou prioritou}
+	  \label{tab:integer-priority}
+	\end{center}
+\end{table}
+
+
+Nyní stačí vkládat do tabulky přání a nastavovat hodnotu sloupce \verb|priorita| tak, aby odpovídala chtěnému umístění přání v seznamu. Problém nastane ve chvíli, kdy máme přání1 s prioritou=1, přání2 s prioritou=2 (viz tabulka \ref{tab:integer-priority})a chceme do databáze přidat přání3, které bude mít nižší prioritu než přání1 a vyšší než přání2. V tuto chvíli nemáme žádnou celočíselnou hodnotu priority, kterou bychom mohli přání3 přidělit, abychom dostali kýžený výsledek. Jedinou možností je změnit prioritu už uložených přání tak, aby vzniklo místo pro přání nové.
+
+V tomto příkladu je úprava přání v databázi triviální, ale při větším počtu záznamů může být úprava náročná. 
+
+\subsubsection{Priorita jako odkaz}
+Do tabulky přání je možné vložit sloupec se stejným datovým typem jaký má primární klíč v této tabulce a nazvat ho např \verb|NEXT_INDEX|. Tento sloupec bude odkazovat vždy na přání s nížší prioritou.
+
+Narozdíl od metody s celočíselnou prioritou zde nenastává při vkládání nového záznamu žádný problém. Pokud chci vložit nové přání3 mezi přání1 a přání2, nastavím u přání1 jako následovníka přání3 a u přání3 nastavím jako následovníka přání2.
+
+Problém u této metody záznamu přichází ve chvíli, kdy chceme dostat přání z databáze seřazené podle priority.
+
+\subsection{Algoritmus určení počáteční priority přání}
