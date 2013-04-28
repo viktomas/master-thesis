@@ -92,6 +92,11 @@ U nepřihlášeného uživatele se očekává nulová zkušenost s aplikací, pr
 
 \textbf{Aplikace bude vhodným způsobem zobrazovat nepřihlášenému uživateli nápovědu u klíčových ovládacích prvků.}
 
+\subsection{Automatické doplňování}
+V káždém textovém poli, kde je aplikace schopna napovědět uživateli pravděpodobný vstup by mělo fungovat automatické doplňování\footnote{Známé pod svým anglickým názvem: Autocomplete}. Těmito poli jsou v aplikaci vstup pro vyhledávání a vstup s názvy štítků, kterými bude označeno přání.
+
+\textbf{Aplikace bude ve vyhledávání a vkládání štítků podporovat automatické doplňování.}
+
 \subsection{Nezahrnuté funkce z rešerše}
 Některé funkce, které byly zmíněny v rešerši nebudou v aplikaci z různých důvodů zahrnuty. Tyto funkce zde budou vyčteny a u každé bude uveden důvod jejího vyloučení z funkčních požadavků.
 
@@ -266,7 +271,8 @@ Při návrhu obrazovek bylo postupováno podle všech pravidel heuristiky pro vy
 \end{enumerate}
 
 \section{Návrh implementace}
-Přestože je implementace výsledné aplikace daná vybranou technologí, existuje několik částí, které jsou spíše algoritmické a použitá technologie na ně nemá velký vliv. Přesně tyto části aplikace budou rozebrány v této kapitole.
+Přestože je implementace výsledné aplikace daná vybranou technologí, existuje několik částí, které jsou spíše algoritmické a použitá technologie na ně nemá velký vliv. Přesně tyto části aplikace budou rozebrány v úvodů této kapitoly.
+Ve druhé části bude pospán a zdůvodněn výběr technologií, které budou použity při tvorbě výsledné aplikace.
 
 \subsection{Algoritmus pro vytvoření spojového seznamu v databázi}
 Běžný způsob jak uložit data v moderních aplikacích je uchování v relačních databázích. Takovým způsobem budou uložena i jednotlivá přání ve výsledné aplikaci.
@@ -276,8 +282,8 @@ Každé přání ma prioritu. Tato priorita je v podstatě odkazem na umístěn�
 Reprezentace této informace v databázi může být realizována dvojím způsobem, který zároveň určuje algoritmus pro ukládání/získávání přání.
 
 \subsubsection{Priorita jako celé číslo}
-Do tabulky přání je možné vložit jeden sloupec s celočíselným datovým typem nazvaný např. \verb|priorita|. Poté se určí jestli vyšší hodnota tohoto sloupce znamená nižší, nebo vyšší prioritu.
-\begin{table}
+Do tabulky přání je možné vložit jeden sloupec s celočíselným datovým typem nazvaný např. |priorita|. Poté se určí jestli vyšší hodnota tohoto sloupce znamená nižší, nebo vyšší prioritu.
+\begin{table}[htb]
 	\begin{center}
 	  \begin{tabular}{ | l | c | }
 	    \hline
@@ -292,14 +298,50 @@ Do tabulky přání je možné vložit jeden sloupec s celočíselným datovým 
 \end{table}
 
 
-Nyní stačí vkládat do tabulky přání a nastavovat hodnotu sloupce \verb|priorita| tak, aby odpovídala chtěnému umístění přání v seznamu. Problém nastane ve chvíli, kdy máme přání1 s prioritou=1, přání2 s prioritou=2 (viz tabulka \ref{tab:integer-priority})a chceme do databáze přidat přání3, které bude mít nižší prioritu než přání1 a vyšší než přání2. V tuto chvíli nemáme žádnou celočíselnou hodnotu priority, kterou bychom mohli přání3 přidělit, abychom dostali kýžený výsledek. Jedinou možností je změnit prioritu už uložených přání tak, aby vzniklo místo pro přání nové.
+Nyní stačí vkládat do tabulky přání a nastavovat hodnotu sloupce |priorita| tak, aby odpovídala chtěnému umístění přání v seznamu. Problém nastane ve chvíli, kdy máme přání1 s prioritou=1, přání2 s prioritou=2 (viz tabulka \ref{tab:integer-priority})a chceme do databáze přidat přání3, které bude mít nižší prioritu než přání1 a vyšší než přání2. V tuto chvíli nemáme žádnou celočíselnou hodnotu priority, kterou bychom mohli přání3 přidělit, abychom dostali kýžený výsledek. Jedinou možností je změnit prioritu už uložených přání tak, aby vzniklo místo pro přání nové.
 
-V tomto příkladu je úprava přání v databázi triviální, ale při větším počtu záznamů může být úprava náročná. 
+V tomto příkladu je úprava přání v databázi triviální, ale při větším počtu přání v databázi může být úprava náročná.
 
-\subsubsection{Priorita jako odkaz}
-Do tabulky přání je možné vložit sloupec se stejným datovým typem jaký má primární klíč v této tabulce a nazvat ho např \verb|NEXT_INDEX|. Tento sloupec bude odkazovat vždy na přání s nížší prioritou.
+\paragraph{Postup pro získání přání seřazených podle priority z databáze}
+Přání z databáze jsou získána pomocí klasického příkazu |SELECT| který řadí přání podle sloupce priorita.
+
+\lstset{language=SQL} 
+\begin{lstlisting}
+SELECT * FROM PRANI ORDER BY PRIORITA;
+\end{lstlisting}
+
+\paragraph{Postup pro vložení přání s kolidující prioritou do databáze}
+Jak již bylo řečeno výše, vkládání přání je složité, pokud chceme aby mělo prioritu mezi dvěma přáními, u kterých se liší hodnota sloupce |PRIORITA| pouze o 1. Problém řeší inkrementace hodnoty ve sloupci |PRIORITA| u všech přání se stejnou, nebo vyšší prioritou než je priorita právě přidaného přání.
+
+Pokud tedy budeme chtít vložit přání s prioritou 3 a taková priorita už v databázi je, kód bude vypadat následovně:
+
+\begin{lstlisting}
+BEGIN TRANSACTION;
+UPDATE PRANI SET PRIORITA=PRIORITA+1 WHERE PRIORITA >= 3;
+INSERT INTO PRANI ('nazev_prani', 3);
+COMMIT;
+\end{lstlisting}
+
+Na stejném principu bude probíhat i úprava priority už existujícího přání. Přání v aplikaci budou přiřazena k uživatelům a proto může bý v podmínce u příkazu |UPDATE| ještě identifikátor uživatele. Tím se výrazně zmenší počet upravených přání.
+
+\subsubsection{Priorita jako odkaz} 
+Do tabulky přání je možné vložit sloupec se stejným datovým typem jaký má primární klíč v této tabulce a nazvat ho např |NEXT_ID|. Tento sloupec bude odkazovat vždy na přání s nížší prioritou.
 
 Narozdíl od metody s celočíselnou prioritou zde nenastává při vkládání nového záznamu žádný problém. Pokud chci vložit nové přání3 mezi přání1 a přání2, nastavím u přání1 jako následovníka přání3 a u přání3 nastavím jako následovníka přání2.
+
+\begin{table}[htb]
+	\begin{center}
+	  \begin{tabular}{ | l | c | r | }
+	    \hline
+	    ID & NÁZEV & NEXT_ID  \\ \hline \hline
+	    1 & přání1 & 2  \\ \hline
+	    2 & přání2 & NULL \\ \hline
+	     &  \\ \hline
+	  \end{tabular}
+	  \caption{Tabulka v databázi s prioritou jako odkaz}
+	  \label{tab:integer-priority}
+	\end{center}
+\end{table}
 
 Problém u této metody záznamu přichází ve chvíli, kdy chceme dostat přání z databáze seřazené podle priority.
 

@@ -30,9 +30,5 @@ Ted se soustredit na uvodni cast prace (na to z ceho vychazim).
 ***pripadne pri dostatku casu provest korekturu a dasli kolo testovani..
 -zaver
 
-Poznamky
----------
-umoznit uzivateli pouzivat aplikaci, pouze mu neulozit zmenu, pokud by se na konci prace neprihlasil
-selenium ide pro firefox
 
 
