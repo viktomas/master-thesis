@@ -38,6 +38,7 @@ Dále se zabývá aplikacemi, které mají nějakou významnou funkčnost vhodno
 Na konci každé podkapitoly budou shrnuty slabé a silné stránky jednotlivých technologií.
 
 \section{Nákupní seznamy}
+\label{sec:nakupni-seznamy}
 V následujících sekcích je popsána funkčnost hotových aplikací zabývajících se organizací nákupního seznamu. Všechny zmíněné aplikace jsou již v produkci a jsou zaštítěny velkými internetovými společnostmi.
 
 \subsection{Google ShoppingList}
@@ -149,6 +150,7 @@ Přehled přání je vidět na obrázku \ref{fig:wishlist-wishlist}.
 Cena u přání jde zadat pouze v dolarech. WishList umožňuje vyhledat zboží pro přání u kterých není uvedena URL produktu, ale vyhledávání nefunguje kompletně, nenašlo nic pro výraz "iphone", pro který PriceGrabber (zdroj dat pro WishList) nalezne několik stovek výsledků.
 
 \section{Srovnávače cen}
+\label{sec:srovnavace-cen}
 Tato kapitola poskytuje rešerši aplikací známých jako srovnávače cen, jejichž cílem je poskytnout uživateli širší pohled na trh. Tyto aplikace umožňují u jednoho produktu srovnat cenu v několika internetových obchodech. V rešerši jsou zpracovány jako potencionální zdroje dat pro výslednou webovou aplikaci.
 
 \subsection{Standartní funkce všech srovnávačů}
@@ -238,6 +240,7 @@ Price graber obsahuje funkčnost v čechách poprvé zavedenou portálem Slevoma
 PriceGrabber obsahuje velké množství tzv. "Buying Guiedes" tedy příručky k nákupu, které poskytují základní rady a doporučení pro koupi daného typu zboží. Obsahuje tedy například příručku pro nákup klimatizace.
 
 \section{Aplikace s žádanou funkčností}
+\label{sec:aplikace-s-zadanou-funkcnosti}
 Tato kapitola popisuje několik aplikací, které svým zaměřením nesplňují přímo podmínky této práce, ale část jejich funkcionality by byla pro výslednou aplikaci přínosem.
 
 \subsection{Astrid}
@@ -314,13 +317,14 @@ Jak název napovídá Spring MVC framework je postaven na aplikačním framework
 Výhodou Spring MVC je, že je možné vybrat různé knihovny pro řešení specifických problémů aplikace. Např. knihovnu pro řešení prezistence (MyBatis, Hybernate), nebo knihovnu pro view (JSP, Velocity, FreeMarker, atd.)\cite{liu2006research}.
 
 \subsection{Ruby}
+\label{sec:ruby}
 Ruby je dynamický, reflexivní, objektově orientovaný programovací jazkyk, který kombinuje syntaxi inspirovanou jazykem Perl s funkcemi podobnými Smalltalku. Ruby je také ovlivněný jazyky Eiffel a Lisp. Ruby byl prvotně navržen a vyvinut v polovině devadesátých let minulého století japoncem Yukihiro "Matz" Matsumoto.
 
 Ruby podporuje několik programovacích paradigmat. Mimo jiné funkcionální, objektově orientované, imperativní a reflektivní. Ruby má dynamické typování a automatickou správu paměti. Je tedy v mnohých aspektech podobný jazykům Smalltalk, Python, Perl, Lisp, Dylan, Pike a CLU.
 
 Současná verze jazyka je 1.9.3.
 \subsubsection{Ruby on Rails}
-Ruby on Rails je framework pro vývoj webových aplikací napojených na databázi, používající návrhový vzor Model-view-controller. Vytvořil jej dánský programátor David Heinemeier Hansson při práci na projektu Basecamp.
+Ruby on Rails je framework pro vývoj webových aplikací napojených na databázi, používající návrhový vzor Model-view-controller. Vytvořil jej dánský programátor David Heinemeier Hansson při práci na projektu Basecamp\cite{website:wiki:ror}.
 
 Vše v Rails je založeno na jazyce Ruby. Na jazyce Ruby je založen Ajax v šablonách (view), odpovědi v controllerech i architektura aplikace v modelech obalujících databázi. Ke spuštění aplikace je třeba jen databáze.
 
@@ -332,6 +336,32 @@ Rails jsou postaveny na bázi návrhového vzoru Model-view-controller, který o
 Sinatra je minimalistický framework\footnote{Zde se definice liší, například Alan Harris ve své publikaci Sinatra Up and Running píše, že sinatra není framework, ale podle mě definici tohoto slova naplňuje.} a doménově specifický jazyk\footnote{Doménově specifický jazyk je programovací jazyk, který je prostřednictvím vhodné abstrakce a výrazového slovníku zaměřen na omezenou, konkrétní problémovou doménu. V tomto případě jsou doménou Webové stránky.} založený na ruby. Neobsahuje žádné další knihovny, jako například ORM, nebo komplexní knihovny na práci s View. Je určen pro jednoduché webové aplikace, webové služby. Sinatra nevnucuje programátorovi žádny návrhový vzor, takže narozdíl od velkého množství frameworků není postaven na MVC.\cite{harris2011sinatra}
 
 Jak již bylo naznačeno v předchozím odstavci, Sinatra poskytuje minimální obal okolo HTTP dotazu a odpovědi. Celá knihovna je napsána v méně než 2000 řádcích\cite{harris2011sinatra}. Sinatra je vhodná pro drobnou aplikaci, kde je důležitá primárně jednoduchá syntaxe a přehlednost kódu. Není výjimkou, že celá webová aplikace postavená na Sinatře se nacházi v jednom souboru\cite{harris2011sinatra}.
+
+\subsection{Frontend frameworky}
+Do této kategorie spadají veškeré aplikace/skirpty/sytly, které vývojáři usnadňují vývoj klientské části aplikace, tedy té části, kterou uživatel vidí ve svém prohlížeči. Tyto frameworky kombinují HTML a CSS návrhové prvky a k nim přidávají JavaScript funkcionalitu \cite{website:wiki:bootstrap}\cite{website:boilerplate}. Vývoj v těchto frameworcích spočívá v psaní klasického HTML, kterému vývojář přidává speciální třídy, které jsou nastylované frameworkem\cite{website:wiki:bootstrap}.
+
+\subsubsection{Twitter Bootstrap}
+Bootstrap byl vyvinut vývojáři Markem Ottem a Jacobem Thorntonem ve společnosti Twitter jako standard pro udržení konzistence napříč interními nástroji. Do té doby byly pro vývoj uživatelských rozhraní používány různe knihovny, což mělo za následek zvýšené náklady na údržbu.
+
+V Září 2011 byl framework uvolněn jako open-source. Nyní (duben 2013) je nejoblíbenějším projektem na Github.com s velice širokou komunitou vývojářů\cite{website:github-popular}.
+
+
+Mezi mnohými funkcemi frameworku je například automatický 12-ti sloupcový mřížkový laout\footnote{Vývojář může jednotlivé komponenty vkládat do 12-ti sloupců kde každá komponenta může zabírat libovolný počet sloupců. Komponenty je možné vkládat do řádků.} a responzivní layout, který vhodně mění rozložení prvků v závislosti na velikosti okna prihlížeče\footnote{To je vhodné pro zobrazení jedné stránky na více typech zařízení (PC, tablet, mobilní telefon).}.
+
+Na obrázku je vidět příklad jednoduché stránky přímo ze stránek frameworku. Zrojový kód tvořící tuto stránku má 127 řádků kódu\cite{website:bootstrap-example}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=80mm]{./pictures/bootstrap-example.png}
+\caption{Příklad jednoduché stránky ve frameworku Twitter Bootstrap \cite{website:bootstrap-example}}
+\label{fig:bootstrap-example}
+\end{center}
+\end{figure}
+
+\subsubsection{HTML 5 Boilerplate}
+V roce 2009 začal Paul Irish kopírovat často používané kusy svého HTML, CSS a JavaScript kódu do jednoho dokumentu. Tento dokument sestával pouze ze základních kusů kódu. Paul Irish od té doby začal vždy stavět nový projekt nad tímto dokumentem. Tím vzniknul frontend framwork HTML 5 Boilerplate, který byl poprové uvolněn v lednu 2010 a pod svým nynějším názvem je od června 2010.\cite{website:boilerplate-history}
+
+Tento projekt má za cíl obsahovat naprosté minimum, co potřebuje každý vývojář při své práci\cite{website:boilerplate-history}. Díky této myšlence, na které je framework postaven poskytuje spíše funkce, které lze využívat při tvorbě stránek než hotové komponenty, ze kterých by stránka šla přímo postavit.
 
 \section{Možnosti napojení aplikace na systémy srovnávání cen}
 Možnosti napojení aplikace na systémy srovnávání cen jsou v zásadě 2. Využití API samotného systému, nebo využití takzvaného web scrapingu viz. \ref{sec:screenscraping}
@@ -348,7 +378,7 @@ Nevýhodou API systému je v tomto konkrétním případě velmi omezený přís
 Toto je metoda, která se používá k extrakci dat z datových stránek. Simuluje dotazy běžného uživatele a z nich získává data. Před nástupem webových služeb byla tato metoda hlavním způsobem, jak automatizovat získávání dat z webových stránek\cite{oreilly2007web}. Základní postup takovéto metody je následující:
 
 \begin{enumerate}
-\item Aplikace provede dotaz na předem danou URL \emph{Např. http://srovnavac.cz/produkt?id=1}
+\item Aplikace provede dotaz na předem danou URL \newline \emph{Např. http://srovnavac.cz/produkt?id=1}
 \item Aplikace dostane odpoveď v podobě zdrojového kódu dotazované stránky.
 \item Aplikace musí tomuto zdrojovému kódu porozumnět, zpracovat ho a převést do interní reprezentace datové struktury.
 \end{enumerate}
@@ -360,3 +390,13 @@ Web Scraping má na druhou stranu několik nevýhod. První nevýhodou jsou leg�
 Další nevýhodou je závislost na konkrétním \emph{vzhledu}\footnote{V tomto kontextu se nejedná o vizuální podobu stránek, ale o podobu zdrojového kódu stránky.} webové aplikace. Pokud se rozhodne poskytovatel přepracovat svůj návrh stránek, poté je nutné této změně přizpůsobit také aplikaci, která ze stránek data získává.
 
 \section{Vyhodnocení rešerše}
+Nyní bude zhodnocena všechna funkcionalita pospaná v kapitolách \ref{sec:nakupni-seznamy}, \ref{sec:srovnavace-cen} a \ref{sec:aplikace-s-zadanou-funkcnosti}. 
+
+
+\begin{itemize}
+\item vyhodnocení rešerše přímých konkurentů
+\item vyhodnocení rešerše srovnávačů
+\item vyhodnocení rešerše astrid a ještě něčeho?
+
+
+\end{itemize}

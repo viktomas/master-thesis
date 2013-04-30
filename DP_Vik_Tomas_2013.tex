@@ -19,7 +19,22 @@
 % tento kod zpusobi, ze cokoli uzavrene ve znacich || se vysazi jako kod
 \usepackage{fancyvrb}
 \usepackage{listings} %zdrojove kody
+\usepackage{amsmath}
 %\usepackage{color} %colorbox
+
+\lstdefinestyle{custom}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  showstringspaces=false,
+  %columns=fixed,
+  basicstyle=\footnotesize\ttfamily,
+  % keywordstyle=\bfseries\color{green!40!black},
+  % commentstyle=\itshape\color{purple!40!black},
+  % identifierstyle=\color{blue},
+  % stringstyle=\color{orange},
+}
 
 \DefineShortVerb{\|}
 
@@ -43,11 +58,11 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \department{Katedra softwarového inženýrství}
-\title{Webová aplikace pro správu a organizaci nákupního seznamu}
+\title{Webová aplikace pro správu a organizaci \newline nákupního seznamu}
 \author{Tomáš Vik} %jméno autora bez akademických titulů
 \authorWithDegrees{Bc. Tomáš Vik} %jméno autora včetně akademických titulů
 \supervisor{Ing. Jiří Hunka}
-\acknowledgements{Děkuji svému vedoucím práce Jiřímu Hunkovi za čas strávený konzultacemi a korekturou této práce. Děkuji svým rodičům že mě vychovali a podporovali mě. A poté děkuji všem svým přátelům, kteří mi zpřijemňovali má vysokoškolská léta. Jmenovitě díky Bukáši, Vejvisi, Tomaassi, Medvěde, Váco, Sethe, Máro, Eliško, Sobe, Zůzo, Nováku, Stanely, Kájo, Terko a moje zlato.}
+\acknowledgements{Děkuji svému vedoucím práce Jiřímu Hunkovi za čas strávený konzultacemi a korekturou této práce. Děkuji svým rodičům že mě vychovali a podporovali mě. A poté děkuji všem svým přátelům, kteří mi zpřijemňovali má vysokoškolská léta. Jmenovitě díky Bukáši, Vejvisi, Tomaassi, Medvěde, Pinokio, Váco, Sethe, Máro, Eliško, Sobe, Zůzo, Nováku, Stanely, Gulo, Kájo, Terko a Káťo.}
 \abstractCS{Práce pojednává o problematice nákupních seznamů, dále popisuje návrh a implementaci webové aplikace, která slouží jako pokročilý nákupní seznam.}
 \abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
 \placeForDeclarationOfAuthenticity{V~Praze}

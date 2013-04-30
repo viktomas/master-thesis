@@ -50,6 +50,8 @@ Přání bude obsahovat následující základní informace:
 \item \textbf{Priorita} - informace o míře priority, tedy jak je přání důležité pro uživatele.
 \end{itemize}
 
+Při přidání přání bude uživateli poskytnuta funkce \emph{Rychlá priorita}. Uživatel bude mít při přidání možnost jednoduše rozhodnout jak důležité je pro něj přání, aniž by ho konkrétně musel zařazovat mezi ostatní.
+
 \textbf{Uživateli bude umožňěno vytvářet a upravovat přání. Vytvoření bude probíhat pomocí zvolení zboží ve výsledku vyhledávání (viz. kapitola \ref{sec:vyhledavani}). Následně uživatel vyplní informace o přání do vhodného formuláře. Podobný formulář bude sloužit také k editaci přání. Uživateli bude umožněno přidat maximálně 20 přání, po překročení tohoto limitu bude dotázán, jestli chce nově přidaným přáním nahradit nějaké současné přání.}
 
 \subsubsection{Výběr obrázku}
@@ -305,7 +307,7 @@ V tomto příkladu je úprava přání v databázi triviální, ale při větš�
 \paragraph{Postup pro získání přání seřazených podle priority z databáze}
 Přání z databáze jsou získána pomocí klasického příkazu |SELECT| který řadí přání podle sloupce priorita.
 
-\lstset{language=SQL} 
+\lstset{language=SQL, style=custom} 
 \begin{lstlisting}
 SELECT * FROM PRANI ORDER BY PRIORITA;
 \end{lstlisting}
@@ -327,22 +329,163 @@ Na stejném principu bude probíhat i úprava priority už existujícího přán
 \subsubsection{Priorita jako odkaz} 
 Do tabulky přání je možné vložit sloupec se stejným datovým typem jaký má primární klíč v této tabulce a nazvat ho např |NEXT_ID|. Tento sloupec bude odkazovat vždy na přání s nížší prioritou.
 
-Narozdíl od metody s celočíselnou prioritou zde nenastává při vkládání nového záznamu žádný problém. Pokud chci vložit nové přání3 mezi přání1 a přání2, nastavím u přání1 jako následovníka přání3 a u přání3 nastavím jako následovníka přání2.
+Narozdíl od metody s celočíselnou prioritou zde nenastává při vkládání nového záznamu žádný problém. Pokud chci vložit nové přání3 mezi přání1 a přání2 (počáteční stav v tabulce \ref{tab:pointer-priority}), nastavím u přání1 jako následovníka přání3 a u přání3 nastavím jako následovníka přání2.
 
 \begin{table}[htb]
 	\begin{center}
 	  \begin{tabular}{ | l | c | r | }
 	    \hline
-	    ID & NÁZEV & NEXT_ID  \\ \hline \hline
+	    ID & NÁZEV & NEXT\_ID  \\ \hline \hline
 	    1 & přání1 & 2  \\ \hline
 	    2 & přání2 & NULL \\ \hline
-	     &  \\ \hline
+	     & &  \\ \hline
 	  \end{tabular}
 	  \caption{Tabulka v databázi s prioritou jako odkaz}
-	  \label{tab:integer-priority}
+	  \label{tab:pointer-priority}
 	\end{center}
 \end{table}
 
 Problém u této metody záznamu přichází ve chvíli, kdy chceme dostat přání z databáze seřazené podle priority.
 
+\paragraph{Postup pro získání přání seřazených podle priority z databáze}
+Pokud bychom chtěli řešit získání seřazených přání jedním dotazem, museli bychom mít databázi s podporou takzvaných hierarchických, nebo také rekurzivních dotazů. Tyto dotazy za sebe umějí spojovat záznamy na principu rodič-potomek\cite{website:wiki:hierarchical-queries}.
+
+Takový dotaz vypadá pro PL-SQL\footnote{SQL dialekt databází Oracle} následovně\cite{website:oracle:hierarchical}:
+\begin{lstlisting}
+SELECT * FROM PRANI CONNECT BY PRIOR ID = NEXT_ID
+\end{lstlisting}
+
+\paragraph{Postup pro vložení do databáze}
+Vložení přání s největší prioritou je triviální. Vloží se nové přání a jako |NEXT_ID| se mu nastaví identifikátor přání, které mělo doteď nejvyšší prioritu. Nalezení takového přání se provede pomocí příkazu:
+
+\begin{lstlisting}
+ SELECT * FROM PRANI
+    WHERE ID NOT IN (SELECT NEXT_ID FROM PRANI);
+\end{lstlisting}
+
+K vložení každého přání musíme znát klíč obou přání, mezi které nové přání vkládáme. V následujícím skriptu vkládáme přání 3 do tabulky \ref{tab:pointer-priority}
+
+\begin{lstlisting}
+BEGIN TRANSACTION;
+UPDATE PRANI SET NEXT_ID=3 WHERE ID = 1;
+INSERT INTO PRANI (3,'prani3', 2);
+COMMIT;
+\end{lstlisting}
+
+Výsledek operace je znázorněn v tabulce \ref{tab:pointer-priority-result}.
+
+\begin{table}[htb]
+	\begin{center}
+	  \begin{tabular}{ | l | c | r | }
+	    \hline
+	    ID & NÁZEV & NEXT\_ID  \\ \hline \hline
+	    1 & přání1 & 3  \\ \hline
+	    2 & přání2 & NULL \\ \hline
+	    3 & prani3 & 2 \\ \hline
+	  \end{tabular}
+	  \caption{Výsledek přidání přání 3 mezi přání 1 a 2.}
+	  \label{tab:pointer-priority-result}
+	\end{center}
+\end{table}
+
+Při mazání přání je vždy nutné vrátit ukazatel tak aby se "přeskočilo" smazané přání. Kód pro smazání přání3 z tabulky \ref{tab:pointer-priority-result} vypadá následovně:
+
+\begin{lstlisting}
+BEGIN TRANSACTION;
+UPDATE PRANI SET NEXT_ID=2 WHERE ID = 1;
+DELETE FROM PRANI WHERE ID=3;
+COMMIT;
+\end{lstlisting}
+
+Při úpravě priority přání se spojí kroky smazání a vytvoření přání.
+
 \subsection{Algoritmus určení počáteční priority přání}
+V předchozích sekci \ref{sec:pridani-prani}bylo zmíněno, že uživateli bude usnadněno přidání přání pomocí tzv. \emph{Rychlé priority}. V příloze v návrhu drátěného modelu \ref{sec:wireframe-pridani-prani} byl navržen ovládací prvek s třemi tlačítky určujícími prioritu \emph{Nízká}, \emph{Střední} a \emph{Vysoká}. Ve zbytku této kapitoly bude popsán algoritmus, který převede tuto volbu na finální prioritu, která přání zařadí na konkrétní místo do seznamu všech přání.
+
+\subsubsection{Výpočet váhy štítku}
+Kromě samotné volby rychlé priority uživatel poskytuje ještě jednu informaci o důležitosti přání a tou jsou štítky. Algoritmus předpokládá, že často se vyskytující štítky jsou důležitější, než ty s menším výskytem. S tímto předpokladem se dále pracuje.
+
+Normalizovanou váhou štítku rozumíme reálné číslo v intervalu $<0;1>$. Kde 0 je pro štítek, který není přiřazen k žádnému přání a 1 je pro štítek, který je u každého přání. Výpočet váhy je vznikne jednoduchým podílem
+\begin{equation}
+W = \left\{
+  \begin{array}{l l}
+    0 & \quad \text{pokud }N_s = 0\\
+    \frac{N_s}{N_{all}} & \quad \text{jinak}
+  \end{array} \right.
+\label{eq:vaha-stitku}
+\end{equation}
+kde $W$ je váha štítku, $N_s$ je počet přání označených štítkem a $N_{all}$ je počet přání.
+
+\subsubsection{Přiřazení číselných koeficientů rychlé prioritě}
+Jak již bylo řečeno uživatel může volit ze tří možností priority: \emph{Nízká}, \emph{Střední} a \emph{Vysoká}. Těmto volbám jsou pro výpočet přiřazeny reálné koeficienty v tabulce \ref{tab:rychla-priorita}.
+
+\begin{table}[htb]
+\begin{center}
+\begin{tabular}{|l|r|}
+\hline
+Nízká & 0\\ \hline
+Střední & 0,5\\ \hline
+Vysoká & 1 \\
+\hline
+\end{tabular}
+\caption{Přiřazení reálných koeficientů k uživatelským volbám.}
+\label{tab:rychla-priorita}
+\end{center}
+\end{table}
+
+\subsubsection{Algoritmus}
+Algoritmus využívá všech dříve zmíněných koeficientů. Koeficient váhy štítku je započítán do váženého průměru s váhou 1, zatímco koeficent rychlé priority s váhou pět. Váha štítku se tedy podílí pouze pětinovým podílem na výsledném koeficientu. Algoritmus získá konkrétní přání, pod které do seznamu patří nové přání.
+\lstset{language = c, style=custom}
+\begin{lstlisting}
+/*na zacatku jsou k dispozici tyto promenne
+  tags - pole vsech stitku kterymi bylo prani oznaceno
+  fast_priority - uzviatelem zvolena rychla priorita
+  wishes - pole se vsemi pranimi*/
+tag_weight = 0;
+//nascitaji se vahy vsech stitku
+foreach tag from tags{
+	tag_weight += normilezed_weight(tag)
+}
+//aritmeticky zprumerovana vaha stitku
+if(tags.size != 0){
+	tag_weight = tag_weight / tags.size
+}
+//vazeny prumer z vahy stitku a rychle priority
+coefficient = 1 - (5*fast_priority + tag_weight) / 6
+max_wishes_index = wishes.size - 1
+index = round_down(max_wishes_index * coefficient)
+above_wish = wishes[index]
+\end{lstlisting}
+
+\section{Vybrané technologie}
+Na konci návrhu jsou vybrány technologie které budou použity pro implementaci výsledné aplikace. Některý výběr byl daný také zadáním práce. Primárním cílem je vybrat moderní technologie, které jsou zároveň delší dobu na trhu\footnote{Nevýhodou cutting-edge technologií je i přes jejich zajímavost velké riziko že nebudou podporovány na straně klienta, nebo přestanou být udržovány.}. Zároveň je při výběru zohledněno množství přispěvatelů/příspěvků do kódu aplikace.
+\subsection{Programovací jazyk}
+Výsledná aplikace bude naprogramována v jazyce \textbf{Ruby}. Toto je část daná zadáním, přsto by byl výběr takový i kdyby bylo možné vybrat Javu. Důvody pro toto rozhodnutí jsou následující
+\begin{itemize}
+\item Dynamicky typované proměnné - názory na to zdali je tato vlastnost výhoda nebo nevýhoda se liší a každý názor má svá pro a proti. Dynamicky typované proměnné obecně znamenají méně napsaného kódu, tím pádem čitelnější a přehlednější kód. To že není možné některé chyby typu špatné přiřazení apod. rozeznat při kompilaci je potřeba vykompenzovat správnými Unit Testy\footnote{Pod pojem unit testing se zahrnují nástroje, metodika a činnost, jejímž cílem je ověřování správné funkčnosti dílčích částí neboli jednotek zdrojového kódu.}, které by ovšem měla obsahovat aplikace psaná v jakémkoli jazyce\cite{website:oreilly:unit-testing}.
+\item Moderní konstrukty jazyka - Ruby poskytuje konstrukty jako bloky a lambda funkce, které programátorovi usnadňují práci
+
+\end{itemize}
+
+Ruby je výkonově výrazně horší než Java\cite{website:java-ruby-performance}. Např. Twitter původně postavený na Ruby on Rails začal od Ruby ustupovat a nahrazovat ho Javou\cite{website:twitter-ruby-java}. Pro výslednou aplikaci toto není problém, neboť její zátěž nebude vyoká.
+
+\subsection{Framework pro vývoj webové aplikace}
+Výsledná aplikace bude postavená na frameworku Ruby on Rails v3. Jedná se o framework s nejstarší tradicí a dále budou popsány všechny faktory, které vedly k jeho výběru:
+
+\begin{itemize}
+\item Nejlepší dokumentace - framework je nejstarší na trhu tomu také odpovídá rozsah dokumentace. Framework má vlastní dokumentaci, mnoho psaných publikací, videotutoriáů a nespočet krátkých článků online\cite{website:ruby-toolbox-web}\cite{website:ruby-rails-documentation}.
+\item Největší počet uživatelů - celkem 23 milionů stáhnutí knihovny, více jak 18 tisíc uživatelů sledující vývoj zdrojových kódů na Github.com. Druhá Sinatra má 7 milionů stáhnutí a méně než 5 tisíc uživatelů sledujících vývoj na Github.com\cite{website:ruby-toolbox-web}.
+\item Konvence namísto konfigurace\footnote{Convention over configuration} - základní myšlenka frameworku vše je po vytvoření apikace základně nakonfigurováno a uživatel mění jen ta nastavení, která potřebuje. To v zásadě znamená že vývojář píše převážně byznys logiku, zatímco ostatní věci už jsou za něj vyřešeny.
+\item Nejvíce přispěvovatelů a příspěvků do zdrojového kódu - stejně jako má Ruby on Rails obrovskou uživatelskou základnu, má také nejvíce vývojářů\cite{website:ruby-toolbox-web}.
+\end{itemize}
+
+Výsledná aplikace je více komplexní, proto se pro ní nehodí ve všech ohledech druhý framework Sinatra, jehož hlavní výhodou je jednoduchost \cite{harris2011sinatra}
+
+\subsection{Frontend framework}
+Jako HTML, CSS a JavaScript framework bude použit Twitter Bootstrap. Důvody pro jeho použití jsou velice podobné důvodům pro použití frameworku Ruby on Rails a jsou shrnuty dále:
+\begin{itemize}
+\item Široká uživatelská základna -
+\item Předpřipravené komponenty - 
+\item Plugin do Ruby on Rails
+\item Nejvíce přispěvovatelů a příspěvků do zdrojového kódu - 
+\end{itemize}
