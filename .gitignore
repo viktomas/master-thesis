@@ -25,3 +25,12 @@
 *.fdb_latexmk
 *.pdf
 !cvut-logo-bw.pdf
+*.html
+*.4ct
+*.4tc
+*.css
+*.idv
+*.lg
+*.tmp
+*.xref
+*x.png
