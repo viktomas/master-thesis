@@ -52,4 +52,79 @@ end
 \end{lstlisting}
 
 \subsection{View}
-View reprezentuje uživatelské rozhranní aplikace
+View reprezentuje uživatelské rozhranní aplikace. V Rails je view řešeno pomocí HTML souborů, do kterých jsou vloženy kusy Ruby kódu. View poskytují data klientskému prohlížeči.
+
+View je vykreslován controllerem a má také k dispozici všechna data, která má k dispozici controller. Proto je snadné předávat do view data získaná v controllru.
+
+Následuje ukázka kódu view, který má ve výsledné aplikace na starost vykreslení seznamu štítků v levém panelu.
+
+\lstset{language = html, style=custom}
+\begin{lstlisting}
+<div id="tag-overview" class="sidebar-nav">
+  <div class="well">
+    <ul class="nav nav-stacked nav-pills">
+      <li class="nav-header">Stitky</li>
+      <% @main_page_tags.each_with_index do |tag, index| %>
+          <li <%= 'class=overflow' if index > 4  %>>
+            <a href="/wishes/bytag/<%= tag.name %>">
+              <%= truncate(tag.name, length: 12) %> <%= raw(ApplicationHelper.badge(tag.wish_count(current_user.id))) %>
+            </a>
+          </li>
+
+      <% end %>
+      <% if @main_page_tags.size > 4 %>
+          <li><a id="more-tags-button" class="more" href="#"><i class="icon-chevron-down"></i>Vice</a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+\end{lstlisting}
+
+\section{Napojení výsledné aplikace na srovnávač Herueka.cz}
+Jako zdroj dat pro aplikaci je využit server pro srovnávaní cen \textbf{Heureka.cz} a způsob získávání dat z tohoto serveru je \textbf{Web scraping}. Pro usnadnění získávání dat z webových stránek je použita knihovna Nokogiri\footnote{\url{http://nokogiri.org/}}.
+
+Získávání dat spočívá v dotazování na specifické URL serveru. To má vždy stejnou podobu, například získání dokumentu s výsledky hledání produktu vypadá následovně:
+
+\lstset{language = ruby, style=custom}
+\begin{lstlisting}
+doc = Nokogiri::HTML(open("http://www.heureka.cz/?h[fraze]=#{heureka_term}"))
+\end{lstlisting}
+
+\noindent kde |heureka_term| je vyhledáváný výraz.
+
+V takto získaném dokumentu je snadné hledat jednotlivé elementy pomocí css selektorů (viz. \ref{sec:css-selektor}). A číst obsah takto získaných elementů pomocí metody. Následuje ukázka kódu\footnote{Pro přehlednost bylo z ukázky odebráno přiřazení získaných dat.} na získání produktů z vyhledávání provedeného předchozím příkazem:
+
+\begin{lstlisting}
+products = doc.css('#content #search .product')
+products.each do |product|
+  image_link = product.css('.foto img').first['src']
+  description_document = product.css('.desc p.small').first
+  if description_document
+    search_item.description = description_document.content
+  end
+  item_link = product.css('div h2 a').first
+  #nazev produktu
+  name = item_link.content
+  #odkaz na tento produkt, ze ktereho se prani ziska
+  parse_link = item_link['href']
+  #pokud odkaz nevede na heureku => neslo by parsovat dalsi data
+  next if search_item.parse_link.include? 'exit'
+  price_from_to = product.css('.wherebuy .price a.pricen').first.content
+  price_from = price_from_to.split('-').first.gsub(/[^0-9]/i, '')
+  price_to = price_from_to.split('-').last.gsub(/[^0-9]/i, '')
+end
+\end{lstlisting}
+
+Základními metodami naimplementované knihovny pro získávání dat ze serveru Heureka.cz jsou:
+
+\begin{itemize}
+\item |search_term(term, limit)| - vrátí vyhledané produkty, tyto produkty nejsou ještě vloženy do databáze, každý vyhledaný produkt obsahuje URL, ze kterého je možné jeho data získat
+\item |parse_item(item_url)| - je volána při přidávání přání s novým produktem, získa z dané URL produkt, uloží všechny jeho informace do databáze a vrátí jej
+\item |get_prices(item)| - volá se při vytváření nového přání a poté periodicky každý den. Získá ceny ze všech obchodů, ve kterých se produkt z parametru prodává.
+\end{itemize}
+
+Při implementaci získávání dat metodou Web Scraping bylo nejobtížnější ošetřit všechny možné podoby stránek, které server vrací. Např. videa v galerii obrázků, žádný popis nebo obrázek produktu apod.
+
+\section{Získávání cen a sestavování grafu vývoje ceny}
+
+\section{Výsledné grafické uživatelské rozhranní.}

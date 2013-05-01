@@ -113,6 +113,7 @@ V rešerši bylo zmíněno, že mnoho aplikací umožňuje řadit své entity po
 Tato funcionalita není ve výsledné aplikaci nezbytná, opět se počítá s tím, že přání bude méně než 20. Přání s aktuální výhodnou cenou uvidí uživatel hned po přihlášení a v přehledech mu budou řazena podle priority.
 
 \section{Návrh grafického uživatelského rozhraní}
+\label{sec:navrh-gui}
 Grafické uživatelské rozhranní (dále GUI) usnadňuje používání aplikace pomocí přezentování informací formou, která je snadná na osvojení a manipulaci s informacemi. Použití vizuálníhch prvků (přepínačů, tlačítek, posuvníků, atp.) usnadňuje uživateli učení tím, že mu poskytuje intuitivní rozhranní pro práci s aplikací. Špatný návrh GUI může aplikaci uškodit, znepřehlední dodávané informace a neodhalí uživateli všechnu funkcionalitu. Tím uživatele zpravidla donutí k memorizování kroků k průchodu běžnými scénáři\cite{toby2001expgui}.
 
 Dobrý design GUI se vyznačuje tím, že po uživateli nevyžaduje žádné memorizování zacházení s aplikací. GUI by přesto mělo umožňovat zrychlený průchod aplikací pomocí zkratek\cite{toby2001expgui}.
@@ -489,3 +490,12 @@ Jako HTML, CSS a JavaScript framework bude použit \textbf{Twitter Bootstrap}. D
 \item Plugin do Ruby on Rails - je vytvořena knihovna, která snadno integruje framework do Rails\cite{website:github-bootstrap-saas}.
 \item Nejvíce přispěvovatelů a příspěvků do zdrojového kódu - do frameworku přispívá takřka 200 vývojářů.
 \end{itemize}
+
+\subsection{Metoda napojení na systém srovnávání cen}
+Z výše zmíněných metod bude ve výsledné aplikaci použita metoda \textbf{Web Scraping}. Přestože není ideální, byla vybrána z následujících důvodů:
+\begin{itemize}
+\item Jednoduché nasazení - není třeba žádné vyjednání přístup se systémy srovnávaní cen, žádná autorizace a autentizace.
+\item Jednoduchá dokumentace - jak bylo popsáno v kapitole \ref{sec:webscraping}, při vytváření aplikace pro získávání dat vývojář pracuje přímo se stránkou určenou pro koncového uživatele na které jsou většinou informace jasně a logicky utříděné.
+\item Jednoduchá implementace
+\end{itemize}
+Nevýhody této metody jsou popsány v kapitole \ref{sec:webscraping}.

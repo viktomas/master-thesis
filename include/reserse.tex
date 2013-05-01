@@ -365,7 +365,7 @@ V roce 2009 začal Paul Irish kopírovat často používané kusy svého HTML, C
 Tento projekt má za cíl obsahovat naprosté minimum, co potřebuje každý vývojář při své práci\cite{website:boilerplate-history}. Díky této myšlence, na které je framework postaven poskytuje spíše funkce, které lze využívat při tvorbě stránek než hotové komponenty, ze kterých by stránka šla přímo postavit.
 
 \section{Možnosti napojení aplikace na systémy srovnávání cen}
-Možnosti napojení aplikace na systémy srovnávání cen jsou v zásadě 2. Využití API samotného systému, nebo využití takzvaného web scrapingu viz. \ref{sec:screenscraping}
+Možnosti napojení aplikace na systémy srovnávání cen jsou v zásadě 2. Využití API samotného systému, nebo využití takzvaného web scrapingu viz. \ref{sec:webscraping}
 
 \subsection{Napojení na API systému}
 V tomto ohledu jsou možnosti vesměs omezené. Čeští poskytovatelé (Heureka.cz, Zboží.cz) API veřejně neposkytují a na svých stránkách neuvádí podmínky pro získání přístupu k jejich datům. Zahraniční poskytovatel PriceGrabber svoje API poskytoval formou webové služby. Toto API bylo veřejné a mohl jej využívat kdokoli. Nyní je přístup k tomuto api znemožněn\cite{website:pricegrabber-api}. Například v rešerši zmiňovaný WishList je na tomto API postaven. Nyní je možné kontaktovat obchodní oddělení serveru a vyjednat s ním podmínky použití API.
@@ -375,7 +375,7 @@ Tato metoda má jasnou výhodu v několika aspektech. Nejdůležitějším aspek
 Nevýhodou API systému je v tomto konkrétním případě velmi omezený přístup a nutnost dohody s poskytovatelem ještě před testováním samotného API. Další nevýhodou je například jasně daný rozsah funkčnosti, který nemusí vždy korelovat s funkčností nabízenou například webovým rozhranním aplikace.
 
 \subsection{Web Scraping}
-\label{sec:screenscraping}
+\label{sec:webscraping}
 Toto je metoda, která se používá k extrakci dat z datových stránek. Simuluje dotazy běžného uživatele a z nich získává data. Před nástupem webových služeb byla tato metoda hlavním způsobem, jak automatizovat získávání dat z webových stránek\cite{oreilly2007web}. Základní postup takovéto metody je následující:
 
 \begin{enumerate}
@@ -389,6 +389,8 @@ Web Scraping je tedy velmi přímočará metoda, jak získat jakákoli data, ke 
 Web Scraping má na druhou stranu několik nevýhod. První nevýhodou jsou legální problémy spojené s tímto získáváním dat. V čechách znám jediný případ kdy aplikace využívala tímto způsobem data cizího serveru. Jednalo se o aplikaci Pubtran, která využívala informace o jízdních řádech ze serveru \emph{jizdnirady.idnes.cz}. Autor aplikace František Hejl poté musel umístit do aplikace reklamní banery Idnes.
 
 Další nevýhodou je závislost na konkrétním \emph{vzhledu}\footnote{V tomto kontextu se nejedná o vizuální podobu stránek, ale o podobu zdrojového kódu stránky.} webové aplikace. Pokud se rozhodne poskytovatel přepracovat svůj návrh stránek, poté je nutné této změně přizpůsobit také aplikaci, která ze stránek data získává.
+
+Poslední nevýhodou je obtížně testování aplikace postavené na získávání dat touto metodou. Nikdy není zaručeno že server nevrátí na dotaz nějakou stránku, se kterou aplikace nepočítá.
 
 \section{Vyhodnocení rešerše}
 Nyní bude zhodnocena všechna funkcionalita pospaná v kapitolách \ref{sec:nakupni-seznamy}, \ref{sec:srovnavace-cen} a \ref{sec:aplikace-s-zadanou-funkcnosti}. 
