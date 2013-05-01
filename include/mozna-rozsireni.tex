@@ -1,13 +1,22 @@
 % !TEX root = ../DP_Vik_Tomas_2013.tex
 \chapter{Možná rozšíření práce}
 Některá funkcionalita byla nad rozsah této práce, nebo její absenci objevily až závěrečné testy uživatelského rozhraní. Výčtem a krátkým popisem této funkcionality se bude zabývat tato poslední kapitola.
-\připojení na
 
 \section{Využití API srovnávačů}
+Dalším logickým pokračováním vývoje aplikace je rozhodně napojení na API samotných srovnávačů, protože i když Web Scraping funguje, není pravděpodobně udržitelný při rozšíření uživatelské základny.
+
+Výborná funkcionalita by mohla vzejít z napojení na více než jeden srovnávač, kdy by uživatel měl ještě kvalitnější přehled o cenách svého přání v různých obchodech. Vše je ale závislé na dohodě s konkrétními servery. Ty by pravděpodobně s takovým mesh-up nesouhlasili. Zatím mají tyto servery relativně výsadní postavení na trhu a není pravděpodobné, že by chtěli poskytnout svá data aplikaci, která by je porovnávala s konkurencí a tím jim například snížila počet prokliků.
+
+\section{Zapojení aplikace do sociálních sítí a sdílení}
+V dnešní době je většina používaných webových aplikací nějakým způsobem zapojena do sociálních sítí. Aplikace by mohla například s uživatelovým souhlasem publikovat do sociálních sítí informaci o tom že si něco přeje, nebo že si přání splnil.
+
+Dokonce by bylo dobré, kdyby člověk svůj seznam mohl sdílet, aby např. známí věděli, co můžou uživateli koupit.
 
 \section{Plugin do prohlížeče}
+Jak bylo zmíněno v kapitole \ref{sec:amazon-wishlist-button}, Amazon Wish list má plugin, který umožňuje z jakékoli stránky přidat přání do seznamu. Tato funkcionalita by byla vhodná i pro výslednou aplikaci. Pokaždé když by se uživatel nacházel na stránce srovnávače cen, ze kterého aplikace čerpá data, mohl by uživatel jedním kliknutím přidat do svých přání právě zobrazovaný předmět.
 
 \section{Umožnit uživateli odeslat připomínku/informaci o chybě}
+Aplikace by mohla obsahovat formulář, kterým by uživatel mohl vývojáře informovat o chybě v aplikaci\footnote{Vážné chyby se zaznamenávají do aplikačního logu, to ale neznamená, že nemůže nastat nějaká chyba v logice aplikace.} a nebo připomínce k aplikaci.
 
 \section{Komplexnější vyhledávání}
 Uživateli by mohl být nabídnut ekvivalent výrobku, nebo výrobek, který hledaný termín obsahuje jen v technickém popisu a ne v názvu.

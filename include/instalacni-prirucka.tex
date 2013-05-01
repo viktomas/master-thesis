@@ -1,0 +1,61 @@
+% !TEX root = ../DP_Vik_Tomas_2013.tex
+\chapter{Instalační příručka}
+Aplikace je dostupná online na adrese \url{http://tomasvik.cz} a zároveň jsou její zdrojové kodý přiloženy na CD dodávaném k této práci. Následuje postup, jak nainstalovat aplikaci na lokálním přostředí.
+
+\section{Instalace aplikace na lokálním prostředí}
+Tento postup je určený pro linuxové systémy, konkrétně systémy odvozené z distribuce Debian. Zprovoznění aplikace na jiném linuxovém systému by neměl být žádný problém. Pro zprovoznění na widnows doporučuji \url{http://railsinstaller.org/} na který jsou nejlepší odezvy co se týče instalace rails.
+
+Přestože nejsou známy problémy, které by mohly nastat při instalaci na Widnwos, platí následující:
+
+\textbf{Jediným zaručeně podporovaným operačním systémem je linux s APT balíčkovacím systémem.} Aplikace byla testována a vývíjena na systému Ubuntu 12.04 LTS.
+
+Nejdříve je důležité mít nainstalovaný balík ruby ve verzi 1.9.2 a vyšší
+
+\lstset{language = bash, style=custom}
+\begin{lstlisting}
+sudo apt-get install ruby1.9.3
+\end{lstlisting}
+
+pokud příkaz
+
+\begin{lstlisting}
+ruby --version
+\end{lstlisting}
+
+nevrátí správnou verzi, je potřeba tuto verzi nastavit příkazem
+
+\begin{lstlisting}
+sudo update-alternatives --config ruby
+\end{lstlisting}
+
+pote stačí nainstalovat bundler, pokud ještě není nainstalovaný
+
+\begin{lstlisting}
+sudo gem install bundler
+\end{lstlisting}
+
+přepnout se do adrésáře zdrojových kódů diplomové práce
+
+\begin{lstlisting}
+cd ~/wishlist
+\end{lstlisting}
+
+a nainstalovat vše potřebné příkazem
+
+\begin{lstlisting}
+sudo bundle install
+\end{lstlisting}
+
+nyní stačí inicializovat databázi práce
+
+\begin{lstlisting}
+rake db:setup
+\end{lstlisting}
+
+a spusti aplikaci pomocí příkazu 
+
+\begin{lstlisting}
+rails s
+\end{lstlisting}
+
+Nyní je možné aplikaci nalézt na adrese \url{http://localhost:3000}

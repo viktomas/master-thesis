@@ -1,9 +1,9 @@
 % !TEX root = ../DP_Vik_Tomas_2013.tex
 \chapter{Implementace}
-Pro lepší přestavu bude nejdříve zběžně popsán způsob, jakým se všeobecně sestavuje aplikace ve frameworku Ruby on Rails. Následně se bude kapitola věnovat detailněji implementaci napojení aplikace na srovnávač Heureka.cz, implementací získávání aktuálních cen a jejich zpracování do grafu a na konci kapitoly bude ukázka implementovaných obrazovek aplikace.
+Pro lepší představu bude nejdříve zběžně popsán způsob, jakým se všeobecně sestavuje aplikace ve frameworku Ruby on Rails. Následně se bude kapitola věnovat detailněji implementaci napojení aplikace na srovnávač Heureka.cz, implementací získávání aktuálních cen a jejich zpracování do grafu a na konci kapitoly bude ukázka implementovaných obrazovek aplikace.
 
 \section{Standardní rozvržení aplikace v Ruby on Rails}
-Jak již bylo řečno v kapitole \ref{sec:ror}, aplikace upřednostňuje konvenci před konfiguraci, což na jednu stranu znamená minimum konfigurace aplikace, na druhou stranu to znamená že má vývojář přesně dané postupy jak v implementaci něčeho dosáhnout. Framework je postaven na návrhovém vzoru MVC a to také implementaci rozděluje na tři významné části.
+Jak již bylo řečeno v kapitole \ref{sec:ror}, aplikace upřednostňuje konvenci před konfiguraci, což na jednu stranu znamená minimum konfigurace aplikace, na druhou stranu to znamená, že má vývojář přesně dané postupy jak v implementaci něčeho dosáhnout. Framework je postaven na návrhovém vzoru MVC a to také implementaci rozděluje na tři významné části.
 
 \subsection{Model}
 Model reprezentuje informace v aplikaci a pravidla jak s nimi zacházet. Což se dá interpretovat také jako mechanismus zapisování a čtení databáze a pravidla tohoto zápisu/čtení. Model je v Rails řešen pomocí knihovny Active Record. Ta poskytuje nad každým objektem modelu velkou škálu funkcí ketré manipulují přímo s databází. Každá modelová třída musí dědit od |ActiveRecord::Base|. Na schématu \ref{fig:model-diagram} jsou vidět všechny modelové třídy ve výsledné aplikaci. Každý model v Rails má v příslušené tabulce v databázi ještě dva sloupce |create_at| a |updated_at| jejichž hodnoty se automaticky nastavují při vytvoření/upravení záznamu.
@@ -17,7 +17,7 @@ Model reprezentuje informace v aplikaci a pravidla jak s nimi zacházet. Což se
 \end{figure}
 
 \subsection{Controller}
-Controller je v Rails třída, která dědí od třídy |ActionController::Base|. Tato třída má na starosti zpracování HTTP dotazů. Pokud přijde dotaz, framework se pokusí v routes souboru\footnote{Konfigurační soubor, ve kterém jsou nastaveny pro každou validní URL odpovídající controllery a jejich metody.} najít vhodný controller a jeho metodu kterou poté zavolá. Controller má mimo jiné přístup k parametrům se kterými byl proveden HTTP dotaz a k session proměnné.
+Controller je v Rails třída, která dědí od třídy |ActionController::Base|. Tato třída má na starosti zpracování HTTP dotazů. Pokud přijde dotaz, framework se pokusí v routes souboru\footnote{Konfigurační soubor, ve kterém jsou nastaveny pro každou validní URL odpovídající controllery a jejich metody.} najít vhodný controller a jeho metodu kterou poté zavolá. Controller má mimo jiné přístup k parametrům, se kterými byl proveden HTTP dotaz a k session proměnné.
 
 Dále je v Rails aplikacích standardem, že existuje controller, který se nazývá |ApplicationController| a od něj dědí všechny ostatní controllery. Tak je tomu i ve výsledné aplikaci.
 
@@ -52,7 +52,7 @@ end
 \end{lstlisting}
 
 \subsection{View}
-View reprezentuje uživatelské rozhranní aplikace. V Rails je view řešeno pomocí HTML souborů, do kterých jsou vloženy kusy Ruby kódu. View poskytují data klientskému prohlížeči.
+View reprezentuje uživatelské rozhraní aplikace. V Rails je view řešeno pomocí HTML souborů, do kterých jsou vloženy kusy Ruby kódu. View poskytují data klientskému prohlížeči.
 
 View je vykreslován controllerem a má také k dispozici všechna data, která má k dispozici controller. Proto je snadné předávat do view data získaná v controllru.
 
@@ -81,7 +81,7 @@ Následuje ukázka kódu view, který má ve výsledné aplikace na starost vykr
 \end{lstlisting}
 
 \section{Napojení výsledné aplikace na srovnávač Herueka.cz}
-Jako zdroj dat pro aplikaci je využit server pro srovnávaní cen \textbf{Heureka.cz} a způsob získávání dat z tohoto serveru je \textbf{Web scraping}. Pro usnadnění získávání dat z webových stránek je použita knihovna Nokogiri\footnote{\url{http://nokogiri.org/}}.
+Jako zdroj dat pro aplikaci je využit server pro srovnávání cen \textbf{Heureka.cz} a způsob získávání dat z tohoto serveru je \textbf{Web scraping}. Pro usnadnění získávání dat z webových stránek je použita knihovna Nokogiri\footnote{\url{http://nokogiri.org/}}.
 
 Získávání dat spočívá v dotazování na specifické URL serveru. To má vždy stejnou podobu, například získání dokumentu s výsledky hledání produktu vypadá následovně:
 
@@ -90,9 +90,9 @@ Získávání dat spočívá v dotazování na specifické URL serveru. To má v
 doc = Nokogiri::HTML(open("http://www.heureka.cz/?h[fraze]=#{heureka_term}"))
 \end{lstlisting}
 
-\noindent kde |heureka_term| je vyhledáváný výraz.
+\noindent kde |heureka_term| je vyhledávaný výraz.
 
-V takto získaném dokumentu je snadné hledat jednotlivé elementy pomocí css selektorů (viz. \ref{sec:css-selektor}). A číst obsah takto získaných elementů pomocí metody. Následuje ukázka kódu\footnote{Pro přehlednost bylo z ukázky odebráno přiřazení získaných dat.} na získání produktů z vyhledávání provedeného předchozím příkazem:
+V takto získaném dokumentu je snadné hledat jednotlivé elementy pomocí CSS selektorů (viz. \ref{sec:css-selektor}). A číst obsah takto získaných elementů pomocí metody. Následuje ukázka kódu\footnote{Pro přehlednost bylo z ukázky odebráno přiřazení získaných dat.} na získání produktů z vyhledávání provedeného předchozím příkazem:
 
 \begin{lstlisting}
 products = doc.css('#content #search .product')
@@ -127,4 +127,4 @@ Při implementaci získávání dat metodou Web Scraping bylo nejobtížnější
 
 \section{Získávání cen a sestavování grafu vývoje ceny}
 
-\section{Výsledné grafické uživatelské rozhranní.}
+\section{Výsledné grafické uživatelské rozhraní.}
