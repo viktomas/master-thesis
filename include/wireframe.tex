@@ -5,7 +5,7 @@ Díky prostorové náročnosti se kompletní dokumentace vytvoření drátěnéh
 
 \section{Hlavní ovládací prvky}
 \label{sec:hlavni-ovladaci-prvky}
-Hlavní ovládací prvky dokáží spouštět akce popsané v kapitole \ref{sec:hlavni-akce}. Tyto prvky musí být umístěny na každé stránce a proto se nachází v tzv. layoutu webové aplikace. Návrh layoutu výsledné aplikace se nachází na obrázku \ref{fig:mock-layout}.
+Hlavní ovládací prvky dokáží spouštět akce popsané v kapitole \ref{sec:hlavni-akce}. Tyto prvky musí být umístěny na každé stránce, a proto se nachází v tzv. layoutu webové aplikace. Návrh layoutu výsledné aplikace se nachází na obrázku \ref{fig:mock-layout}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -21,7 +21,7 @@ V návrhu layoutu je jasně vidět panel umístěný v horní časti stránky, k
 Dále budou popsány obrazovky, které zabírají celou stránku. Tyto stránky vždy obsahují výše zmíněné \nameref{sec:hlavni-ovladaci-prvky}. Všechny obrazovky kromě \ref{sc-01} jsou navrhnuty z pohledu nepřihlášeného uživatele\footnote{Hlavní ovládací prvky umožňují přihlášení a registraci namísto odhlášení.}.
 
 \subsection{\ref{sc-01}}
-Toto je stránka, která se zobrazí uživateli ihned po jeho přihlášení do aplikace. Zároveň ho na ní přsunou oba odkazy umístěné v hlavních ovládacích prvcích. Na této stránce bude uživateli zobrazeno maximálně pět přání. Výběr přání bude proveden na základě nejprudší změny ceny (a to ať už zlevnění, nebo zdražení produktu). Stránka je na obrázku \ref{fig:uvodni-prihlaseny-uzivatel}.
+Toto je stránka, která se zobrazí uživateli ihned po jeho přihlášení do aplikace. Zároveň ho na ní přesunou oba odkazy umístěné v hlavních ovládacích prvcích. Na této stránce bude uživateli zobrazeno maximálně pět přání. Výběr přání bude proveden na základě nejprudší změny ceny (a to ať už zlevnění, nebo zdražení produktu). Stránka je na obrázku \ref{fig:uvodni-prihlaseny-uzivatel}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -43,9 +43,9 @@ Na tuto stránku uživatel přejde, pokud zvolí hlavní ovládací prvek přida
 \end{figure}
 
 \subsection{\ref{sc-03}}
-Po zadání hledaného výrazu zobrazí aplikace uživateli výsledky. Pokud nenajde žádný výsledek, zobrazí zprávu která o tom uživatele informuje. Návrh obrazovky je na obrázku \ref{fig:vysledky-hledani}
+Po zadání hledaného výrazu zobrazí aplikace uživateli výsledky. Pokud nenajde žádný výsledek, zobrazí zprávu, která o tom uživatele informuje. Návrh obrazovky je na obrázku \ref{fig:vysledky-hledani}
 
-U každého výsledku je ukázán obrázek produktu, jeho celý název, popisek, rozmezí cen, ve kterém se produkt pohybuje a tlačítko pro vytvoření přání. Ve skutečnosti celý výsledek reaguje na kliknutí myši. Tlačítko je u výsledku primárně, aby uživatel věděl, že co se s výsledkem dělá.
+U každého výsledku je ukázán obrázek produktu, jeho celý název, popisek, rozmezí cen, ve kterém se produkt pohybuje a tlačítko pro vytvoření přání. Ve skutečnosti celý výsledek reaguje na kliknutí myši. Tlačítko je u výsledku primárně, aby uživatel věděl, co se s výsledkem dělá.
 
 \begin{figure}[htb]
 \begin{center}
@@ -63,7 +63,7 @@ Na návrhu je vidět, že uživateli je zvolen obrázek pro přání, ale zárov
 
 Rychlá priorita ulehčuje uživateli práci. Oprosťuje uživatele od vnitřní datové reprezentace priority. Nechá ho vybrat ze tří možností a na základě jednoduchého algoritmu patřičně přiřadí prioritu k přání.
 
-Uživateli se navíc zobrazí dodatečné informace (popis a technická specifikace) o produktu, aby se mohl rozhodnout, jestli je produkt opravdu tím, co hledal.
+Uživateli se navíc zobrazí dodatečné informace (popis a technická specifikace) o produktu, aby se mohl rozhodnout, jestli je produkt opravdu to, co hledal.
 
 \begin{figure}[htb]
 \begin{center}
@@ -89,9 +89,9 @@ Přání je možné přesouvat táhnutím myši a tím měnit jejich prioritu.
 \end{figure}
 
 \subsection{\ref{sc-05}}
-Stránka zobrazení detailu přání s možností jeho editace. Při návrhu stránky byl kladen důraz na co největší podobu se stránkou na přidání přání. Tu se totiž už uživatel musel naučit/pochopit a proto by bylo kontraproduktivní jej nutit přemýšlet nad jinou stránkou. To odpovídá principu konzistence a standardizace\cite{molich1990improving}. Návrh obrazovky je na obrázku \ref{fig:editace-detail-prani}.
+Stránka zobrazení detailu přání s možností jeho editace. Při návrhu stránky byl kladen důraz na co největší podobu se stránkou na přidání přání. Tu se totiž už uživatel musel naučit/pochopit, a proto by bylo kontraproduktivní jej nutit přemýšlet nad jinou stránkou. To odpovídá principu konzistence a standardizace\cite{molich1990improving}. Návrh obrazovky je na obrázku \ref{fig:editace-detail-prani}.
 
-Oproti obrazovce na přidání přání byla odstraněna rychlá priorita, protože ta se teď už nastavuje na obrazovkách se seznamy přání. Přibylo tlačítko na smzání přání a důežité tlačítko, které přání označí jako splněné.
+Oproti obrazovce na přidání přání byla odstraněna rychlá priorita, protože ta se teď už nastavuje na obrazovkách se seznamy přání. Přibylo tlačítko na smzání přání a důležité tlačítko, které přání označí jako splněné.
 
 \begin{figure}[htb]
 \begin{center}
@@ -114,12 +114,12 @@ Obrazovka je totožná s \ref{sc-04}, s výjimkou že jsou na ní zobrazeny pouz
 \end{figure}
 
 \section{Dialogy a komponenty}
-Některé informace nevyžadují tolik místa, nebo je podle konvence nutné je řešit dialogem(konzistence a standardizace\cite{molich1990improving}) a proto není jejich zobrazení realizováno jako celá stránka. Namísto toho je informace zobrazená formou komponenty umístěné na hlavní ztránce, nebo dialogu zobrazeného přes libovolnou stránku.
+Některé informace nevyžadují tolik místa, nebo je podle konvence nutné je řešit dialogem(konzistence a standardizace\cite{molich1990improving}), a proto není jejich zobrazení realizováno jako celá stránka. Namísto toho je informace zobrazená formou komponenty umístěné na hlavní ztránce, nebo dialogu zobrazeného přes libovolnou stránku.
 
 \subsection{\ref{sc-12}}
 
 \subsection{\ref{sc-06}}
-Na obrázku \ref{fig:dialog-mazani-prani} je zobrazen návrh dialogu, který se uživteli zobrazí poté, co klikne na tlačítko smazání přání. Dialog je naprosto triviální.
+Na obrázku \ref{fig:dialog-mazani-prani} je zobrazen návrh dialogu, který se uživateli zobrazí poté, co klikne na tlačítko smazání přání. Dialog je naprosto triviální.
 
 \begin{figure}[htb]
 \begin{center}
@@ -132,7 +132,7 @@ Na obrázku \ref{fig:dialog-mazani-prani} je zobrazen návrh dialogu, který se 
 \subsection{\ref{sc-07}}
 Komponenta je přítomna v základním layoutu a je vidět například na obrázku \ref{fig:mock-layout}. Jedná se o seznam všech štítků, kterými má uživatel označena přání. Skládá se z nadpisu komponenty, seznamu štítků a tlačítka, které umožňuje zobrazovat/skrývat další štítky. Každý šítek má u sebe zobrazeno číslo reprezentující počet přání, které jsou jím označeny. Zároveň štítek funguje jako odkaz na obrazovku s přehledem štítků (\ref{sec:prani-podle-stitku}).
 
-Po zobrazení komponenty se v ní pro přehlednost ukazuje pouze pět nejpoužívanějších štítků. Další uživatel může zobrazit pomocí stisknutí tlačítka \emph{Více}.
+Po zobrazení komponenty se v ní pro přehlednost ukazuje pouze pět nejpoužívanějších štítků. Další může uživatel zobrazit pomocí stisknutí tlačítka \emph{Více}.
 
 \subsection{\ref{sc-09}}
 Na obrázku \ref{fig:dialog-registrace} je zobrazen návrh formuláře pro registraci uživatele. Tento formulář je zobrazen v dialogu. Uživatel na něm vyplní pouze nezbytné údaje pro správnou registraci:

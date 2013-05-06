@@ -16,7 +16,7 @@ Přání je z definice vázané na uživatele a je tedy nezbytné uživatele roz
 \textbf{Uživateli bude umožněno se odhlásit z aplikace.}
 
 \subsection{Registrace uživatele}
-Pokud se uživatel nebude chtít od aplikace přihlásit pomocí svého OpenID v nějaké z podporovaných autorizačních autorit, bude se muset nejprve do aplikace zaregistrovat. Uživatel vyplní své klíčové údaje:
+Pokud se uživatel nebude chtít do aplikace přihlásit pomocí svého OpenID v nějaké z podporovaných autorizačních autorit, bude se muset nejprve do aplikace zaregistrovat. Uživatel vyplní své klíčové údaje:
 
 \begin{itemize}
 \item \textbf{E-mail} - jednoznačný identifikátor uživatele v rámci systému
@@ -36,7 +36,7 @@ Toto je klíčová funkcionalita aplikace. V rešerši v předchozí kapitole by
 
 \subsection{Přidání a editace přání}
 \label{sec:pridani-prani}
-Uživateli bude umožněno přidávat zboží do seznamů v podobě takzvaných \emph{přání}. Samotná databáze zboží zůstane odděleně a běžný uživatel\footnote{Jedná se o uživatele, který je klientem aplikace, další druhy uživatelů mohou být administrátor, nebo internetový obchod} do samotného zboží nebude zasahovat.
+Uživateli bude umožněno přidávat zboží do seznamů v podobě takzvaných \emph{přání}. Samotná databáze zboží zůstane odděleně a běžný uživatel\footnote{Jedná se o uživatele, který je klientem aplikace, další druhy uživatelů mohou být administrátor, nebo internetový obchod.} do samotného zboží nebude zasahovat.
 
 Uživateli bude umožněno do seznamu přidat maximálně 20 přání. Omezený počet přání bude usnadňovat uživateli koncentraci a usnadní mu rozhodování\cite{iyengar2004much}. Počet byl daný odhadem a při využívání aplikace bude upraven podle preferencí uživatelů.
 
@@ -45,7 +45,7 @@ Přání bude obsahovat následující základní informace:
 \begin{itemize}
 \item \textbf{Vazba na zboží} - přání se z definice váže na nějaké zboží. Z tohoto zboží si přání take převezme název.
 \item \textbf{Vazba na uživatele} - přání se z definice váže ke konkrétnímu uživateli.
-\item \textbf{Obrázek} - obrázek přiřazený k přání pro jeho snazší vizualizaci směrem k uživateli
+\item \textbf{Obrázek} - obrázek přiřazený k přání pro jeho snazší vizualizaci směrem k uživateli.
 \item \textbf{Obchod} - konkrétní obchod, ve kterém si uživatel vybral zboží nakoupit. Používá se pro sledování ceny přání.
 \item \textbf{Štítky} - libovolný počet štítků, které uživateli umožňují \textbf{kategorizovat} přání.
 \item \textbf{Priorita} - informace o míře priority, tedy jak je přání důležité pro uživatele.
@@ -72,7 +72,7 @@ Uživatel může označit přání za splněné. Tímto se přání odstraní ze
 \textbf{Uživateli je umožněno označit přání jako splněné. Tímto označením se přání přesune do seznamu splněných přání.}
 
 \subsection{Změna priority přání}
-Jednotlivým přáním je při vytvoření přiřazena uživatelem nadefinovaná, orientační, priorita. Tuto prioritu může uživatel měnit. Přání jsou v seznamech řazena podle priority a tedy po změně priority se změní řazení přání.
+Jednotlivým přáním je při vytvoření přiřazena uživatelem nadefinovaná, orientační priorita. Tuto prioritu může uživatel měnit. Přání jsou v seznamech řazena podle priority, a tedy po změně priority se změní řazení přání.
 
 \textbf{Uživatel může měnit prioritu přání.}
 
@@ -88,7 +88,7 @@ Všechna přání, která uživatel vytvoří, musí být následně uživateli 
 \textbf{Uživatel si může zobrazit přehled buď všech přání, nebo přání obsahujíc konkrétní štítek.}
 
 \subsection{Sledování průběhu cen}
-Systém bude schopný u veškerého zboží sledovat cenu v jednotlivých obchodech. Vývoj ceny bude vhodným způsobem zobrazovat uživateli u jeho přání. Zároveň bude systém schopný upozornit uživatele na prudké změny ceny jeho přání (primárně snížení cen).
+Systém bude schopný u veškerého zboží sledovat cenu v jednotlivých obchodech. Vývoj ceny bude vhodným způsobem zobrazován uživateli u jeho přání. Zároveň bude systém schopný upozornit uživatele na prudké změny ceny jeho přání (primárně snížení cen).
 
 \subsection{Zobrazení nápovědy}
 U nepřihlášeného uživatele se očekává nulová zkušenost s aplikací, proto tedy budou důležité ovládací prvky opatřeny nápovědou, která uživateli ujasní jejich princip. Nápověda nemusí být obsáhlá, návrh uživatelského rozhraní se zaměří na jednoduchost používání aplikace i bez nápovědy.
@@ -96,7 +96,7 @@ U nepřihlášeného uživatele se očekává nulová zkušenost s aplikací, pr
 \textbf{Aplikace bude vhodným způsobem zobrazovat nepřihlášenému uživateli nápovědu u klíčových ovládacích prvků.}
 
 \subsection{Automatické doplňování}
-V každém textovém poli, kde je aplikace schopna napovědět uživateli pravděpodobný vstup by mělo fungovat automatické doplňování\footnote{Známé pod svým anglickým názvem: Autocomplete}. Těmito poli jsou v aplikaci vstup pro vyhledávání a vstup s názvy štítků, kterými bude označeno přání.
+V každém textovém poli, kde je aplikace schopna napovědět uživateli pravděpodobný vstup, by mělo fungovat automatické doplňování\footnote{Známé pod svým anglickým názvem: Autocomplete}. Těmito poli jsou v aplikaci vstup pro vyhledávání a vstup s názvy štítků, kterými bude označeno přání.
 
 \textbf{Aplikace bude ve vyhledávání a vkládání štítků podporovat automatické doplňování.}
 
@@ -106,7 +106,7 @@ Některé funkce zmíněné v rešerši nebudou v aplikaci z různých důvodů 
 \subsubsection{Mazání bez potvrzování}
 V kapitole \ref{sec:astrid} bylo popsáno mazání úkolů ze seznamu. Toto mazání fungovalo tak, že uživatel kliknul na tlačítko smazat a úkol se okamžitě smazal. Uživateli se pouze v horní části stránky zobrazil panel, kde mohl akci vrátit zpět.
 
-Tento způsob mazání je vhodný pro manipulaci s velkým množstvím entit. Ve výsledné aplikaci maximální počet 20 přání a od uživatele se neočekává, že by je vytvářel a mazal tak často, aby mazání bez potvrzování přineslo výraznou přidanou hodnotu. Naopak chování aplikace by se odlišovalo od standardu a to by ve výsledku mohlo uškodit.
+Tento způsob mazání je vhodný pro manipulaci s velkým množstvím entit. Ve výsledné aplikaci bude maximální počet 20 přání a od uživatele se neočekává, že by je vytvářel a mazal tak často, aby mazání bez potvrzování přineslo výraznou přidanou hodnotu. Naopak chování aplikace by se odlišovalo od standardu, a to by ve výsledku mohlo snadnosti ovládání aplikace spíše uškodit.
 
 \subsubsection{Řazení podle více kritérií}
 V rešerši bylo zmíněno, že mnoho aplikací umožňuje řadit své entity podle vícero kritérií. Logickými kritérii u přání by bylo datum přidání, cena a např. míra změny ceny.
@@ -121,23 +121,23 @@ Dobrý design GUI se vyznačuje tím, že po uživateli nevyžaduje žádné mem
 
 Cíle správného návrhu uživatelského rozhraní jsou následující\cite{galitz2007essential}:
 \begin{itemize}
-\item Omezit vizuální práci
-\item Omezit intelektuální práci
-\item Omezit množství informací k zapamatování
-\item Omezit motorickou práci
-\item Minimalizovat, nebo eliminovat jakékoli problémy nebo instrukce spojené s použitou technologií.
+\item omezit vizuální práci
+\item omezit intelektuální práci
+\item omezit množství informací k zapamatování
+\item omezit motorickou práci
+\item minimalizovat, nebo eliminovat jakékoli problémy nebo instrukce spojené s použitou technologií.
 \end{itemize}
 Výsledkem takovéhoto návrhu bude vždy lepší produktivita a zvýšená satisfakce uživatele\cite{galitz2007essential}.
 
-Celý návrh je zaměřen na omezení počtu ovládacích prvků a všeobecnou jednoduchost sytému. Ovládací prvky musí mít opodstatněné svoji funkci.
+Celý návrh je zaměřen na omezení počtu ovládacích prvků a všeobecnou jednoduchost sytému. Ovládací prvky musí mít opodstatněnou svoji funkci.
 
 \subsection{Proces návrhu}
-Při návrhu uživatelského rozraní se nejprve vytvoří seznam operací, které může uživatel v aplikaci provést, tzv. task list. Tyto operace se poté zahrnou do skupin na základě jejich funkce a z takto zpracovaných operací se vytvoří takzvaný task graph, tedy diagram, na kterém bude přesně zobrazeno, kdy k dané operaci může nastat a jaký bude mít následek.
+Při návrhu uživatelského rozhraní se nejprve vytvoří seznam operací, které může uživatel v aplikaci provést, tzv. task list. Tyto operace se poté zahrnou do skupin na základě jejich funkce a z takto zpracovaných operací se vytvoří takzvaný task graph, tedy diagram, na kterém bude přesně zobrazeno, kdy k dané operaci může dojít a jaký bude mít následek.
 
 Podle tohoto grafu poté bude vytvořen tzv. wireframe, tedy nakreslené obrazovky aplikace s rozvržením informací a ovládacích prvků.
 
 \subsection{Seznam operací}
-Operace se dělí na akce 2 základní druhy, do prvního spadají akce na obrazovkách a přechody mezi obrazovkami, do druhého patří zobrazení obrazovek. Akce které reprezentují zobrazení obrazovek budou v následujícím textu zobrazeny \emph{kurzívou}.
+Operace se dělí na dva základní druhy, do prvního spadají akce na obrazovkách a přechody mezi obrazovkami, do druhého patří zobrazení obrazovek. Akce které reprezentují zobrazení obrazovek budou v následujícím textu zobrazeny \emph{kurzívou}.
 \begin{multicols}{2}
 \begin{itemize}
 \item \namedlabel{sc-00}{\emph{Základní ovládací prvky}}
@@ -189,14 +189,14 @@ Operace je pro pokračování v návrhu GUI potřebné rozdělit do skupin podle
 \label{sec:hlavni-akce}
 Tato skupina obsahuje hlavní akce, které uživatel může provádět kdykoli při práci s aplikací.
 
-Tyto akce jsou dostatečně důležité na to, by byly jejich ovládací prvky umístěné v layoutu stránky\footnote{Lyout neboli rozvržení je v moderních webových aplikacích šablona, do které se vkládá obsah stránek. Tato šablona zpravidla obsahuje hlavičku stránky, hlavní ovládací prvky, patičkku a poté prostor pro samotný obsah, který je posléze doplněn.}
+Tyto akce jsou dostatečně důležité na to, aby byly jejich ovládací prvky umístěné v layoutu stránky\footnote{Layout neboli rozvržení je v moderních webových aplikacích šablona, do které se vkládá obsah stránek. Tato šablona zpravidla obsahuje hlavičku stránky, hlavní ovládací prvky, patičku a poté prostor pro samotný obsah, který je posléze doplněn.}.
 \begin{itemize}
 \item \textbf{\ref{op-01}} Je naprosto nezbytné, aby se uživatel měl možnost vrátit z jakékoli stránky na výchozí stránku\cite{molich1990improving}. Díky této vlastnosti se uživateli nikdy nestane, že by nevěděl kam na stránce pokračovat, při nejhorším se vždy vrátí na začátek.
 \item \textbf{\ref{op-19}} Uživatel musí mít vždy možnost přejít přímo na přidání přání. Největším usnadněním je umístit velké tlačítko na každou stránku.
 \item \textbf{\ref{op-13}} Uživatel si třídí svá přání do kategorií pomocí štítků a je důležité, aby je měl stále na očích (to umožňuje \ref{sc-07}) a zároveň se mohl podívat na přání označená daným štítkem.
 \item \textbf{\ref{op-21}} Přehled všech přání je další základní funkcionalita, jejíž zpřístupnění musí být uživateli co nejvíce usnadněno.
 \end{itemize}
-Následující čtyři operace souvisí s přihlášením a jejich umístěním na každou stránku nejen že umožňujeme uživateli aby se kdykoli přihlísil/odhlásil/zaregistroval, ale zároveň ho tím vždy informujeme o tom jestli je přihlášený což odpovídá principu zřetelného stavu systému\cite{molich1990improving}.
+Následující čtyři operace souvisí s přihlášením. Jejich umístěním na každou stránku nejen že umožňujeme uživateli aby se kdykoli přihlásil/odhlásil/zaregistroval, ale zároveň ho tím vždy informujeme o tom, jestli je přihlášený což odpovídá principu zřetelného stavu systému\cite{molich1990improving}.
 \begin{multicols}{2}
 \begin{itemize}
 \item \ref{op-14}\footnote{Přihlášení a registrace jsou umožněny pouze nepřihlášenému uživateli a odhlášení pouze přihlášenému.\label{footnote-login}}
@@ -233,11 +233,11 @@ Zbytek operací je zobrazení obrazovek. Obrazovky se ještě dělí na hlavní 
 Jedna speciální obrazovka jsou hlavní ovládací prvky. To jsou ovládací prvky, které umožňují uživateli provádět hlavní akce operace (viz. \ref{sec:hlavni-akce}). Tato obrazovka je přítomná na všech hlavních obrazovkách.
 
 \subsection{Diagram operací}
-I na nejjednodušší webové stránky jsou dynamické. Vztah mezi uživatelem a stránkou je daný uživatelovou interakcí. Uživatelův průchod webovou stránkou musí být naplánován. Diagramy operací jsou nástrojem, jak tento průchod navrhnout a vizualizovat\cite{brown2007communicating}.
+I ty nejjednodušší webové stránky jsou dynamické. Vztah mezi uživatelem a stránkou je daný uživatelovou interakcí. Uživatelův průchod webovou stránkou musí být naplánován. Diagramy operací jsou nástrojem, jak tento průchod navrhnout a vizualizovat\cite{brown2007communicating}.
 
-Na rozdíl od map stránek\footnote{Site map - diagram prezentující strukturu informací na stránce. Tento hierarchicky zobrazuje jaká stránka patří pod kterou. Nejčastěji jsou stránky v tomto diagramu zobrazovány od zhora dolů, kde se nahoře nachází "rodičovské" stránky\cite{brown2007communicating}.} kde je vztah stránek vyjádřen hierarchicky (jedna stránka náleží jiné) je u diagramu operací vztah mezi stránkami sekvenční (operace na jedné stránce vede ke stránce druhé)\cite{brown2007communicating}.
+Na rozdíl od map stránek\footnote{Site map - diagram prezentující strukturu informací na stránce. Tento hierarchicky zobrazuje jaká stránka patří pod kterou. Nejčastěji jsou stránky v tomto diagramu zobrazovány od shora dolů, kde se nahoře nachází ``rodičovské'' stránky\cite{brown2007communicating}.} kde je vztah stránek vyjádřen hierarchicky (jedna stránka náleží jiné), je u diagramu operací vztah mezi stránkami sekvenční (operace na jedné stránce vede ke stránce druhé)\cite{brown2007communicating}.
 
-Diagramy operací nemají ustálenou notaci\footnote{Několik konvencí bylo zavedeno, ale žádná z nich nebyla akceptována širokou veřejností jako standard\cite{brown2007communicating}}. V následujícím odstavci je popsána notace diagramu, která je použita v této práci.  
+Diagramy operací nemají ustálenou notaci\footnote{Několik konvencí bylo zavedeno, ale žádná z nich nebyla akceptována širokou veřejností jako standard\cite{brown2007communicating}.}. V následujícím odstavci je popsána notace diagramu, která je použita v této práci.  
 
 Jedná se o orientovaný graf s dvěma druhy uzlů: obrazovky a akce. Orientované hrany mezi těmito uzly znázorňují jak akce vedou ke zobrazení informací a zároveň z jakých obrazovek je možné vyvolat jaké akce.
 
@@ -262,7 +262,7 @@ Kompletní návrh je včetně obrázků v příloze \ref{chp:wireframe}. Proto v
 Při návrhu obrazovek bylo postupováno podle všech pravidel heuristiky pro vyhodnocení uživatelských rozhraní popsané Jakobem Nielsenem\cite{molich1990improving}. Konkrétně:
 \begin{enumerate}
 \item \textbf{viditelnost stavu systému} - název stránky umístěný v horní části stránky
-\item \textbf{shoda systému a reálného světa} - veškeré názvosloví v aplikaci např. štítky a přání, ovládací prvky na obrazovkách jsou zobrazeny v logickém pořadí, tedy důležitější nahoře, nebo vlevo
+\item \textbf{shoda systému a reálného světa} - veškeré názvosloví v aplikaci, např. štítky a přání, ovládací prvky na obrazovkách, jsou zobrazeny v logickém pořadí, tedy důležitější nahoře, nebo vlevo
 \item \textbf{svobodné akce uživatele} - aplikace vždy umožňuje pomocí zpět přejít na předchozí stránku, odkaz na domovskou stránku je vždy dobře dostupný (dvakrát umístěn v layoutu stránky)
 \item \textbf{konzistence a standardy} - hlavní menu je v levém panelu, název stránky odkazuje na hlavní stranu
 \item \textbf{prevence chyb} - použití JavaScript validací, které uživatele informují o chybě ještě než ji odešle na server. Minimalizace textových vstupních polí pro uživatele
@@ -270,22 +270,22 @@ Při návrhu obrazovek bylo postupováno podle všech pravidel heuristiky pro vy
 \item \textbf{flexibilita a efektivnost použití} - Nepřihlášenému uživateli se zobrazuje nápověda u hlavních ovládacích prvků, zatímco přihlášenému (tedy zkušenému) nikoli. Systém je celkově velmi jednoduchý, žádné zkratky v něm nebyly navrženy.
 \item \textbf{efektivní informační design} - množství zobrazených informací bylo pro přehlednost minimalizováno. U přání se vývoj ceny zobrazuje pomocí grafu.
 \item \textbf{pomoc při rozpoznávání, stanovení chyb a následné zotavení} - chybové zprávy byly navrženy s ohledem na toto pravidlo
-\item \textbf{nápověda a dokumentace orientovaná na úkoly} - Systém obsahuje pouze minimální nápovědu poskytnutou formou popup oken\footnote{JavaScriptová okénka, která se zobrazí pokud uživatel najede myší nad daný prvek} nad hlavními ovládacími prvky.
+\item \textbf{nápověda a dokumentace orientovaná na úkoly} - Systém obsahuje pouze minimální nápovědu poskytnutou formou popup oken\footnote{JavaScriptová okénka, která se zobrazí pokud uživatel najede myší nad daný prvek.} nad hlavními ovládacími prvky.
 \end{enumerate}
 
 \section{Návrh implementace}
-Přestože je implementace výsledné aplikace daná vybranou technologií, existuje několik částí, které jsou spíše algoritmické. Na tyto části nemá použitá technologie velký vliv. Přesně tyto části aplikace budou rozebrány v úvodů této kapitoly.
+Přestože je implementace výsledné aplikace daná vybranou technologií, existuje několik částí, které jsou spíše algoritmické. Na tyto části nemá použitá technologie velký vliv. Přesně tyto části aplikace budou rozebrány v úvodu této kapitoly.
 Ve druhé části bude popsán a zdůvodněn výběr technologií, které budou použity při tvorbě výsledné aplikace.
 
 \subsection{Algoritmus pro vytvoření spojového seznamu v databázi}
 Běžný způsob jak uložit data v moderních aplikacích je uchování v relačních databázích. Takovým způsobem budou uložena i jednotlivá přání ve výsledné aplikaci.
 
-Každé přání má prioritu. Tato priorita je navržena jako odkazem na umístění v seznamu všech přání. Mějme tři přání, jedno má vysokou, druhé střední a třetí nízkou prioritu. Vysoká priorita prvního přání je informace o tom, že přání má být umístěno na prvním místě v seznamu. Střední priorita je informace o tom že se přání nachází v seznamu uprostřed atd.
+Každé přání má prioritu. Tato priorita je navržena jako odkaz na umístění v seznamu všech přání. Např. máme tři přání, jedno má vysokou, druhé střední a třetí nízkou prioritu. Vysoká priorita prvního přání je informace o tom, že přání má být umístěno na prvním místě v seznamu. Střední priorita je informace o tom že se přání nachází v seznamu uprostřed atd.
 
 Reprezentace této informace v databázi může být realizována dvojím způsobem, který zároveň určuje algoritmus pro ukládání/získávání přání.
 
 \subsubsection{Priorita jako celé číslo}
-Do tabulky přání je možné vložit jeden sloupec s celočíselným datovým typem nazvaný např. |priorita|. Poté se určí že vyšší hodnota tohoto sloupce znamená vyšší prioritu.
+Do tabulky přání je možné vložit jeden sloupec s celočíselným datovým typem nazvaný např. |priorita|. Poté se určí, že vyšší hodnota tohoto sloupce znamená vyšší prioritu.
 \begin{table}[htb]
 	\begin{center}
 	  \begin{tabular}{ | l | c | }
@@ -408,7 +408,7 @@ Toto řešení se hodí pro aplikace, kde se více zapisuje a méně čte do dat
 V předchozí sekci (\ref{sec:pridani-prani}) bylo zmíněno, že uživateli bude usnadněno přidání přání pomocí tzv. \emph{Rychlé priority}. V příloze v návrhu drátěného modelu \ref{sec:wireframe-pridani-prani} byl navržen ovládací prvek s třemi tlačítky určujícími prioritu \emph{Nízká}, \emph{Střední} a \emph{Vysoká}. Ve zbytku této kapitoly bude popsán algoritmus, který převede tuto volbu na finální prioritu, která přání zařadí na konkrétní místo do seznamu všech přání.
 
 \subsubsection{Výpočet váhy štítku}
-Kromě samotné volby rychlé priority uživatel poskytuje ještě jednu informaci o důležitosti přání a tou jsou štítky. Algoritmus předpokládá, že často se vyskytující štítky jsou důležitější, než ty s menším výskytem. S tímto předpokladem se dále pracuje.
+Kromě samotné volby rychlé priority uživatel poskytuje ještě jednu informaci o důležitosti přání, a tou jsou štítky. Algoritmus předpokládá, že často se vyskytující štítky jsou důležitější, než ty s menším výskytem. S tímto předpokladem se dále pracuje.
 
 Normalizovanou váhou štítku rozumíme reálné číslo v intervalu $<0;1>$. Kde 0 je pro štítek, který není přiřazen k žádnému přání a 1 je pro štítek, který je u každého přání. Výpočet váhy je vznikne jednoduchým podílem
 \begin{equation}
@@ -465,22 +465,22 @@ above_wish = wishes[index]
 \section{Vybrané technologie}
 Na konci návrhu jsou vybrány technologie, které budou použity pro implementaci výsledné aplikace. Některý výběr byl daný také zadáním práce. Primárním cílem je vybrat moderní technologie, které jsou zároveň delší dobu na trhu\footnote{Nevýhodou cutting-edge technologií je i přes jejich zajímavost velké riziko že nebudou podporovány na straně klienta, nebo přestanou být udržovány.}. Zároveň je při výběru zohledněno množství přispěvatelů/příspěvků do kódu aplikace.
 \subsection{Programovací jazyk}
-Výsledná aplikace bude naprogramována v jazyce \textbf{Ruby}. Toto je část daná zadáním, přsto by byl výběr takový i kdyby bylo možné vybrat Javu. Důvody pro toto rozhodnutí jsou následující
+Výsledná aplikace bude naprogramována v jazyce \textbf{Ruby}. Toto je část daná zadáním, přesto by byl výběr takový, i kdyby bylo možné vybrat Javu. Důvody pro toto rozhodnutí jsou následující:
 \begin{itemize}
-\item Dynamicky typované proměnné - názory na to zdali je tato vlastnost výhoda nebo nevýhoda se liší a každý názor má svá pro a proti. Dynamicky typované proměnné obecně znamenají méně napsaného kódu, tím pádem čitelnější a přehlednější kód. To že není možné některé chyby typu špatné přiřazení apod. rozeznat při kompilaci je potřeba vykompenzovat správnými Unit Testy\footnote{Pod pojem unit testing se zahrnují nástroje, metodika a činnost, jejímž cílem je ověřování správné funkčnosti dílčích částí neboli jednotek zdrojového kódu.}, které by ovšem měla obsahovat aplikace psaná v jakémkoli jazyce\cite{website:oreilly:unit-testing}.
-\item Moderní konstrukty jazyka - Ruby poskytuje konstrukty jako bloky a lambda funkce, které programátorovi usnadňují práci
+\item Dynamicky typované proměnné - názory, zda je tato vlastnost výhoda nebo nevýhoda se liší a každý názor má svá pro a proti. Dynamicky typované proměnné obecně znamenají méně napsaného kódu, tím pádem čitelnější a přehlednější kód. To že není možné některé chyby typu špatné přiřazení apod. rozeznat při kompilaci je potřeba vykompenzovat správnými Unit Testy\footnote{Pod pojem unit testing se zahrnují nástroje, metodika a činnost, jejímž cílem je ověřování správné funkčnosti dílčích částí neboli jednotek zdrojového kódu.}, které by ovšem měla obsahovat aplikace psaná v jakémkoli jazyce\cite{website:oreilly:unit-testing}.
+\item Moderní konstrukty jazyka - Ruby poskytuje konstrukty jako bloky a lambda funkce, které programátorovi usnadňují práci.
 
 \end{itemize}
 
 Ruby je výkonově výrazně horší než Java\cite{website:java-ruby-performance}. Např. Twitter původně postavený na Ruby on Rails začal od Ruby ustupovat a nahrazovat ho Javou\cite{website:twitter-ruby-java}. Pro výslednou aplikaci toto není problém, neboť její zátěž nebude vysoká.
 
 \subsection{Framework pro vývoj webové aplikace}
-Výsledná aplikace bude postavená na frameworku \textbf{Ruby on Rails} verze 3. Jedná se o framework s nejstarší tradicí a dále budou popsány všechny faktory, které vedly k jeho výběru:
+Výsledná aplikace bude postavená na frameworku \textbf{Ruby on Rails} verze 3. Jedná se o framework s nejstarší tradicí. Dále budou popsány všechny faktory, které vedly k jeho výběru:
 
 \begin{itemize}
-\item Nejlepší dokumentace - framework je nejstarší na trhu tomu také odpovídá rozsah dokumentace. Framework má vlastní dokumentaci, mnoho psaných publikací, videotutoriáů a nespočet krátkých článků online\cite{website:ruby-toolbox-web}\cite{website:ruby-rails-documentation}.
+\item Nejlepší dokumentace - framework je nejstarší na trhu tomu také odpovídá rozsah dokumentace. Framework má vlastní dokumentaci, mnoho psaných publikací, videotutorialů a nespočet krátkých článků online\cite{website:ruby-toolbox-web}\cite{website:ruby-rails-documentation}.
 \item Největší počet uživatelů - celkem 23 milionů stáhnutí knihovny, více jak 18 tisíc uživatelů sledující vývoj zdrojových kódů na Github.com. Druhá Sinatra má 7 milionů stáhnutí a méně než 5 tisíc uživatelů sledujících vývoj na Github.com\cite{website:ruby-toolbox-web}.
-\item Konvence namísto konfigurace\footnote{Convention over configuration} - základní myšlenka frameworku vše je po vytvoření aplikace základně nakonfigurováno a uživatel mění jen ta nastavení, která potřebuje. To v zásadě znamená, že vývojář píše převážně byznys logiku, zatímco ostatní věci už jsou za něj vyřešeny.
+\item Konvence namísto konfigurace\footnote{Convention over configuration} - Toto je základní myšlenka frameworku. Vše je po vytvoření aplikace základně nakonfigurováno a uživatel mění jen ta nastavení, která potřebuje. To v zásadě znamená, že vývojář píše převážně byznys logiku, zatímco ostatní věci už jsou za něj vyřešeny.
 \item Nejvíce přispěvovatelů a příspěvků do zdrojového kódu - stejně jako má Ruby on Rails obrovskou uživatelskou základnu, má také nejvíce vývojářů\cite{website:ruby-toolbox-web}.
 \end{itemize}
 
@@ -498,8 +498,8 @@ Jako HTML, CSS a JavaScript framework bude použit \textbf{Twitter Bootstrap}. D
 \subsection{Metoda napojení na systém srovnávání cen}
 Z výše zmíněných metod bude ve výsledné aplikaci použita metoda \textbf{Web Scraping}. Přestože není ideální, byla vybrána z následujících důvodů:
 \begin{itemize}
-\item Jednoduché nasazení - není třeba žádné vyjednání přístup se systémy srovnávání cen, žádná autorizace a autentizace.
+\item Jednoduché nasazení - není třeba žádné vyjednání přístupu se systémy srovnávání cen, žádná autorizace a autentizace.
 \item Jednoduchá dokumentace - jak bylo popsáno v kapitole \ref{sec:webscraping}, při vytváření aplikace pro získávání dat vývojář pracuje přímo se stránkou určenou pro koncového uživatele, na které jsou většinou informace jasně a logicky utříděné.
-\item Jednoduchá implementace
+\item Jednoduchá implementace.
 \end{itemize}
 Nevýhody této metody jsou popsány v kapitole \ref{sec:webscraping}.

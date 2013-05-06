@@ -30,7 +30,7 @@ Webová aplikace doplňující službu Google Nákupy. Podporuje jednoduché př
 \item \textbf{Nejnižší aktuální cena} - Služba Google Nákupy má informace o ceně získané z většího množství obchodů. U věci na seznamu zobrazuje nejnižší možnou cenu. Jiná než tato cena nelze zobrazit.
 \item \textbf{Hodnocení produktu}
 \end{itemize}
-Zboží přidané do seznamu se dělí do dvou kategorií resp. seznamů. První seznam se nazývá Shopping List a jedná se o privátní nákupní seznam. Položky v tomto seznamu se zobrazují puze uživateli, kterému seznam patří. Druhý seznam se nazývá seznam přání a je možné na něj zkopírovat odkaz. Tento odkaz následně uživatel odešle komukoli, s kým chce svůj seznam přání sdílet. Položky lze přesouvat mezi seznamy tlačítkem \emph{Sdílet}/\emph{Zrušit sdílení}.
+Zboží přidané do seznamu se dělí do dvou kategorií resp. seznamů. První seznam se nazývá Shopping List a jedná se o privátní nákupní seznam. Položky v tomto seznamu se zobrazují pouze uživateli, kterému seznam patří. Druhý seznam se nazývá seznam přání a je možné na něj zkopírovat odkaz. Tento odkaz následně uživatel odešle komukoli, s kým chce svůj seznam přání sdílet. Položky lze přesouvat mezi seznamy tlačítkem \emph{Sdílet}/\emph{Zrušit sdílení}.
 Zboží v seznamu přání je primárně určeno pro ostatní uživatele, aby jej mohli koupit uživateli, který seznam přání vytvořil. Například jako vánoční, narozeninový, nebo svatební seznam přání. Seznam přání je vidět na obrázku \ref{fig:google-shoppinglist}
 
 Další funkčnost, kterou nabízí tento seznam je:
@@ -84,7 +84,7 @@ Amazon Wish List poskytuje plugin\footnote{Také zásuvný modul - software, kte
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=100mm]{./pictures/amazon-wishlist-plugin.png}
-\caption{Dialog zobrazeny po stisku Amazon Wish List Button}
+\caption{Dialog zobrazený po stisku Amazon Wish List Button}
 \label{fig:amazon-wishlist-plugin}
 \end{center}
 \end{figure}
@@ -108,12 +108,12 @@ Seznam přání i jednotlivá přání je možné sdílet s ostatními uživatel
 
 Aplikace WishList podporuje vyhledávání zboží pomocí více zmíněného PriceGrabber.com. Pokud má zboží pouze jednoho prodejce, přesměruje uživatele tlačítko \emph{Buy} u přání přímo na stránku prodejce. Jinak je uživatel přesměrován na stránku s výběrem prodejců. Tato stránka se nachází stále na WishList.
 
-Po přidání přání, které bylo nalezeno vyhledáváním je uživateli zobrazena zpráva, která se ptá jestli chce uživatel opravdu čekat a nekoupí si své přání rovnou. Tato výzva je vidět na obrázku \ref{fig:wishlist-buynow}.
+Po přidání přání, které bylo nalezeno vyhledáváním, je uživateli zobrazena zpráva, která se ptá, jestli chce uživatel opravdu čekat a nekoupí si své přání rovnou. Tato výzva je vidět na obrázku \ref{fig:wishlist-buynow}.
 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=100mm]{./pictures/wishlist-buynow.png}
-\caption{Výzva k okamžitému zakoupení přání.}
+\caption{Výzva k okamžitému zakoupení přání}
 \label{fig:wishlist-buynow}
 \end{center}
 \end{figure}
@@ -135,18 +135,18 @@ Cena u přání jde zadat pouze v dolarech. WishList umožňuje vyhledat zboží
 \label{sec:srovnavace-cen}
 Tato kapitola poskytuje rešerši aplikací známých jako srovnávače cen, jejichž cílem je poskytnout uživateli širší pohled na trh. Tyto aplikace umožňují u jednoho produktu srovnat cenu v několika internetových obchodech. V rešerši jsou zpracovány jako potencionální zdroje dat pro výslednou webovou aplikaci.
 
-\subsection{Standartní funkce všech srovnávačů}
+\subsection{Standardní funkce všech srovnávačů}
 V této sekci jsou popsány tři základní funkce, které podporují všechny zmíněné srovnávače cen. Lze říci, že se jedná o funkce, které definují srovnávač cen jako takový.
 
 \subsubsection{Vyhledávání}
-Každý ze zmíněných vyhledávačů podporuje fultextové vyhledávání zboží\footnote{(z ang. full – celý, plný a text) speciální způsob vyhledávání informací v databázích nebo v textových souborech, které jsou obvykle předem připraveny, tj. indexovány, aby bylo možno nalézt libovolné slovo (řetězec znaků) v nejkratším možném čase.}. Toto vyhledávání probíhá nad databází veškerých výrobků, které aplikace (srovnávač) obsahuje. Vyhledávány jsou jednotlivé výrobky, u nichž jsou agregovány ceny z jednotlivých obchodů, tzn. že výrobek se zobrazí v ideálním případě\footnote{Produkt může mít v různých obdhodech různá jména, takové produkty se ne vždy podaří srovnávači agregovat.} pouze jednou, přesto že srovnávač má informace o několika obchodech, které jej poskytují.
+Každý ze zmíněných vyhledávačů podporuje fultextové vyhledávání zboží\footnote{(Z ang. full – celý, plný a text) speciální způsob vyhledávání informací v databázích nebo v textových souborech, které jsou obvykle předem připraveny, tj. indexovány, aby bylo možno nalézt libovolné slovo (řetězec znaků) v nejkratším možném čase.}. Toto vyhledávání probíhá nad databází veškerých výrobků, které aplikace (srovnávač) obsahuje. Vyhledávány jsou jednotlivé výrobky, u nichž jsou agregovány ceny z jednotlivých obchodů, tzn. výrobek se zobrazí v ideálním případě\footnote{Produkt může mít v různých obdhodech různá jména, takové produkty se ne vždy podaří srovnávači agregovat.} pouze jednou, přestože srovnávač má informace o několika obchodech, které jej poskytují.
 
 Dále umožňují srovnávače vyhledávání po kategoriích. Na domovské stránce srovnávače je uživateli nabídnut seznam kategorií a významných podkategorií. Uživatel po rozkliknutí kategorie vidí vybrané zboží z dané kategorie a případně také podkategorie, pokud nějaké jsou.
 
 Uživateli je také umožněno filtrovat zboží na základě jeho parametrů. Parametry podle kterých se filtruje je možné rozdělit na několik druhů:
 \begin{itemize}
-\item \textbf{Společné pro veškeré zboží.} Sem spadá například cena výrobku, nebo značka výrobce
-\item \textbf{Rozlišné pro každou kategorii.} Zde se nacházejí parametry, které dávají smysl pouze v dané kategorii. Např. velikost ohniska u objektivů nemá smysl nikde jinde. Stejně tak velikost uhlopříčky nemá smysl v kategoriích, kde není žádné zobrazovací zařízení.
+\item \textbf{Společné pro veškeré zboží} - například cena výrobku, nebo značka výrobce.
+\item \textbf{Rozlišné pro každou kategorii} - parametry, které dávají smysl pouze v dané kategorii. Např. velikost ohniska u objektivů nemá smysl nikde jinde. Stejně tak velikost uhlopříčky nemá smysl v kategoriích, kde není žádné zobrazovací zařízení.
 \end{itemize}
 
 \paragraph{Databáze zboží}
@@ -160,7 +160,7 @@ Zpravidla je u obchodu zobrazena také dostupnost zboží, případně cena dopr
 Díky pravidelnému sledování cen zboží v obchodech má srovnávač chronologická data o ceně zboží. Díky této vlastnosti nabízí funkcionalitu graf historie cen. V grafu je zanesena cena zboží řádově za několik uplynulých měsíců. Tento graf pomáhá uživateli v rozhodnutí o koupi. Uživatel vidí, zdali se cena právě nachází pod nebo nad dlouhodobým průměrem.
 
 \subsubsection{Uživatelská zpětná vazba}
-Srovnávače z pravidla umožňují uživatelům hodnotit obchody i zboží. U obchodů se hodnotí parametry jako dodací lhůta, přehlednost obchodu a kvalita komunikace. U zboží je výběr parametrů pro hodnocení jako při filtrování zboží podle atributů. V každé kategorii se hodnotí relevantní parametry zboží. 
+Srovnávače zpravidla umožňují uživatelům hodnotit obchody, i zboží. U obchodů se hodnotí parametry jako dodací lhůta, přehlednost obchodu a kvalita komunikace. U zboží je výběr parametrů pro hodnocení jako při filtrování zboží podle atributů. V každé kategorii se hodnotí relevantní parametry zboží. 
 
 Hodnocení většinou probíhá na principu jedné až pěti hvězdiček, případně shrnutí kladů a záporů.
 
@@ -181,23 +181,22 @@ Interaktivní nákupní rádce Heureka.cz byl založen společností Miton v roc
 Další důležitou funkčností je hlídač ceny. Přihlášenému uživateli je umožněno na zboží nastavit hlídače ceny a poté co cena v nejlevnějším obchodě klesne pod zadanou částku, uživatel dostane email s upozorněním.
 
 \begin{itemize}
-\item \textbf{Záruka vrácení peněz u některých obchodů.} U smluvních partnerů 
+\item \textbf{Záruka vrácení peněz u některých obchodů} - U smluvních partnerů je Heureka.cz schopná se zaručit za bezproblémový nákup. Pokud by zákazník zaplatil za zboží a to mu nebylo dodáno, Heureka.cz mu vrátí peníze.
 \item Varování před obchody, které nedodržují své obchodní podmínky
 \item Sledovaní slev a novinek na trhu
 \end{itemize}
 
 \subsection{Zboží.cz}
 Zboží.cz je srovnávač cen vytvořený společností Seznam.cz. Na Zboží.cz je registrováno více než 16000 obchodů a více než 62 milionu produktů. Denně navštíví srovnávač 180000 uživatelů a každý uživatel v průměru na stránce stráví 39 min.\cite{website:zbozi-about}
-Zboží.cz je satelitní web společnosti Seznam.cz
+Zboží.cz je satelitní web společnosti Seznam.cz.
 \footnote{Satelitní web je rozšířená a propracovanější forma tzv. microsite (jinak také minisite či weblet), jde o speciální samostatný web plnící funkce, které se na hlavní webovou prezentaci nehodí, nebo s ní dokonce nesouvisejí.}
-.
 \subsubsection{Přidaná funkcionalita}
-Zajímavou funckionalitou je srovnávání zboží. Uživatel má možnost přidat produkt do srovnání zboží pomocí tlačítka \emph{Přidat do porovnání} viz obrázek \ref{fig:zbozicz-srovnat}. Tím se zboží přidá do seznamu. Tento seznam obsahuje pro každý produkt jeden sloupec a v každém řádku je nějaká vlastnost produktu. Pokud produkt ve srovnání nemá danou vlastnost, je v dané buňce nápis \emph{Neznámý}.
+Zajímavou funkcionalitou je srovnávání zboží. Uživatel má možnost přidat produkt do srovnání zboží pomocí tlačítka \emph{Přidat do porovnání} viz obrázek \ref{fig:zbozicz-srovnat}. Tím se zboží přidá do seznamu. Tento seznam obsahuje pro každý produkt jeden sloupec a v každém řádku je nějaká vlastnost produktu. Pokud produkt ve srovnání nemá danou vlastnost, je v dané buňce nápis \emph{Neznámý}.
 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=40mm]{./pictures/zbozicz-srovnat.png}
-\caption{Tlačítko pro srovnání zboží.}
+\caption{Tlačítko pro srovnání zboží}
 \label{fig:zbozicz-srovnat}
 \end{center}
 \end{figure}
@@ -218,9 +217,9 @@ PriceGrabber je služba pro srovnávání cen. Jejími partnery je více než 13
 PriceGrabber byl první srovnávač, který zahrnul informace o daních a poplatcích za přepravu do srovnávání. \cite{website:wiki:pricegrabber}
 
 \subsubsection{Přidaná funkcionalita}
-PriceGraber obsahuje funkčnost v Čechách poprvé zavedenou portálem Slevomat.cz\footnote{Slevomat je český server hromadného nakupování založený Tomášem Čuprem, Petrem Bartošem a Romanou Sudovou.}. Tato funkčnost se nazývá "Local Deals" a umožňuje uživateli pořizovat zvýhodněné služby a/nebo zboží.
+PriceGraber obsahuje funkčnost v Čechách poprvé zavedenou portálem Slevomat.cz\footnote{Slevomat je český server hromadného nakupování založený Tomášem Čuprem, Petrem Bartošem a Romanou Sudovou.}. Tato funkčnost se nazývá ``Local Deals'' a umožňuje uživateli pořizovat zvýhodněné služby a/nebo zboží.
 
-PriceGrabber obsahuje velké množství tzv. "Buying Guiedes", tedy příručky k nákupu, které poskytují základní rady a doporučení pro koupi daného typu zboží. Obsahuje tedy například příručku pro nákup klimatizace.
+PriceGrabber obsahuje velké množství tzv. ``Buying Guiedes'', tedy příručky k nákupu, které poskytují základní rady a doporučení pro koupi daného typu zboží. Obsahuje tedy například příručku pro nákup klimatizace.
 
 \section{Aplikace s žádanou funkčností}
 \label{sec:aplikace-s-zadanou-funkcnosti}
@@ -259,9 +258,9 @@ Mazání přání probíhá pomocí tlačítka \emph{Delete Task} v panelu s inf
 \end{figure}
 
 
-Tento způsob mazání je lepší než kalsický dialog pro potvrzení smazání, pokud jsou mazané položky relativně nedůležité pro uživatele a manipuluje s nimi ve velkém (což je případ právě úkolů). Uživatel má v naprosté většině případů úmysl úkol smazat, ale pokud to udělá omylem, může smazání bezpečně vrátit. 
+Tento způsob mazání je lepší než klasický dialog pro potvrzení smazání, pokud jsou mazané položky relativně nedůležité pro uživatele a manipuluje s nimi ve velkém (což je případ právě úkolů). Uživatel má v naprosté většině případů úmysl úkol smazat, ale pokud to udělá omylem, může smazání bezpečně vrátit. 
 
-V základním rozložení stránky je komponenta (na obrázku \ref{fig:astrid-tasklist}), která umožňuje přecházet mezi seznamy úkolů, případně procházet lidi, se kterými mám aplikaci propojenou. Tato komponenta je přítomna na každé stránce aplikace a uživatel tedy kdykoli může přejít na nějaký konkrétní seznam svých úkolů.
+V základním rozložení stránky je komponenta (na obrázku \ref{fig:astrid-tasklist}), která umožňuje přecházet mezi seznamy úkolů, případně procházet osoby, se kterými mám aplikaci propojenou. Tato komponenta je přítomna na každé stránce aplikace a uživatel tedy kdykoli může přejít na nějaký konkrétní seznam svých úkolů.
 
 \begin{figure}[htb]
 \begin{center}
@@ -273,7 +272,7 @@ V základním rozložení stránky je komponenta (na obrázku \ref{fig:astrid-ta
 
 Aplikace umožňuje také poslat uživateli email s upozorněním na blížící se termín splnění přání.
 
-Poslední zajímavá funkčnost je \emph{Remind Me button} tedy tlačítko, které si může jakýkoli uživatel umístit na webové stránky a pokud na něj klikne návštěvník této stránky, je mu automaticky přidán úkol do seznamu úkolů. HTML kód tlačítka se vytvoří pomocí jednoduchého formuláře, do kterého se zadá nadpis úkolu, za jak dlouho (popř. kdy) má být úkol splněn, název internetové stránky, na které je tlačítko umístěno a URL které se úkolu týká.
+Poslední zajímavá funkčnost je \emph{Remind Me button}, tedy tlačítko, které si může jakýkoli uživatel umístit na webové stránky a pokud na něj klikne návštěvník této stránky, je mu automaticky přidán úkol do seznamu úkolů. HTML kód tlačítka se vytvoří pomocí jednoduchého formuláře, do kterého se zadá nadpis úkolu, za jak dlouho (popř. kdy) má být úkol splněn, název internetové stránky, na které je tlačítko umístěno a URL které se úkolu týká.
 
 Technicky je celá aplikace řešena pomocí AJAX. To znamená, že se stránka nenačítá znovu po každém kliknutí na tlačítko/odkaz, ale pouze se doplňují data do potřebných částí stránky. K určení cesty na stránce se používá tzv. identifikátor fragmentu\footnote{Krátký řetězec znaků označující zdroj, který je podřízený jinému, primárnímu, zdroji. Primární zdroj je určen URI, identifikátor fragmentu je od URI oddělen znakem \#.}. Frontend aplikace je postaven na technologii twitter bootstrap.
 %https://twitter.com/astrid/status/222836247498985472
@@ -285,7 +284,7 @@ Java je objektově orientovaný programovací jazyk, který vyvinula firma Sun M
 
 Java je jedním z nejpoužívanějších programovacích jazyků na světě. Podle Tiobe indexu je Java nejpopulárnější programovací jazyk.[1] Díky své přenositelnosti je používán pro programy, které mají pracovat na různých systémech počínaje čipovými kartami (platforma JavaCard), přes mobilní telefony a různá zabudovaná zařízení (platforma Java ME), aplikace pro desktopové počítače (platforma Java SE) až po rozsáhlé distribuované systémy pracující na řadě spolupracujících počítačů rozprostřené po celém světě (platforma Java EE). Tyto technologie se jako celek nazývají platforma Java. Dne 8. května 2007 Sun uvolnil zdrojové kódy Javy (cca 2,5 miliónů řádků kódu) a Java bude dále vyvíjena jako open source.
 \subsubsection{Spring MVC}
-Spring MVC Web framework funguje na principu návrhového vzoru MVC. Tedy jasné oddělení perzistence, byznys logiky a prezentační vrstvy. Napříč těmito vrstvami je doménový model, tedy Java třídy reprezentující datový model aplikace\cite{liu2006research}.
+Spring MVC Web framework funguje na principu návrhového vzoru MVC. Ten znamená jasné oddělení perzistence, byznys logiky a prezentační vrstvy. Napříč těmito vrstvami je doménový model, tedy Java třídy reprezentující datový model aplikace\cite{liu2006research}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -312,12 +311,12 @@ Ruby on Rails je framework pro vývoj webových aplikací napojených na databá
 
 Vše v Rails je založeno na jazyce Ruby. Na jazyce Ruby je založen Ajax v šablonách (view), odpovědi v controllerech i architektura aplikace v modelech obalujících databázi. Ke spuštění aplikace je třeba jen databáze.
 
-Mezi základní princip Rails patří Konvence má přednost před konfigurací, tedy že programátor konfiguruje pouze ty části aplikace, které se liší od běžného nastavení. Vytvoří-li tedy např. model Person, aplikace bude data automaticky hledat v tabulce people. Chce-li, aby aplikace načítala data z tabulky staff, musí tak učinit výslovně.
+Mezi základní princip Rails patří Konvence má přednost před konfigurací, tedy programátor konfiguruje pouze ty části aplikace, které se liší od běžného nastavení. Vytvoří-li tedy např. model Person, aplikace bude data automaticky hledat v tabulce people. Chce-li, aby aplikace načítala data z tabulky staff, musí tak učinit výslovně.
 
 Rails jsou postaveny na bázi návrhového vzoru Model-view-controller, který odděluje části aplikace zodpovědné za čtení a ukládání dat včetně manipulace s nimi (model), za zobrazení grafického rozhraní aplikace (view) a za část přijímající vstupy od uživatele a řídící zobrazení dat na výstupu (controller).
 
 \subsubsection{Sinatra}
-Sinatra je minimalistický framework\footnote{Zde se definice liší, například Alan Harris ve své publikaci Sinatra Up and Running píše, že sinatra není framework, ale podle mě definici tohoto slova naplňuje.} a doménově specifický jazyk\footnote{Doménově specifický jazyk je programovací jazyk, který je prostřednictvím vhodné abstrakce a výrazového slovníku zaměřen na omezenou, konkrétní problémovou doménu. V tomto případě jsou doménou Webové stránky.} založený na ruby. Neobsahuje žádné další knihovny, jako například ORM, nebo komplexní knihovny na práci s View. Je určen pro jednoduché webové aplikace, webové služby. Sinatra nevnucuje programátorovi žádný návrhový vzor, takže na rozdíl od velkého množství frameworků není postaven na MVC.\cite{harris2011sinatra}
+Sinatra je minimalistický framework\footnote{Zde se definice liší, například Alan Harris ve své publikaci Sinatra Up and Running uvádí, že sinatra není framework, ale podle autorova názoru definici tohoto slova naplňuje.} a doménově specifický jazyk\footnote{Doménově specifický jazyk je programovací jazyk, který je prostřednictvím vhodné abstrakce a výrazového slovníku zaměřen na omezenou, konkrétní problémovou doménu. V tomto případě jsou doménou Webové stránky.} založený na ruby. Neobsahuje žádné další knihovny, jako například ORM, nebo komplexní knihovny na práci s View. Je určen pro jednoduché webové aplikace, webové služby. Sinatra nevnucuje programátorovi žádný návrhový vzor, takže na rozdíl od velkého množství frameworků není postaven na MVC.\cite{harris2011sinatra}
 
 Jak již bylo naznačeno v předchozím odstavci, Sinatra poskytuje minimální obal okolo HTTP dotazu a odpovědi. Celá knihovna je napsána v méně než 2000 řádcích\cite{harris2011sinatra}. Sinatra je vhodná pro drobnou aplikaci, kde je důležitá primárně jednoduchá syntaxe a přehlednost kódu. Není výjimkou, že celá webová aplikace postavená na Sinatře se nachází v jednom souboru\cite{harris2011sinatra}.
 
@@ -327,7 +326,7 @@ Do této kategorie spadají veškeré aplikace/skripty/styly, které vývojáři
 \subsubsection{Twitter Bootstrap}
 Bootstrap byl vyvinut vývojáři Markem Ottem a Jacobem Thorntonem ve společnosti Twitter jako standard pro udržení konzistence napříč interními nástroji. Do té doby byly pro vývoj uživatelských rozhraní používány různé knihovny, což mělo za následek zvýšené náklady na údržbu.
 
-V Září 2011 byl framework uvolněn jako open-source. Nyní (duben 2013) je nejoblíbenějším projektem na Github.com s velice širokou komunitou vývojářů\cite{website:github-popular}.
+V září 2011 byl framework uvolněn jako open-source. Nyní (duben 2013) je nejoblíbenějším projektem na Github.com s velice širokou komunitou vývojářů\cite{website:github-popular}.
 
 
 Mezi mnohými funkcemi frameworku je například automatický 12-ti sloupcový mřížkový laout\footnote{Vývojář může jednotlivé komponenty vkládat do 12-ti sloupců kde každá komponenta může zabírat libovolný počet sloupců. Komponenty je možné vkládat do řádků.} a responzivní layout, který vhodně mění rozložení prvků v závislosti na velikosti okna prihlížeče\footnote{To je vhodné pro zobrazení jedné stránky na více typech zařízení (PC, tablet, mobilní telefon).}.
@@ -345,13 +344,13 @@ Na obrázku je vidět příklad jednoduché stránky přímo ze stránek framewo
 \subsubsection{HTML 5 Boilerplate}
 V roce 2009 začal Paul Irish kopírovat často používané kusy svého HTML, CSS a JavaScript kódu do jednoho dokumentu. Tento dokument sestával pouze ze základních kusů kódu. Paul Irish od té doby začal vždy stavět nový projekt nad tímto dokumentem. Tím vzniknul frontend framwork HTML 5 Boilerplate, který byl poprvé uvolněn v lednu 2010 a pod svým nynějším názvem je od června 2010.\cite{website:boilerplate-history}
 
-Tento projekt má za cíl obsahovat naprosté minimum, co potřebuje každý vývojář při své práci\cite{website:boilerplate-history}. Díky této myšlence, na které je framework postaven poskytuje spíše funkce, které lze využívat při tvorbě stránek než hotové komponenty, ze kterých by stránka šla přímo postavit.
+Tento projekt má za cíl obsahovat naprosté minimum, které potřebuje každý vývojář při své práci\cite{website:boilerplate-history}. Díky této myšlence, na které je framework postaven poskytuje spíše funkce, které lze využívat při tvorbě stránek než hotové komponenty, ze kterých by stránka šla přímo postavit.
 
 \section{Možnosti napojení aplikace na systémy srovnávání cen}
 Možnosti napojení aplikace na systémy srovnávání cen jsou v zásadě 2. Využití API samotného systému, nebo využití takzvaného web scrapingu viz. \ref{sec:webscraping}
 
 \subsection{Napojení na API systému}
-V tomto ohledu jsou možnosti vesměs omezené. Čeští poskytovatelé (Heureka.cz, Zboží.cz) API veřejně neposkytují a na svých stránkách neuvádí podmínky pro získání přístupu k jejich datům. Zahraniční poskytovatel PriceGrabber svoje API poskytoval formou webové služby. Toto API bylo veřejné a mohl jej využívat kdokoli. Nyní je přístup k tomuto API znemožněn\cite{website:pricegrabber-api}. Například v rešerši zmiňovaný WishList je na tomto API postaven. Nyní je možné kontaktovat obchodní oddělení serveru a vyjednat s ním podmínky použití API.
+V tomto ohledu jsou možnosti vesměs omezené. Čeští poskytovatelé (Heureka.cz, Zboží.cz) API veřejně neposkytují a na svých stránkách neuvádí podmínky pro získání přístupu k jejich datům. Zahraniční poskytovatel PriceGrabber svoje API poskytoval formou webové služby. Toto API bylo veřejné a mohl je využívat kdokoli. Nyní je přístup k tomuto API znemožněn\cite{website:pricegrabber-api}. Například v rešerši zmiňovaný WishList je na tomto API postaven. Nyní je možné kontaktovat obchodní oddělení serveru a vyjednat s ním podmínky použití API.
 
 Tato metoda má jasnou výhodu v několika aspektech. Nejdůležitějším aspektem je legalita. Pokud systém vystaví veřejně svoje API a uživatel dodrží podmínky jeho užití, nemůže dojít k porušení žádného zákona. Dalším důležitým aspektem je výkonnost. Komunikace přes webovou službu je jednoduchá, nezatěžuje zbytečně šířku pásma. Poskytovatel API přesně ví, jaké metody jsou volány za jakým účelem a může optimalizovat byznys logiku v implementaci webových služeb (cache, výkonnější DB atp.). Poslední důležitou výhodou je verzování API. U webových služeb je běžnou praxí tzv. verzování\cite{josuttis2007soa}. To znamená, že nová funkčnost webové služby nikdy neovlivní současnou verzi, namísto toho je nová funkčnost vystavena až v další verzi. Tím nemůže dojít k narušení funkčnosti klientské aplikace.
 
@@ -362,12 +361,12 @@ Nevýhodou API systému je v tomto konkrétním případě velmi omezený přís
 Toto je metoda, která se používá k extrakci dat z datových stránek. Simuluje dotazy běžného uživatele a z nich získává data. Před nástupem webových služeb byla tato metoda hlavním způsobem, jak automatizovat získávání dat z webových stránek\cite{oreilly2007web}. Základní postup takovéto metody je následující:
 
 \begin{enumerate}
-\item Aplikace provede dotaz na předem danou URL \newline \emph{Např. http://srovnavac.cz/produkt?id=1}
+\item Aplikace provede dotaz na předem danou URL. \newline \emph{Např. http://srovnavac.cz/produkt?id=1}
 \item Aplikace dostane odpověď v podobě zdrojového kódu dotazované stránky.
 \item Aplikace musí tomuto zdrojovému kódu porozumět, zpracovat ho a převést do interní reprezentace datové struktury.
 \end{enumerate}
 
-Web Scraping je tedy velmi přímočará metoda, jak získat jakákoli data, ke kterým má běžný uživatel přístup pomocí webového prohlížeče. Získávání dat tímto způsobem má opět několik výhod. První výhodou je jednoduchá implementace. Je třeba zjistit URL požadovaných zdrojů, umístění potřebných dat na stránce a ošetření případných chyb, které při získání dat mohou nastat. Další výhodou je transparentní dokumentace. Webové stránky jsou navrženy tak, aby je uživatel snadno pochopil a tedy i programátor, který získává ze stránek data snadno pochopí co znamenají a kde se tato data nachází.
+Web Scraping je tedy velmi přímočará metoda, jak získat jakákoli data, ke kterým má běžný uživatel přístup pomocí webového prohlížeče. Získávání dat tímto způsobem má opět několik výhod. První výhodou je jednoduchá implementace. Je třeba zjistit URL požadovaných zdrojů, umístění potřebných dat na stránce a ošetření případných chyb, které při získání dat mohou nastat. Další výhodou je transparentní dokumentace. Webové stránky jsou navrženy tak, aby je uživatel snadno pochopil, a tedy i programátor, který získává ze stránek data snadno pochopí co znamenají a kde se tato data nachází.
 
 Web Scraping má na druhou stranu několik nevýhod. První nevýhodou jsou legální problémy spojené s tímto získáváním dat. V Čechách znám jediný případ kdy aplikace využívala tímto způsobem data cizího serveru. Jednalo se o aplikaci Pubtran, která využívala informace o jízdních řádech ze serveru \emph{jizdnirady.idnes.cz}. Autor aplikace František Hejl poté musel umístit do aplikace reklamní banery Idnes.
 
@@ -376,15 +375,15 @@ Další nevýhodou je závislost na konkrétním \emph{vzhledu}\footnote{V tomto
 Poslední nevýhodou je obtížně testování aplikace postavené na získávání dat touto metodou. Nikdy není zaručeno, že server nevrátí na dotaz nějakou stránku, se kterou aplikace nepočítá.
 
 \section{Vyhodnocení rešerše}
-Nyní bude zhodnocena všechna funkcionalita pospaná v kapitolách \ref{sec:nakupni-seznamy} a \ref{sec:srovnavace-cen}. Půjde především o zhodnocení silných a slabých stránek zmiňovaných systémů a aplikací. 
+V následujících bodech bude zhodnocena veškerá funkcionalita pospaná v kapitolách \ref{sec:nakupni-seznamy} a \ref{sec:srovnavace-cen}. Půjde především o zhodnocení silných a slabých stránek zmiňovaných systémů a aplikací. 
 
 %a \ref{sec:aplikace-s-zadanou-funkcnosti}
 
 \subsection{Přímí konkurenti výsledné aplikace}
-Výhodou řešení od firem Amazon a Google je, že jsou to projekty velkých, na internetu prosazených, společností. Jejich zřejmým nedostatkem je že obě jsou pouze jakýmsi doplňkem obchodů a je pravděpodobné, že takové i zůstanou. Všechny tři srovnávané aplikace přitom slouží především k vytváření seznamů, které se sdílí mezi uživateli a jde tedy o seznamy přání například pro svatebčany, aby věděli co koupit novomanželům, nebo pro účastníky narozeninové oslavy.
+Výhodou řešení od firem Amazon a Google je skutečnost, že jsou to projekty velkých, na internetu prosazených, společností. Jejich zřejmým nedostatkem je tedy to, že obě jsou pouze jakýmsi doplňkem obchodů a je pravděpodobné, že takové i zůstanou. Všechny tři srovnávané aplikace přitom slouží především k vytváření seznamů, které se sdílí mezi uživateli a jde tedy o seznamy přání například pro svatebčany, aby věděli co koupit novomanželům, nebo pro účastníky narozeninové oslavy.
 
 Žádná z aplikací nenabízí sledování cen, což uživateli ztěžuje orientaci v tom, které jeho zboží je právě v akci a vyplatí se ho koupit.
 \subsection{Servery pro srovnávání cen zboží}
-Servery pro srovnávání cen mají v Čechách i ve světě už relativně dlouhou historii. Internetové obchody jim poskytují svá data a platí jim za to, když do jejich obchodu přijde zákazník ze srovnávače. Tyto servery jsou v Čechách velmi využívané a zákazníci je používají při rozhodování kde a za kolik zboží koupí.
+Servery pro srovnávání cen mají v Čechách i ve světě už relativně dlouhou historii. Internetové obchody jim poskytují svá data a finanční plnění za návštěvy zákazníků, kteří do obchodu přešli ze stránek srovnávače. Tyto servery jsou v Čechách velmi využívané a zákazníci je používají při rozhodování kde a za kolik zboží koupí.
 
-To z nich dělá vhodné kandidáty na zdroje dat pro výslednou aplikaci. Tyto servery většinou poskytují základní funkci hlídací pes, která uživateli umožňuje poslat e-mail ve chvíli, kdy klesne cena pod nějaké zboží. Toto je zajímavá funkcionalita, ale je omezena. Pokud napříkald cena klesne z 5 000 Kč na 3500 Kč změnila se prudce, ale uživatel může mít nastavenou hranici na 3 400 Kč a o tomto poklesu se nedozví. Tento nedostatek bude adresovat funkce sledování ceny ve výsledné aplikaci.
+To z nich dělá vhodné kandidáty na zdroje dat pro výslednou aplikaci. Tyto servery většinou poskytují základní funkci hlídací pes, která uživateli umožňuje poslat e-mail ve chvíli, kdy klesne cena pod uživatelem stanovenou hranici. Toto je zajímavá funkcionalita, ale je omezena. Pokud například cena klesne z 5 000 Kč na 3 500 Kč, jedná se o velký skok, ale uživatel může mít nastavenou hranici na 3 400 Kč a o tomto poklesu se nedozví. Tento nedostatek bude adresovat funkce sledování ceny ve výsledné aplikaci.

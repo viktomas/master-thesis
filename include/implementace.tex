@@ -1,23 +1,23 @@
 % !TEX root = ../DP_Vik_Tomas_2013.tex
 \chapter{Implementace}
-Pro lepší představu bude nejdříve zběžně popsán způsob, jakým se všeobecně sestavuje aplikace ve frameworku Ruby on Rails. Následně se bude kapitola věnovat detailněji implementaci napojení aplikace na srovnávač Heureka.cz, implementací získávání aktuálních cen a jejich zpracování do grafu a na konci kapitoly bude ukázka implementovaných obrazovek aplikace.
+Pro lepší představu bude nejdříve zběžně popsán způsob, jakým se všeobecně sestavuje aplikace ve frameworku Ruby on Rails. Následně se bude kapitola věnovat detailněji implementaci napojení aplikace na srovnávač Heureka.cz, implementací získávání aktuálních cen a jejich zpracování do grafu a kapitolu uzavře ukázka implementovaných obrazovek aplikace.
 
 \section{Standardní rozvržení aplikace v Ruby on Rails}
 Jak již bylo řečeno v kapitole \ref{sec:ror}, aplikace upřednostňuje konvenci před konfiguraci, což na jednu stranu znamená minimum konfigurace aplikace, na druhou stranu to znamená, že má vývojář přesně dané postupy jak v implementaci něčeho dosáhnout. Framework je postaven na návrhovém vzoru MVC a to také implementaci rozděluje na tři významné části.
 
 \subsection{Model}
-Model reprezentuje informace v aplikaci a pravidla jak s nimi zacházet. Což se dá interpretovat také jako mechanismus zapisování a čtení databáze a pravidla tohoto zápisu/čtení. Model je v Rails řešen pomocí knihovny Active Record. Ta poskytuje nad každým objektem modelu velkou škálu funkcí ketré manipulují přímo s databází. Každá modelová třída musí dědit od |ActiveRecord::Base|. Na schématu \ref{fig:model-diagram} jsou vidět všechny modelové třídy ve výsledné aplikaci. Každý model v Rails má v příslušené tabulce v databázi ještě dva sloupce |create_at| a |updated_at| jejichž hodnoty se automaticky nastavují při vytvoření/upravení záznamu.
+Model reprezentuje informace v aplikaci a pravidla jak s nimi zacházet. Což se dá interpretovat také jako mechanismus zapisování a čtení databáze a pravidla tohoto zápisu/čtení. Model je v Rails řešen pomocí knihovny Active Record. Ta poskytuje nad každým objektem modelu velkou škálu funkcí které manipulují přímo s databází. Každá modelová třída musí dědit od |ActiveRecord::Base|. Na schématu \ref{fig:model-diagram} jsou vidět všechny modelové třídy ve výsledné aplikaci. Každý model v Rails má v příslušné tabulce v databázi ještě dva sloupce |create_at| a |updated_at| jejichž hodnoty se automaticky nastavují při vytvoření/upravení záznamu.
 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=120mm]{./pictures/model-diagram.png}
-\caption{Digram tříd v modelu aplikace}
+\caption{Diagram tříd v modelu aplikace}
 \label{fig:model-diagram}
 \end{center}
 \end{figure}
 
 \subsection{Controller}
-Controller je v Rails třída, která dědí od třídy |ActionController::Base|. Tato třída má na starosti zpracování HTTP dotazů. Pokud přijde dotaz, framework se pokusí v routes souboru\footnote{Konfigurační soubor, ve kterém jsou nastaveny pro každou validní URL odpovídající controllery a jejich metody.} najít vhodný controller a jeho metodu kterou poté zavolá. Controller má mimo jiné přístup k parametrům, se kterými byl proveden HTTP dotaz a k session proměnné.
+Controller je v Rails třída, která dědí od třídy |ActionController::Base|. Tato třída má na starosti zpracování HTTP dotazů. Pokud přijde dotaz, framework se pokusí v routes souboru\footnote{Konfigurační soubor, ve kterém jsou nastaveny pro každou validní URL odpovídající controllery a jejich metody.} najít vhodný controller a jeho metodu, kterou poté zavolá. Controller má mimo jiné přístup k parametrům, se kterými byl proveden HTTP dotaz a k session proměnné.
 
 Dále je v Rails aplikacích standardem, že existuje controller, který se nazývá |ApplicationController| a od něj dědí všechny ostatní controllery. Tak je tomu i ve výsledné aplikaci.
 
@@ -54,9 +54,9 @@ end
 \subsection{View}
 View reprezentuje uživatelské rozhraní aplikace. V Rails je view řešeno pomocí HTML souborů, do kterých jsou vloženy kusy Ruby kódu. View poskytují data klientskému prohlížeči.
 
-View je vykreslován controllerem a má také k dispozici všechna data, která má k dispozici controller. Proto je snadné předávat do view data získaná v controllru.
+View je vykreslován controllerem a má také k dispozici všechna data, která má k dispozici controller. Proto je snadné předávat do view data získaná v controlleru.
 
-Následuje ukázka kódu view, který má ve výsledné aplikace na starost vykreslení seznamu štítků v levém panelu.
+Následuje ukázka kódu view, který má ve výsledné aplikaci na starost vykreslení seznamu štítků v levém panelu.
 
 \lstset{language = html, style=custom}
 \begin{lstlisting}
@@ -92,7 +92,7 @@ doc = Nokogiri::HTML(open("http://www.heureka.cz/?h[fraze]=#{heureka_term}"))
 
 \noindent kde |heureka_term| je vyhledávaný výraz.
 
-V takto získaném dokumentu je snadné hledat jednotlivé elementy pomocí CSS selektorů (viz. \ref{sec:css-selektor}). A číst obsah takto získaných elementů pomocí metody. Následuje ukázka kódu\footnote{Pro přehlednost bylo z ukázky odebráno přiřazení získaných dat.} na získání produktů z vyhledávání provedeného předchozím příkazem:
+V takto získaném dokumentu je snadné hledat jednotlivé elementy pomocí CSS selektorů (viz. \ref{sec:css-selektor}) a číst obsah takto získaných elementů pomocí metody. Následuje ukázka kódu\footnote{Pro přehlednost bylo z ukázky odebráno přiřazení získaných dat.} na získání produktů z vyhledávání provedeného předchozím příkazem:
 
 \begin{lstlisting}
 products = doc.css('#content #search .product')
@@ -119,8 +119,8 @@ Základními metodami naimplementované knihovny pro získávání dat ze server
 
 \begin{itemize}
 \item |search_term(term, limit)| - vrátí vyhledané produkty, tyto produkty nejsou ještě vloženy do databáze, každý vyhledaný produkt obsahuje URL, ze kterého je možné jeho data získat
-\item |parse_item(item_url)| - je volána při přidávání přání s novým produktem, získa z dané URL produkt, uloží všechny jeho informace do databáze a vrátí jej
-\item |get_prices(item)| - volá se při vytváření nového přání a poté periodicky každý den. Získá ceny ze všech obchodů, ve kterých se produkt z parametru prodává.
+\item |parse_item(item_url)| - je volána při přidávání přání s novým produktem, získá z dané URL produkt, uloží všechny jeho informace do databáze a vrátí jej
+\item |get_prices(item)| - volá se při vytváření nového přání a poté periodicky každý den. Získá ceny ze všech obchodů, ve kterých se produkt z~parametru prodává.
 \end{itemize}
 
 Při implementaci získávání dat metodou Web Scraping bylo nejobtížnější ošetřit všechny možné podoby stránek, které server vrací. Např. videa v galerii obrázků, žádný popis nebo obrázek produktu apod.
