@@ -20,6 +20,8 @@
 \usepackage{fancyvrb}
 \usepackage{listings} %zdrojove kody
 \usepackage{amsmath}
+
+\usepackage{float}
 %\usepackage{color} %colorbox
 
 \lstdefinestyle{custom}{
@@ -63,11 +65,11 @@
 \authorWithDegrees{Bc. Tomáš Vik} %jméno autora včetně akademických titulů
 \supervisor{Ing. Jiří Hunka}
 \acknowledgements{Děkuji svému vedoucím práce Jiřímu Hunkovi za čas strávený konzultacemi a korekturou této práce. Děkuji svým rodičům, že mě vychovali a podporovali mě. A poté děkuji všem svým přátelům, kteří mi zpřijemňovali má vysokoškolská léta. Jmenovitě díky Bukáši, Vejvisi, Tomaassi, Medvěde, Pinokio, Váco, Sethe, Máro, Eliško, Sobe, Zůzo, Nováku, Stanely, Gulo, Kájo, Terko a Káťo.}
-\abstractCS{Práce pojednává o problematice nákupních seznamů, dále popisuje návrh a implementaci webové aplikace, která slouží jako pokročilý nákupní seznam.}
-\abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
+\abstractCS{Práce pojednává o problematice nákupních seznamů. Nejdříve prozkoumává současný trh těchto seznamů a systémů srovnávání cen zboží. Následně je navržena a implementována webová aplikace, která staví na tomto průzkumu. Při návrhu i implementaci je kladen důraz na jednoduchost uživatelského rozhraní. V závěru práce jsou provedeny uživatelské testy aplikace.}
+\abstractEN{This thesis is concerned with shopping lists. In the first part of the thesis several already copmleted applications are described. Then web application is designed and implemented on the informations mentioned above. Application design is focused on user interface. Afterwards the application is tested by users.}
 \placeForDeclarationOfAuthenticity{V~Praze}
-\keywordsCS{seznam, zboží, prioritizace}
-\keywordsEN{list, goods, prioritization}
+\keywordsCS{seznam, srovnávání zboží, prioritizace, uživatelské rozhraní}
+\keywordsEN{list, goods comparsion, prioritization, user interface}
 
 %namedlabel control sequence for easy referencing of list items
 \makeatletter
@@ -100,6 +102,7 @@
 \include{./include/zkratky}
 \include{./include/wireframe}
 \include{./include/dotaznik}
+\include{./include/vysledky-dotazniku}
 \include{./include/nielsen-heuristika}
 \include{./include/instalacni-prirucka}
 

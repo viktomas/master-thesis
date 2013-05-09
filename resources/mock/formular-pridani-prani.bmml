@@ -127,9 +127,32 @@
         <text>Vytvo%u0159it%20p%u0159%E1n%ED</text>
       </controlProperties>
     </control>
-    <control controlID="24" controlTypeID="com.balsamiq.mockups::Tooltip" x="1064" y="304" w="239" h="75" measuredW="98" measuredH="197" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::Tooltip" x="1064" y="304" w="239" h="75" measuredW="238" measuredH="0" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Rychl%E1%20priorita%0AV%FDb%u011Brem%20rychl%E9%20priority%20ur%u010Dujete%2C%20kam%20do%20va%u0161eho%20seznamu%20se%20p%u0159%E1n%ED%20p%u0159ibli%u017En%u011B%20za%u0159ad%ED.</text>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::LineChart" x="482" y="478" w="314" h="142" measuredW="187" measuredH="175" zOrder="24" locked="false" isInGroup="-1"/>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Label" x="486" y="444" w="-1" h="-1" measuredW="121" measuredH="24" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>V%FDvoj%20ceny%20p%u0159%E1n%ED</text>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::CheckBox" x="482" y="635" w="-1" h="-1" measuredW="104" measuredH="22" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Nejni%u017E%u0161%ED%20cena</text>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::CheckBox" x="482" y="657" w="-1" h="-1" measuredW="188" measuredH="22" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cena%20ve%20vybran%E9m%20obchod%u011B</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Button" x="1013" y="201" w="88" h="27" measuredW="59" measuredH="27" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>disabled</state>
+        <text>Koupit</text>
       </controlProperties>
     </control>
   </controls>

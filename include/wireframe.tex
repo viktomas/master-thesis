@@ -21,7 +21,7 @@ V návrhu layoutu je jasně vidět panel umístěný v horní časti stránky, k
 Dále budou popsány obrazovky, které zabírají celou stránku. Tyto stránky vždy obsahují výše zmíněné \nameref{sec:hlavni-ovladaci-prvky}. Všechny obrazovky kromě \ref{sc-01} jsou navrhnuty z pohledu nepřihlášeného uživatele\footnote{Hlavní ovládací prvky umožňují přihlášení a registraci namísto odhlášení.}.
 
 \subsection{\ref{sc-01}}
-Toto je stránka, která se zobrazí uživateli ihned po jeho přihlášení do aplikace. Zároveň ho na ní přesunou oba odkazy umístěné v hlavních ovládacích prvcích. Na této stránce bude uživateli zobrazeno maximálně pět přání. Výběr přání bude proveden na základě nejprudší změny ceny (a to ať už zlevnění, nebo zdražení produktu). Stránka je na obrázku \ref{fig:uvodni-prihlaseny-uzivatel}.
+Toto je stránka, která se zobrazí uživateli ihned po jeho přihlášení do aplikace. Zároveň ho na ní přesunou oba odkazy umístěné v hlavních ovládacích prvcích. Na této stránce bude uživateli zobrazeno maximálně pět přání. Výběr přání bude proveden na základě nejprudší změny ceny (a to ať už zlevnění, nebo zdražení produktu). Stránka je na obrázku \ref{fig:uvodni-prihlaseny-uzivatel}. Na této obrazovce není možné přání přesouvat, protože zde nejsou seřazena podle priority.
 
 \begin{figure}[htb]
 \begin{center}
@@ -59,7 +59,9 @@ U každého výsledku je ukázán obrázek produktu, jeho celý název, popisek,
 \label{sec:wireframe-pridani-prani}
 Poté co uživatel klikne na výsledek hledání přání, bude zobrazena obrazovka pro přidání přání.  Návrh obrazovky je na obrázku \ref{fig:formular-pridani-prani}.
 
-Na návrhu je vidět, že uživateli je zvolen obrázek pro přání, ale zároveň má možnost vybrat z miniatur pod hlavním obrázkem a kliknutím na miniauturu nahradit původní obrázek. Vizuální stránka přání je důležitá, proto zabírá celou půlku formuláře. V druhé půlce je uživateli umožněno nastavit všechny informace popsané v kapitole \ref{sec:pridani-prani}.
+Na návrhu je vidět, že uživateli je zvolen obrázek pro přání, ale zároveň má možnost vybrat z miniatur pod hlavním obrázkem a kliknutím na miniauturu nahradit původní obrázek. Vizuální stránka přání je důležitá, proto zabírá celou půlku formuláře. Zároveň je ve sloupci s obrázkem zobrazen graf vývoje ceny produktu, který má 2 křivky. Jedna určuje nejnižší cenu přání a druhá cenu přání ve vybraném obchodě.
+
+V druhé půlce je uživateli umožněno nastavit všechny informace popsané v kapitole \ref{sec:pridani-prani}. A navíc přejít přímo na stránku produktu ve vybraném obchodě pomocí tlačítka \emph{Koupit}. Toto tlačítko je neaktivní, dokud uživatel nevybere vlastní obchod.
 
 Rychlá priorita ulehčuje uživateli práci. Oprosťuje uživatele od vnitřní datové reprezentace priority. Nechá ho vybrat ze tří možností a na základě jednoduchého algoritmu patřičně přiřadí prioritu k přání.
 
@@ -74,11 +76,12 @@ Uživateli se navíc zobrazí dodatečné informace (popis a technická specifik
 \end{figure}
 
 \subsection{\ref{sc-04}}
+\label{sec:wireframe-vsechna-prani}
 Na stránce jsou uživateli zobrazena všechna jeho přání seřazena podle priority od nejvyšší po nejnižší. Návrh obrazovky je na obrázku \ref{fig:vsechna-prani}.
 
 U každého přání je zobrazen název produktu, cena v obchodě, který je u přání přiřazen a graf aktuálního vývoje ceny.
 
-Přání je možné přesouvat táhnutím myši a tím měnit jejich prioritu.
+Přání je možné přesouvat táhnutím myši a tím měnit jejich prioritu. Detail přání a případnou editaci uživatel zobrazí tlačítkem \emph{Detail}. Z tohoto výpisu je možné také přejít přímo na stránku produktu ve vybraném obchodě pomocí tlačítka \emph{Koupit}.
 
 \begin{figure}[htb]
 \begin{center}
@@ -117,6 +120,21 @@ Obrazovka je totožná s \ref{sc-04}, s výjimkou že jsou na ní zobrazeny pouz
 Některé informace nevyžadují tolik místa, nebo je podle konvence nutné je řešit dialogem(konzistence a standardizace\cite{molich1990improving}), a proto není jejich zobrazení realizováno jako celá stránka. Namísto toho je informace zobrazená formou komponenty umístěné na hlavní ztránce, nebo dialogu zobrazeného přes libovolnou stránku.
 
 \subsection{\ref{sc-12}}
+Pokud uživatel přesáhne maxilmální počet přání (viz. sekce \ref{sec:pridani-prani}), tak mu aplikace zobrazí dialog, ve kterém má možnost zvolit jaká přání si ponechá a jaká mu smaže (obrázek \ref{fig:dialog-overflow}). V dialogu jasně vidí čítač, který ukazuje kolik přání ještě musí uživatel označit pro smazání. Přání jsou označena kliknutím.
+
+Počet přání může uživatel překročit dvojím způsobem:
+\begin{itemize}
+\item Klasickým přidáním přání - uživatel jednoduše přidá přání přes limit, v tom případě se v dialogu ukáže 5 přání s nejnižší prioritou plus to nové.
+\item Přidáním přání nepřihlášeného uživatele - uživatel si před přihlášením vytvořil několik přání a ta po přihlášení chce přidat do svého seznamu. V tomto případě se uživateli zobrazí stejný počet starých jako nových přání. Minimálně se ovšem starých přání zobrazí pět.
+\end{itemize}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=70mm]{./pictures/mock/dialog-overflow.png}
+\caption{\ref{sc-10}}
+\label{fig:dialog-overflow}
+\end{center}
+\end{figure}
 
 \subsection{\ref{sc-06}}
 Na obrázku \ref{fig:dialog-mazani-prani} je zobrazen návrh dialogu, který se uživateli zobrazí poté, co klikne na tlačítko smazání přání. Dialog je naprosto triviální.

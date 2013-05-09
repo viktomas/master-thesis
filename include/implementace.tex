@@ -126,5 +126,52 @@ Základními metodami naimplementované knihovny pro získávání dat ze server
 Při implementaci získávání dat metodou Web Scraping bylo nejobtížnější ošetřit všechny možné podoby stránek, které server vrací. Např. videa v galerii obrázků, žádný popis nebo obrázek produktu apod.
 
 \section{Získávání cen a sestavování grafu vývoje ceny}
+Způsob získávání cen je ve výsledné aplikaci osvozen od způsobu, jakým se získávají data ze stránek srovnávače Heureka.cz. Ceny jsou načítány ze zdroje dat jednou denně. V datovém modelu (viz. \ref{fig:model-diagram}) je u každého produktu pole s URL adresou. Na ní je stránka srovnávače Heureka.cz, kde jsou informace o cenách produktu v jednotlivých obchodech. Aplikace projde všechny produkty a z této stránky k nim načte příslušné informace.
+
+Graf vývoje ceny je sestavován na základě periodických dat o ceně uložených v databázi. Pole s daty grafu se vytváří následujícím způsobem: 
+\begin{lstlisting}
+#pole poslednich 7mi dni
+days = (6.days.ago.to_date..Date.today).to_a
+hash = Hash.new
+#prochazime pole postupne (zaciname dneskem) a pro kazdy den ziskame nejnizsi cenu a cenu ve vybranem obchode
+days.reverse_each do |day|
+  low_price = Price.where(:item_id => item.id, :created_at => day.at_beginning_of_day..day.tomorrow.at_beginning_of_day).order('amount ASC').first
+  store_price = Price.where(:item_id => item.id, :store_id => selected_store.id, :created_at => day.at_beginning_of_day..day.tomorrow.at_beginning_of_day).order('amount ASC').first
+  #ukoncime, pokud databaze cenu neobsahuje (prani neni v databazi dostatecny pocet dni)
+  break if !low_price
+  hash[day] = [low_price.amount.to_i, store_price.amount.to_i]
+end
+\end{lstlisting}
+
+Výsledkem tohoto kódu je mapa, ve které je klíčem den a hodnotou je pole s nejnižší a vybranou cenou. Jinými slovy mapa obsahuje pro každý dvojici cen, celkově nejjnižší a cenu z vybraného obchodu. Tento objekt je po dalších drobných úpravách předán Google Visualization API\footnote{\url{https://developers.google.com/chart/interactive/docs/gallery/linechart}}, které z něj vytvoří SVG dynamický graf umístěný na výsledné stránce.
+
+V implementaci je vidět zásadní problém, který skrývá metoda Web Scraping. Data o cenách se k produktům donačítají postupně každý den. To znamená, že pokud uživatel přidá do aplikace produkt, který před ním nikdo nepřidal, je u tohoto produktu uložena cena pouze za poslední den. Plný graf vývoje ceny přání uživatel uvidí až po týdnu.
 
 \section{Výsledné grafické uživatelské rozhraní.}
+Grafické rozhranní aplikace je hodně ovlivněné základním vzhledem Twitter Bootstrap frameworku. Pro ukázku implementace byly vybrány 2 relativně nejsložitější obrazovky aplikace.
+\subsection{\ref{sc-11}}
+Při implementaci bylo rozložení prvků striktně dodržen wireframe návrh (kapitola \ref{sec:wireframe-pridani-prani}). Ovládací prvky obrazovky co nejintiutivněji barevně rozlišeny. Např. vysoká priorita má červenou barvu, nízká zelenou. Obrázky lze přepínat kliknutím na miniaturu. Obchod lze vybrat tlačítkem \emph{Zvolte obchod}.
+
+Výsledná implementace je vidět na obrázku \ref{fig:impl-add}.
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=100mm]{./pictures/impl-add.png}
+\caption{Implementace obrazovky: \ref{sc-11}}
+\label{fig:impl-add}
+\end{center}
+\end{figure}
+
+Na implementované obrazovce je také vidět horní lišta, která indikuje, že uživatel není přihlášený a umožňuje mu se buďto přihlásit, nebo zaregistrovat. Všechny ostatní ovládací prvky umožňující provést hlavní akce aplikace (kapitola \ref{sec:hlavni-akce}) jsou zde také přítomny.
+
+\subsection{\ref{sc-04}}
+Návrh, podle kterého implementace probíhala je vidět v kapitole \ref{sec:wireframe-vsechna-prani}. Uživatel má na jedné obrazovce zobrazena všechna svá přání seřazená podle priority od nejvyšší po nejnižší. Měnit prioritu přání je možné jednoduchým přetažením přání na jiné místo.
+
+V implementaci je zároveň vidět levý panel se štítky jehož návrh je popsán v kapitole \ref{sec:hlavni-ovladaci-prvky}. Z tohoto panelu lze snadno přejít na zobrazení všech přání obsahujících daný štítek.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=100mm]{./pictures/impl-all.png}
+\caption{Implementace obrazovky: \ref{sc-04}}
+\label{fig:impl-all}
+\end{center}
+\end{figure}
