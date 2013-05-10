@@ -3,7 +3,7 @@
 Pro lepší představu bude nejdříve zběžně popsán způsob, jakým se všeobecně sestavuje aplikace ve frameworku Ruby on Rails. Následně se bude kapitola věnovat detailněji implementaci napojení aplikace na srovnávač Heureka.cz, implementací získávání aktuálních cen a jejich zpracování do grafu a kapitolu uzavře ukázka implementovaných obrazovek aplikace.
 
 \section{Standardní rozvržení aplikace v Ruby on Rails}
-Jak již bylo řečeno v kapitole \ref{sec:ror}, aplikace upřednostňuje konvenci před konfiguraci, což na jednu stranu znamená minimum konfigurace aplikace, na druhou stranu to znamená, že má vývojář přesně dané postupy jak v implementaci něčeho dosáhnout. Framework je postaven na návrhovém vzoru MVC a to také implementaci rozděluje na tři významné části.
+Jak již bylo řečeno v kapitole \ref{sec:ror}, aplikace upřednostňuje konvenci před konfiguraci, což na jednu stranu znamená minimum konfigurace aplikace, na druhou stranu to znamená, že má vývojář přesně dané postupy jak v implementaci něčeho dosáhnout. Framework je postaven na návrhovém vzoru MVC a díky tomu je aplikace rozdělena na tři významné části.
 
 \subsection{Model}
 Model reprezentuje informace v aplikaci a pravidla jak s nimi zacházet. Což se dá interpretovat také jako mechanismus zapisování a čtení databáze a pravidla tohoto zápisu/čtení. Model je v Rails řešen pomocí knihovny Active Record. Ta poskytuje nad každým objektem modelu velkou škálu funkcí které manipulují přímo s databází. Každá modelová třída musí dědit od |ActiveRecord::Base|. Na schématu \ref{fig:model-diagram} jsou vidět všechny modelové třídy ve výsledné aplikaci. Každý model v Rails má v příslušné tabulce v databázi ještě dva sloupce |create_at| a |updated_at| jejichž hodnoty se automaticky nastavují při vytvoření/upravení záznamu.
@@ -52,7 +52,7 @@ end
 \end{lstlisting}
 
 \subsection{View}
-View reprezentuje uživatelské rozhraní aplikace. V Rails je view řešeno pomocí HTML souborů, do kterých jsou vloženy kusy Ruby kódu. View poskytují data klientskému prohlížeči.
+View reprezentuje uživatelské rozhraní aplikace a v Rails je řešeno pomocí HTML souborů, do kterých jsou vloženy části Ruby kódu. View  je tedy ta část aplikace, která poskytuje data klientskému prohlížeči.
 
 View je vykreslován controllerem a má také k dispozici všechna data, která má k dispozici controller. Proto je snadné předávat do view data získaná v controlleru.
 
@@ -64,14 +64,16 @@ Následuje ukázka kódu view, který má ve výsledné aplikaci na starost vykr
   <div class="well">
     <ul class="nav nav-stacked nav-pills">
       <li class="nav-header">Stitky</li>
+      <!-- Iterace pres kazdy stitek s jeho indexem -->
       <% @main_page_tags.each_with_index do |tag, index| %>
-          <li <%= 'class=overflow' if index > 4  %>>
-            <a href="/wishes/bytag/<%= tag.name %>">
-              <%= truncate(tag.name, length: 12) %> <%= raw(ApplicationHelper.badge(tag.wish_count(current_user.id))) %>
-            </a>
-          </li>
-
+        <!-- pokud je to paty a vicery stitek, nebue na zacatku zobrazen -->
+        <li <%= 'class=overflow' if index > 4  %>>
+          <a href="/wishes/bytag/<%= tag.name %>">
+            <%= truncate(tag.name, length: 12) %> <%= raw(ApplicationHelper.badge(tag.wish_count(current_user.id))) %>
+          </a>
+        </li>
       <% end %>
+      <!-- Tlacitko pro zobrazeni zbyvajicich stitku -->
       <% if @main_page_tags.size > 4 %>
           <li><a id="more-tags-button" class="more" href="#"><i class="icon-chevron-down"></i>Vice</a></li>
       <% end %>
@@ -123,7 +125,7 @@ Základními metodami naimplementované knihovny pro získávání dat ze server
 \item |get_prices(item)| - volá se při vytváření nového přání a poté periodicky každý den. Získá ceny ze všech obchodů, ve kterých se produkt z~parametru prodává.
 \end{itemize}
 
-Při implementaci získávání dat metodou Web Scraping bylo nejobtížnější ošetřit všechny možné podoby stránek, které server vrací. Např. videa v galerii obrázků, žádný popis nebo obrázek produktu apod.
+Při implementaci získávání dat metodou Web Scraping bylo nejobtížnější ošetřit všechny možné podoby stránek, které server vrací. Např. videa v galerii obrázků, chybějící popis nebo obrázek produktu apod.
 
 \section{Získávání cen a sestavování grafu vývoje ceny}
 Způsob získávání cen je ve výsledné aplikaci osvozen od způsobu, jakým se získávají data ze stránek srovnávače Heureka.cz. Ceny jsou načítány ze zdroje dat jednou denně. V datovém modelu (viz. \ref{fig:model-diagram}) je u každého produktu pole s URL adresou. Na ní je stránka srovnávače Heureka.cz, kde jsou informace o cenách produktu v jednotlivých obchodech. Aplikace projde všechny produkty a z této stránky k nim načte příslušné informace.
@@ -143,14 +145,14 @@ days.reverse_each do |day|
 end
 \end{lstlisting}
 
-Výsledkem tohoto kódu je mapa, ve které je klíčem den a hodnotou je pole s nejnižší a vybranou cenou. Jinými slovy mapa obsahuje pro každý dvojici cen, celkově nejjnižší a cenu z vybraného obchodu. Tento objekt je po dalších drobných úpravách předán Google Visualization API\footnote{\url{https://developers.google.com/chart/interactive/docs/gallery/linechart}}, které z něj vytvoří SVG dynamický graf umístěný na výsledné stránce.
+Výsledkem tohoto kódu je mapa, ve které je klíčem den a hodnotou je pole s nejnižší a vybranou cenou. Jinými slovy mapa obsahuje pro každý den dvojici cen, celkově nejnižší a cenu z vybraného obchodu. Tento objekt je po dalších drobných úpravách předán Google Visualization API\footnote{\url{https://developers.google.com/chart/interactive/docs/gallery/linechart}}, které z něj vytvoří SVG dynamický graf umístěný na výsledné stránce.
 
 V implementaci je vidět zásadní problém, který skrývá metoda Web Scraping. Data o cenách se k produktům donačítají postupně každý den. To znamená, že pokud uživatel přidá do aplikace produkt, který před ním nikdo nepřidal, je u tohoto produktu uložena cena pouze za poslední den. Plný graf vývoje ceny přání uživatel uvidí až po týdnu.
 
 \section{Výsledné grafické uživatelské rozhraní.}
 Grafické rozhranní aplikace je hodně ovlivněné základním vzhledem Twitter Bootstrap frameworku. Pro ukázku implementace byly vybrány 2 relativně nejsložitější obrazovky aplikace.
 \subsection{\ref{sc-11}}
-Při implementaci bylo rozložení prvků striktně dodržen wireframe návrh (kapitola \ref{sec:wireframe-pridani-prani}). Ovládací prvky obrazovky co nejintiutivněji barevně rozlišeny. Např. vysoká priorita má červenou barvu, nízká zelenou. Obrázky lze přepínat kliknutím na miniaturu. Obchod lze vybrat tlačítkem \emph{Zvolte obchod}.
+Při implementaci bylo rozložení prvků striktně dodržen wireframe návrh (kapitola \ref{sec:wireframe-pridani-prani}). Ovládací prvky obrazovky jsou co nejintiutivněji barevně rozlišeny. Např. vysoká priorita má červenou barvu a nízká zelenou. Obrázky lze přepínat kliknutím na miniaturu. Obchod lze vybrat tlačítkem \emph{Zvolte obchod}.
 
 Výsledná implementace je vidět na obrázku \ref{fig:impl-add}.
 \begin{figure}[htb]

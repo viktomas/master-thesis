@@ -17,7 +17,7 @@
 První kapitola je věnovaná popisu problematiky této práce a přehledu aplikací, ktere řeší stejné nebo podobné problémy.
 Nejdříve se zabývá přímými konkurenty výsledné aplikace. Zde je shrnuta funkcionalita webových aplikací, které umožňují organizaci nákupních seznamů.
 Dále se zabývá aplikacemi, které mají nějakou významnou funkčnost vhodnou pro výslednou aplikaci. Jedná se o aplikace, které se nějakou svojí částí specializují na organizaci informací. Konec kapitoly je věnován technologickému aspektu práce. Budou shrnuty technologie, na kterých je v dnešní době možné postavit webové aplikace.
-Na konci každé podkapitoly budou shrnuty slabé a silné stránky jednotlivých technologií.
+A zároveň budou popsány metody, kterými může výsledná aplikace získávat data.
 
 \section{Nákupní seznamy}
 \label{sec:nakupni-seznamy}
@@ -150,7 +150,7 @@ Uživateli je také umožněno filtrovat zboží na základě jeho parametrů. P
 \end{itemize}
 
 \paragraph{Databáze zboží}
-Srovnávače cen plní svojí databázi zboží z dat od zákazníku. U porovnávaných srovnávačů je princip následující: Obchod, který chce, aby jeho zboží bylo vidět ve srovnávači, vystaví veřejně XML soubor, ve kterém je detailní popis každého produktu včetně informací jako způsob a doba doručení.\cite{website:heureka:registrace-obchodu}
+Srovnávače cen plní svojí databázi zboží z dat od zákazníku. U porovnávaných srovnávačů je princip následující: Obchod, který chce, aby jeho zboží bylo vidět ve srovnávači, předá srovnávači adresu na XML soubor, ve kterém je detailní popis každého produktu včetně informací jako způsob a doba doručení.\cite{website:heureka:registrace-obchodu}
 
 \subsubsection{Srovnávání cen}
 Každá aplikace podporuje srovnání cen u zboží. U většiny zboží v databázi je přiřazen větší počet obchodů. Díky shromáždění cen z jednotlivých obchodů je poté srovnávač schopný zobrazit u zboží nejnižší a nejvyšší cenu. U zboží je zároveň zobrazen přehled všech obchodů ve kterých je zboží nabízeno. Několik obchodů je zpravidla doporučeno srovnávačem. K tomu mohou mít obchody ještě seznam ocenění získaných srovnávačem.
@@ -280,9 +280,9 @@ Technicky je celá aplikace řešena pomocí AJAX. To znamená, že se stránka 
 \section{Technologie pro vývoj aplikace}
 Tato část rešerše se zabývá technologiemi, ve kterých je možné implementovat webovou aplikaci. V každé podkapitole je nejprve popsán programovací jazyk a k němu následují nejpoužívanější frameworky pro implementaci webových aplikací.
 \subsection{Java}
-Java je objektově orientovaný programovací jazyk, který vyvinula firma Sun Microsystems a představila 23. května 1995.
+Java je objektově orientovaný programovací jazyk, který vyvinula firma Sun Microsystems a představila 23. května 1995\cite{website:wiki:java}.
 
-Java je jedním z nejpoužívanějších programovacích jazyků na světě. Podle Tiobe indexu je Java nejpopulárnější programovací jazyk.[1] Díky své přenositelnosti je používán pro programy, které mají pracovat na různých systémech počínaje čipovými kartami (platforma JavaCard), přes mobilní telefony a různá zabudovaná zařízení (platforma Java ME), aplikace pro desktopové počítače (platforma Java SE) až po rozsáhlé distribuované systémy pracující na řadě spolupracujících počítačů rozprostřené po celém světě (platforma Java EE). Tyto technologie se jako celek nazývají platforma Java. Dne 8. května 2007 Sun uvolnil zdrojové kódy Javy (cca 2,5 miliónů řádků kódu) a Java bude dále vyvíjena jako open source.
+Java je jedním z nejpoužívanějších programovacích jazyků na světě. Podle Tiobe indexu je Java druhý nejpopulárnější programovací jazyk\cite{website:tobie}. Díky své přenositelnosti je používán pro programy, které mají pracovat na různých systémech počínaje čipovými kartami (platforma JavaCard), přes mobilní telefony a různá zabudovaná zařízení (platforma Java ME), aplikace pro desktopové počítače (platforma Java SE) až po rozsáhlé distribuované systémy pracující na řadě spolupracujících počítačů rozprostřené po celém světě (platforma Java EE). Tyto technologie se jako celek nazývají platforma Java. Dne 8. května 2007 Sun uvolnil zdrojové kódy Javy (cca 2,5 miliónů řádků kódu) a Java bude dále vyvíjena jako open source\cite{website:wiki:java}.
 \subsubsection{Spring MVC}
 Spring MVC Web framework funguje na principu návrhového vzoru MVC. Ten znamená jasné oddělení perzistence, byznys logiky a prezentační vrstvy. Napříč těmito vrstvami je doménový model, tedy Java třídy reprezentující datový model aplikace\cite{liu2006research}.
 
@@ -300,9 +300,9 @@ Výhodou Spring MVC je, že je možné vybrat různé knihovny pro řešení spe
 
 \subsection{Ruby}
 \label{sec:ruby}
-Ruby je dynamický, reflexivní, objektově orientovaný programovací jazyk, který kombinuje syntaxi inspirovanou jazykem Perl s funkcemi podobnými Smalltalku. Ruby je také ovlivněný jazyky Eiffel a Lisp. Ruby byl prvotně navržen a vyvinut v polovině devadesátých let minulého století japoncem Yukihiro "Matz" Matsumoto.
+Ruby je dynamický, reflexivní, objektově orientovaný programovací jazyk, který kombinuje syntaxi inspirovanou jazykem Perl s funkcemi podobnými Smalltalku. Ruby je také ovlivněný jazyky Eiffel a Lisp. Ruby byl prvotně navržen a vyvinut v polovině devadesátých let minulého století japoncem Yukihiro "Matz" Matsumoto.\cite{website:wiki:ruby}
 
-Ruby podporuje několik programovacích paradigmat. Mimo jiné funkcionální, objektově orientované, imperativní a reflektivní. Ruby má dynamické typování a automatickou správu paměti. Je tedy v mnohých aspektech podobný jazykům Smalltalk, Python, Perl, Lisp, Dylan, Pike a CLU.
+Ruby podporuje několik programovacích paradigmat. Mimo jiné funkcionální, objektově orientované, imperativní a reflektivní. Ruby má dynamické typování a automatickou správu paměti. Je tedy v mnohých aspektech podobný jazykům Smalltalk, Python, Perl, Lisp, Dylan, Pike a CLU. \cite{website:wiki:ruby}
 
 Současná verze jazyka je 1.9.3.
 \subsubsection{Ruby on Rails}
@@ -329,7 +329,7 @@ Bootstrap byl vyvinut vývojáři Markem Ottem a Jacobem Thorntonem ve společno
 V září 2011 byl framework uvolněn jako open-source. Nyní (duben 2013) je nejoblíbenějším projektem na Github.com s velice širokou komunitou vývojářů\cite{website:github-popular}.
 
 
-Mezi mnohými funkcemi frameworku je například automatický 12-ti sloupcový mřížkový laout\footnote{Vývojář může jednotlivé komponenty vkládat do 12-ti sloupců kde každá komponenta může zabírat libovolný počet sloupců. Komponenty je možné vkládat do řádků.} a responzivní layout, který vhodně mění rozložení prvků v závislosti na velikosti okna prihlížeče\footnote{To je vhodné pro zobrazení jedné stránky na více typech zařízení (PC, tablet, mobilní telefon).}.
+Mezi mnohými funkcemi frameworku je například automatický 12-ti sloupcový mřížkový layout\footnote{Vývojář může jednotlivé komponenty vkládat do 12-ti sloupců kde každá komponenta může zabírat libovolný počet sloupců. Komponenty je možné vkládat do řádků.} a responzivní layout, který vhodně mění rozložení prvků v závislosti na velikosti okna prihlížeče\footnote{To je vhodné pro zobrazení jedné stránky na více typech zařízení (PC, tablet, mobilní telefon).}.
 
 Na obrázku je vidět příklad jednoduché stránky přímo ze stránek frameworku. Zdrojový kód tvořící tuto stránku má 127 řádků kódu\cite{website:bootstrap-example}.
 
